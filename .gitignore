@@ -12,6 +12,7 @@ log/
 tmp/**/*
 config/database.yml
 db/development_structure.sql
+db/seeds.rb
 # Vim
 *.swp
 *.dump
