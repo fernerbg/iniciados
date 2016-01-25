@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160121184834) do
+ActiveRecord::Schema.define(version: 20160125020808) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "profiles", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -31,6 +37,17 @@ ActiveRecord::Schema.define(version: 20160121184834) do
     t.datetime "updated_at",                          null: false
     t.index ["email"], :name => "index_users_on_email", :unique => true
     t.index ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  end
+
+  create_table "roles", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "profile_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["profile_id"], :name => "index_roles_on_profile_id"
+    t.index ["user_id"], :name => "index_roles_on_user_id"
+    t.foreign_key ["profile_id"], "profiles", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_roles_profile_id"
+    t.foreign_key ["user_id"], "users", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_roles_user_id"
   end
 
 end
