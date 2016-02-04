@@ -40,6 +40,9 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 1.0.0)
+    carrierwave (0.8.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
     childprocess (0.5.9)
       ffi (~> 1.0, >= 1.0.11)
     coffee-rails (4.0.1)
@@ -374,6 +377,7 @@ PLATFORMS
 
 DEPENDENCIES
   capybara (~> 2.0.2)
+  carrierwave
   coffee-rails
   coveralls
   database_cleaner
@@ -402,3 +406,6 @@ DEPENDENCIES
   tzinfo-data
   uglifier
   unicorn
+
+BUNDLED WITH
+   1.10.6

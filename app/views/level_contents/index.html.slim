@@ -1,0 +1,23 @@
+h1 Listing level_contents
+
+table
+  thead
+    tr
+      th Level
+      th Content
+      th
+      th
+      th
+
+  tbody
+    - @level_contents.each do |level_content|
+      tr
+        td = level_content.level
+        td = level_content.content
+        td = link_to 'Show', level_content
+        td = link_to 'Edit', edit_level_content_path(level_content)
+        td = link_to 'Destroy', level_content, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Level content', new_level_content_path

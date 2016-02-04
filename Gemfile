@@ -30,6 +30,8 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # State machine for attributes on models
 gem 'state_machine', require: 'state_machine/core'
 
+gem 'carrierwave'
+
 group :test, :development do
   gem 'rspec-rails'
 end

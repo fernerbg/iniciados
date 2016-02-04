@@ -1,0 +1,21 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @lesson.name
+p
+  strong Description:
+  = @lesson.description
+p
+  strong Number level:
+  = @lesson.number_level
+p
+  strong Number:
+  = @lesson.number
+p
+  strong Lesson level:
+  = @lesson.lesson_level
+
+= link_to 'Edit', edit_lesson_path(@lesson)
+'|
+= link_to 'Back', lessons_path

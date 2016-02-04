@@ -1,11 +1,27 @@
 Rails.application.routes.draw do
+  resources :level_contents
+
+  resources :lesson_contents
+
+  resources :contents
+
+  resources :levels
+
+  resources :lessons
+
+  resources :lesson_levels
+
   resources :roles
 
   resources :profiles
 
-  devise_for :users
+  devise_for :users, controllers: { sessions: "users/sessions" }
 
-  root 'profiles#index'
+  get 'home', to: "users#home"
+
+  get "/private/content/name/:id/:basename.:extension", to: "contents#delivery"
+
+  root 'users#home'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

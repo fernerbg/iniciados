@@ -7,4 +7,5 @@ class User < ActiveRecord::Base
 
   has_many :roles
   has_many :profiles, through: :roles
+  belongs_to :country
 end

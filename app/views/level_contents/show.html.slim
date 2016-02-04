@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Level:
+  = @level_content.level
+p
+  strong Content:
+  = @level_content.content
+
+= link_to 'Edit', edit_level_content_path(@level_content)
+'|
+= link_to 'Back', level_contents_path

@@ -1,0 +1,2 @@
+module LevelContentsHelper
+end

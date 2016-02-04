@@ -1,0 +1,23 @@
+h1 Listing lesson_contents
+
+table
+  thead
+    tr
+      th Lesson
+      th Content
+      th
+      th
+      th
+
+  tbody
+    - @lesson_contents.each do |lesson_content|
+      tr
+        td = lesson_content.lesson
+        td = lesson_content.content
+        td = link_to 'Show', lesson_content
+        td = link_to 'Edit', edit_lesson_content_path(lesson_content)
+        td = link_to 'Destroy', lesson_content, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Lesson content', new_lesson_content_path
