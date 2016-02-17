@@ -8,4 +8,8 @@ class User < ActiveRecord::Base
   has_many :roles
   has_many :profiles, through: :roles
   belongs_to :country
+
+  def admin?
+  	profiles.find_by(name: 'admin')
+	end
 end

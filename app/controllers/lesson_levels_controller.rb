@@ -1,5 +1,7 @@
 class LessonLevelsController < ApplicationController
-  before_action :set_lesson_level, only: [:show, :edit, :update, :destroy]
+  #before_action :set_lesson_level, only: [:show, :edit, :update, :destroy]
+  
+  load_and_authorize_resource
 
   respond_to :html
 
@@ -40,6 +42,7 @@ class LessonLevelsController < ApplicationController
   private
     def set_lesson_level
       @lesson_level = LessonLevel.find(params[:id])
+      redirect_to root_path unless current_user.lesson.lesson_level.id >= @lesson_level.id
     end
 
     def lesson_level_params

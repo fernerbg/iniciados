@@ -32,6 +32,8 @@ gem 'state_machine', require: 'state_machine/core'
 
 gem 'carrierwave'
 
+gem 'cancan'
+
 group :test, :development do
   gem 'rspec-rails'
 end
