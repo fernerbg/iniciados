@@ -17,9 +17,11 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { sessions: "users/sessions" }
 
+  resources :users
+
   get 'home', to: "users#home"
 
-  get "/private/content/name/:id/:basename.:extension", to: "contents#delivery"
+  get "/private/content/file/:id/:basename.:extension", to: "contents#delivery"
 
   root 'users#home'
 

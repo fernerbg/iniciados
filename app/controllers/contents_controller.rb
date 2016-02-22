@@ -38,7 +38,7 @@ class ContentsController < ApplicationController
 
   def delivery
     @content = Content.find(params[:id])
-    send_file @content.name.current_path, :x_sendfile=>true
+    send_file @content.file.current_path, :x_sendfile=>true
   end
 
   private
@@ -47,6 +47,6 @@ class ContentsController < ApplicationController
     end
 
     def content_params
-      params.require(:content).permit(:title, :description, :type, :thumbnail, :url, :name)
+      params.require(:content).permit(:title, :description, :type, :thumbnail, :url, :file)
     end
 end

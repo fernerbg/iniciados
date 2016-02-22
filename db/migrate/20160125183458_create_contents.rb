@@ -6,7 +6,8 @@ class CreateContents < ActiveRecord::Migration
       t.string :type
       t.text :thumbnail
       t.text :url
-
+      t.integer :page_number
+      t.string :file
       t.timestamps
     end
   end

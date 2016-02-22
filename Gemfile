@@ -34,6 +34,8 @@ gem 'carrierwave'
 
 gem 'cancan'
 
+gem 'country_select'
+
 group :test, :development do
   gem 'rspec-rails'
 end

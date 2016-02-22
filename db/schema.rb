@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160204203134) do
+ActiveRecord::Schema.define(version: 20160204164654) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,15 +22,19 @@ ActiveRecord::Schema.define(version: 20160204203134) do
     t.string   "type"
     t.text     "thumbnail"
     t.text     "url"
+    t.integer  "page_number"
+    t.string   "file"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name"
   end
 
   create_table "countries", force: true do |t|
-    t.string   "name"
+    t.string   "name",       null: false
+    t.string   "iso",        null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["iso"], :name => "index_countries_on_iso", :unique => true
+    t.index ["name"], :name => "index_countries_on_name", :unique => true
   end
 
   create_table "lesson_levels", force: true do |t|

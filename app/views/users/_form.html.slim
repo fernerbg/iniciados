@@ -1,0 +1,27 @@
+= form_for @user do |f|
+  - if @user.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
+      ul
+        - @user.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :surname
+    = f.text_field :surname
+  .field
+    = f.label :email
+    = f.text_field :email
+  .field
+    = f.label :country
+    = country_select("country", "id", {priority_countries: ["EC", "VE", "CO", "AR", "MX", "UY", "US", "PE", "IT", "ES"], selected: (@user.country.nil? ? nil : @user.country.iso) })
+  .field
+    = f.label :lesson
+    = f.select :lesson_id, options_for_select(Lesson.all.pluck(:name, :id), (@user.lesson.nil? ? nil : @user.lesson.id)), {:include_blank => true}
+	.field
+	  = f.label :level
+	  = f.select :level_id, options_for_select(Level.all.pluck(:name, :id), (@user.level.nil? ? nil : @user.level.id)), {:include_blank => true}
+  .actions = f.submit

@@ -16,8 +16,7 @@ p
   strong Lesson level:
   = lesson.lesson_level
 p
-  = image_tag lesson.contents.where(title: 'Imagen Portada').first.name.url
-  = link_to 'PDF de la lección', lesson.contents.where(title: 'PDF Leccion').first.name.url
+  = image_tag lesson.cover_image.file.url
 
 = link_to 'Edit', edit_lesson_path(lesson)
 '|
