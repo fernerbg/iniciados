@@ -12,6 +12,10 @@ class ContentsController < ApplicationController
     respond_with(@content)
   end
 
+  def show_book
+    
+  end
+
   def new
     @content = Content.new
     respond_with(@content)

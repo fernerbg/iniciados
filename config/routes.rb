@@ -3,7 +3,11 @@ Rails.application.routes.draw do
 
   resources :lesson_contents
 
-  resources :contents
+  resources :contents do
+    collection do
+      get 'show_book'      
+    end
+  end
 
   resources :levels
 
