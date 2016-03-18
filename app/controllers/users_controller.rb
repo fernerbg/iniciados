@@ -8,4 +8,9 @@ class UsersController < ApplicationController
 
   end
 
+  def sign_out
+    #current_user es una variable de devise
+    logout
+  end
+
 end

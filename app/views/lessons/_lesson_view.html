@@ -1,0 +1,15 @@
+		<div id="contenido">
+          <div class="imagen auto_ajustar_fondo" style="background-image: url(<%= image_path(lesson.contents.where(title: 'Imagen Portada').first.name)  %>); background-attachment: scroll; background-size: auto 394px; background-position: 50% 50%; background-repeat: no-repeat;"></div>
+          <div class="textoleccion">
+            <div class="titulonumerico">Lección <%= lesson.number %></div>
+            <div class="resumenleccion">
+              <%= lesson.description  %>
+            </div>
+            <a class="enlaceleccion" href="<%= lesson.contents.where(title: 'PDF Leccion').first.name.url %>"><div>Ver Lección</div></a>
+			<div id = "lesson1_level1">--1--</div>
+			<div id = "lesson2_level1">2</div>
+			<div id = "lesson3_level1">3</div>
+			<div id = "lesson4_level1">4</div>
+			<div id = "lesson5_level1">5</div>
+          </div>
+		</div>

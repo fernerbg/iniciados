@@ -1,2 +1,49 @@
-= link_to "Instrucción SKY", level_path(@user.level)
-= link_to "Lecciones SKY", lesson_level_path(@user.lesson.level)
+
+
+.sky-header
+  .link-evd.center-xy
+    a.centered href="#"  EVD
+  .link-instruccion.center-xy
+    = link_to "Instrucción SKY", level_path(@user.level), class: "centered"
+  .link-ensenanza.center-xy
+    = link_to "Lecciones SKY", lesson_level_path(@user.lesson.level), class: "centered"
+.sky-fondo-home.imagen.auto_ajustar_fondo style="background-image: url(/assets/foto-home.jpg);"
+.sky-middle-header
+  .novedades-titulo.center-xy
+    span.centered Novedades
+.sky-novedades-body
+  .mes
+    .nombre-mes Abril
+    .entradas
+      .entrada
+        .fecha 04 / Abril / 1981
+        .contenido
+          .titulonovedad Evento AAA BBB CCC
+          .resumennovedad
+            | Lorem ipsum dolor sit amet, consectetur
+            br/
+            br/
+            | adipiscing elit, sed do eiusmod tempor incididunt
+            br/
+            br/
+            | ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
+      .entrada
+        .fecha 04 / Abril / 1981
+        .contenido
+          .titulonovedad Evento AAA BBB CCC
+          .resumennovedad
+            | Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+            br/
+            br/
+            br/
+            | sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
+      .entrada
+        .fecha 04 / Abril / 1981
+        .contenido
+          .titulonovedad Evento AAA BBB CCC
+          .resumennovedad Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
+      .entrada
+        .fecha 04 / Abril / 1981
+        .contenido
+          .titulonovedad Evento AAA BBB CCC
+          .resumennovedad Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.

@@ -3,14 +3,22 @@
 <head>
   <title>Iniciados</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
 </head>
-<body>
-	<% if current_user %>
-  	<%= link_to "Sign out", destroy_user_session_path, :method => :delete %><br />
-  <% end %>
+<body class="pagina-home">
+
+
 <%= yield %>
 
+	<% if current_user %>
+  	<%= link_to("Sign out", destroy_user_session_path, method: :delete) %><br />
+  <% end %>
+  
+<script type="text/javascript">
+$('#prueba01').click(function prueba(){
+	alert('clic');
+})
+</script>  
 </body>
 </html>
