@@ -1,0 +1,52 @@
+.sky-footer
+	width: 100%
+	background-color: #FFF
+	position: fixed
+	z-index: 10
+	height: 70px
+	bottom: 0px
+	padding: 0 120px
+	.footer-link
+		display: table-cell
+		vertical-align: middle
+		height: 70px
+		padding-left: 50px
+		color: #000
+		&:first-child
+			padding-left: 0px
+	.novedades-titulo
+		height: 70px
+		position: absolute
+		top: 0px
+		left: 50%
+		width: 200px
+		margin-left: -100px
+		text-align: center
+		font-size: 28px
+		z-index: 6
+		color: #000
+		background-color: #E6622C
+		color: #000
+		cursor: pointer
+		span
+			cursor: pointer
+		&.novedades-titulo
+			background-color: $yellowbrown
+		&:after, &:before
+			content: ' '
+			position: absolute
+			top: 0px
+			background-repeat: no-repeat
+			background-size: auto 100%
+			height: 100%
+			width: 25px
+			z-index: 7
+		&:after
+			left: -2px
+			background-image: url($design_path + 'borde2-left.png')
+			background-position: top left
+		&:before
+			right: -2px
+			background-image: url($design_path + 'borde2-right.png')
+			background-position: top right
+		

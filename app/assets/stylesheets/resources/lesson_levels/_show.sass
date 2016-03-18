@@ -64,7 +64,7 @@
       background-repeat: no-repeat
       padding-top: 58px
       font-size: 28px
-      color: #EECC33
+      color: $yellowbrown
     a
       position: relative
       color: #FFF
@@ -187,7 +187,7 @@
           top: 0px
           left: 0px
           z-index: 4
-          border-top: solid 6px #EECC33
+          border-top: solid 6px $yellowbrown
           width: 60%
           height: 100%
           background-color: #FFF
@@ -204,7 +204,7 @@
         .textoleccion
           min-height: 400px
           position: relative
-          border-top: solid 6px #EECC33
+          border-top: solid 6px $yellowbrown
           width: 41%
           margin-left: 60%
           background-color: #FFF
@@ -241,7 +241,7 @@
             right: 5px
             position: absolute
             z-index: 5
-            background-color: #EECC33
+            background-color: $yellowbrown
             div
               display: table-cell
               vertical-align: middle
@@ -282,7 +282,7 @@
           
             
     .lesson_list
-      border-top: solid 6px #EECC33
+      border-top: solid 6px $yellowbrown
       background-image: url($design_path + 'fondo-puntos-grises.png')
       background-size: 30px auto
       position: absolute
@@ -319,46 +319,6 @@
         font-size: 12px
       .actual a
         font-weight: bold
-
-/* Inicio middle header */
-
-.sky-middle-header
-  width: 100%
-  background-color: #FFF
-  position: fixed
-  z-index: 10
-  height: 70px
-  bottom: 0px
-  .novedades-titulo
-    height: 70px
-    position: absolute
-    top: 0px
-    left: 50%
-    width: 200px
-    margin-left: -100px
-    text-align: center
-    font-size: 28px
-    z-index: 6
-    color: #000
-    &:after, &:before
-      content: ' '
-      position: absolute
-      top: 0px
-      background-repeat: no-repeat
-      background-size: auto 100%
-      height: 100%
-      width: 25px
-      z-index: 7
-    &:after
-      left: -2px
-      background-image: url($design_path + 'borde2-left.png')
-      background-position: top left
-    &:before
-      right: -2px
-      background-image: url($design_path + 'borde2-right.png')
-      background-position: top right
-
-/* Fin middle header */
 
 .sky-novedades-body
   padding-top: 55px
@@ -409,7 +369,7 @@
           position: relative
           z-index: 4
           text-transform: uppercase
-          border-bottom: 6px solid #EECC33
+          border-bottom: 6px solid $yellowbrown
           color: #FFF
         .contenido
           background-color: #FFF
@@ -453,9 +413,4 @@
 
 .pagina-lecciones
   .sky-header .link-evd, .sky-middle-header .novedades-titulo
-    background-color: #EECC33
-
-.pagina-home
-  .sky-header .link-evd, .sky-middle-header .novedades-titulo
-    background-color: #E6622C
-    color: #FFF
+    background-color: $yellowbrown

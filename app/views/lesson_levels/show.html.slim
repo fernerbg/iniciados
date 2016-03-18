@@ -1,10 +1,5 @@
-.sky-header
-  .link-evd.center-xy
-    a.centered href="#"  EVD
-  .link-instruccion.center-xy
-    a.centered href="#"  Instrucción SKY
-  .link-ensenanza.center-xy
-    a.centered href="#"  Enseñanza SKY
+= render partial: "layouts/header", locals: {color_class: @lesson_level.name.downcase}
+
 .sky-lecciones
   .menu1
     .anterior
@@ -27,6 +22,7 @@
         - else
           div
 
+= render partial: "layouts/footer", locals: {color_class: @lesson_level.name.downcase}
 = render partial: "layouts/calendar"
 
 
