@@ -1,2 +1,13 @@
-= link_to "Instrucción SKY", level_path(@user.level)
-= link_to "Lecciones SKY", lesson_level_path(@user.lesson.level)
+.sky-header
+  .link-evd.center-xy
+    a.centered href="#"  EVD
+  .link-instruccion.center-xy
+    = link_to "Instrucción SKY", level_path(@user.level), class: "centered"
+  .link-ensenanza.center-xy
+    = link_to "Lecciones SKY", lesson_level_path(@user.lesson.level), class: "centered"
+.sky-fondo-home
+.sky-middle-header
+  .novedades-titulo.center-xy
+    span.centered Novedades
+    
+= render partial: "layouts/calendar"

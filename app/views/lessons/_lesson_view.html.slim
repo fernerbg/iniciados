@@ -1,23 +1,11 @@
-p#notice = notice
+.lesson_view_wrapper data-id="#{lesson.id}"
+  .titulo.leccion-margen-contenido
+    .titulo-texto = lesson.name
+  = image_tag 'fondo-ejemplo-leccion.jpg', class: "imagen"
+  .textoleccion
+    .titulonumerico= "Lección #{lesson.number}"
+    .resumenleccion= lesson.description
+    = link_to "Ver Lección", root_path, class: "enlaceleccion"
 
-p
-  strong Name:
-  = lesson.name
-p
-  strong Description:
-  = lesson.description
-p
-  strong Number level:
-  = lesson.number_level
-p
-  strong Number:
-  = lesson.number
-p
-  strong Lesson level:
-  = lesson.lesson_level
-p
-  = image_tag lesson.cover_image.file.url
 
-= link_to 'Edit', edit_lesson_path(lesson)
-'|
-= link_to 'Back', lessons_path
+

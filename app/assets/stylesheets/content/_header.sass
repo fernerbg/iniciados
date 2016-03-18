@@ -1,0 +1,56 @@
+.sky-header
+  width: 100%
+  background-color: #FFF
+  position: fixed
+  z-index: 10
+  top: 0px
+  height: 70px
+  .link-evd, .link-ensenanza, .link-instruccion
+    height: 70px
+  .link-evd
+    position: absolute
+    top: 0px
+    left: 50%
+    width: 200px
+    margin-left: -100px
+    text-align: center
+    font-size: 45px
+    font-weight: bold
+    z-index: 6
+    a
+      color: #FFF
+      text-decoration: none
+    &:after, &:before
+      content: ' '
+      position: absolute
+      top: 0px
+      background-repeat: no-repeat
+      background-size: auto 100%
+      height: 100%
+      width: 25px
+      z-index: 7
+    &:after
+      left: -2px
+      background-image: url($design_path + 'borde1-left.png')
+      background-position: top left
+    &:before
+      right: -2px
+      background-image: url($design_path + 'borde1-right.png')
+      background-position: top right
+  .link-instruccion, .link-ensenanza
+    position: absolute
+    top: 0px
+    text-align: center
+    font-size: 22px
+    z-index: 4
+  .link-instruccion a, .link-ensenanza a
+    color: #000
+    text-decoration: none
+  .link-instruccion
+    margin-right: 100px
+    padding-right: 5%
+    right: 50%
+  .link-ensenanza
+    margin-left: 100px
+    padding-left: 5%
+    left: 50%
