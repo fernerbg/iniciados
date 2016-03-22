@@ -1,26 +1,27 @@
 = render partial: "layouts/header", locals: {color_class: @lesson_level.name.downcase}
 
-.sky-lecciones
-  .menu1
-    .anterior
-      a href="#"  Nivel Anterior
-    .siguiente
-      a href="#"  Siguiente Nivel
-    .nivel = @lesson_level.name
-  .leyenda
-    .center-xy
-      .centered
-        | Instrucciones de Transformación y Ascención de Ma Shaktiananda y los Maestros Inmortales
-  .contenido-wrapper
-    .lesson_view_container
-      - for level in @available_lessons 
-      	= render partial: "lessons/lesson_view", locals: {lesson: level}
-    .lesson_list
-      - for i in 0..11
-        - if i <  @available_lessons.size
-          = render partial: "lessons/lesson_li", locals: {lesson: @available_lessons[i]}
-        - else
-          div
+.body_container
+  .sky-lecciones
+    .menu1
+      .anterior
+        a href="#"  Nivel Anterior
+      .siguiente
+        a href="#"  Siguiente Nivel
+      .nivel = @lesson_level.name
+    .leyenda
+      .center-xy
+        .centered
+          | Instrucciones de Transformación y Ascención de Ma Shaktiananda y los Maestros Inmortales
+    .contenido-wrapper
+      .lesson_view_container
+        - for level in @available_lessons 
+        	= render partial: "lessons/lesson_view", locals: {lesson: level}
+      .lesson_list
+        - for i in 0..11
+          - if i <  @available_lessons.size
+            = render partial: "lessons/lesson_li", locals: {lesson: @available_lessons[i]}
+          - else
+            div
 
 = render partial: "layouts/footer", locals: {color_class: @lesson_level.name.downcase}
 = render partial: "layouts/calendar"

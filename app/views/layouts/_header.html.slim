@@ -1,7 +1,7 @@
 .sky-header
-  .link-evd.center-xy class= (color_class if !color_class.nil?)
-    =link_to "EVD", root_path, class: "centered"
+  .link-evd.center-xy class= (color_class if defined? color_class != nil)
+    a.centered href="#"  EVD
   .link-instruccion.center-xy
-    a.centered href="#"  Instrucción SKY
+    = link_to "Instrucción SKY", level_path(current_user.level), class: "centered"
   .link-ensenanza.center-xy
-    a.centered href="#"  Enseñanza SKY
+    = link_to "Lecciones SKY", lesson_level_path(current_user.lesson.level), class: "centered"

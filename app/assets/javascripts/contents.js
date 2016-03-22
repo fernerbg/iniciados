@@ -2,6 +2,17 @@
  * Basic sample
 */
 
+$(document).ready(function(){
+	if ($('.flipbook').size() > 0){
+		$('.flipbook').turn({
+			width:922,
+			height:500,
+			elevation: 50,
+			gradients: true,
+			autoCenter: true
+		});
+	}
+})
 function addPage(page, book) {
 
 	var id, pages = book.turn('pages');

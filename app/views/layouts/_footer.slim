@@ -1,5 +1,5 @@
 .sky-footer
-  .novedades-titulo.center-xy class= (color_class if !color_class.nil?)
+  .novedades-titulo.center-xy class= (color_class if defined? color_class != nil)
     span.centered Novedades
   = link_to "VIDEOS", root_path, class: "footer-link"
   = link_to "AUDIO", root_path, class: "footer-link"

@@ -1,13 +1,6 @@
-.sky-header
-  .link-evd.center-xy
-    a.centered href="#"  EVD
-  .link-instruccion.center-xy
-    = link_to "Instrucción SKY", level_path(@user.level), class: "centered"
-  .link-ensenanza.center-xy
-    = link_to "Lecciones SKY", lesson_level_path(@user.lesson.level), class: "centered"
+= render partial: "layouts/header"
+
 .sky-fondo-home
-.sky-middle-header
-  .novedades-titulo.center-xy
-    span.centered Novedades
-    
+
+= render partial: "layouts/footer"
 = render partial: "layouts/calendar"

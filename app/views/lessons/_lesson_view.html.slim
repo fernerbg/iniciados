@@ -4,8 +4,9 @@
   = image_tag 'fondo-ejemplo-leccion.jpg', class: "imagen"
   .textoleccion
     .titulonumerico= "Lección #{lesson.number}"
-    .resumenleccion= lesson.description
-    = link_to "Ver Lección", root_path, class: "enlaceleccion"
-
+    .resumenleccion= lesson.description.html_safe
+    = link_to show_book_contents_path, class: "enlaceleccion" do
+      div
+        | Ver Lección
 
 
