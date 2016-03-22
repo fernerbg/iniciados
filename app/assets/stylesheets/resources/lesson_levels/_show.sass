@@ -8,12 +8,12 @@
 .sky-fondo-home
   width: 100%
   height: 100%
-  background-image: url($image_path + 'foto-home.jpg')
+  background-image: asset-url('foto-home.jpg')
   background-size: 100% 100%
 .sky-lecciones
   padding-top: 30px
   background-color: #005580
-  background-image: url($design_path + 'fondo-novedades.jpg')
+  background-image: asset-url('design/fondo-novedades.jpg')
   background-size: 100% auto
   background-repeat: repeat-y
   position: relative
@@ -28,11 +28,11 @@
   &:before
     top: 10px
     left: 10px
-    background-image: url($design_path + 'esquina-top-left.png')
+    background-image: asset-url('design/esquina-top-left.png')
   &:after
     top: 10px
     right: 10px
-    background-image: url($design_path + 'esquina-top-right.png')
+    background-image: asset-url('design/esquina-top-right.png')
   .menu1
     width: 100%
     height: 100px
@@ -58,7 +58,7 @@
       width: 200px
       margin-left: -100px
       text-align: center
-      background-image: url($design_path + 'logo-nivel.png')
+      background-image: asset-url('design/logo-nivel.png')
       background-size: 100% auto
       background-repeat: no-repeat
       padding-top: 58px
@@ -96,7 +96,7 @@
       background-size: 100% auto
     .anterior a:after
       right: -30px
-      background-image: url($design_path + 'nivel-anterior.png')
+      background-image: asset-url('design/nivel-anterior.png')
     .siguiente
       left: 50%
       padding-top: 37px
@@ -104,13 +104,13 @@
       margin-left: 4%
       a:after
         left: -30px
-        background-image: url($design_path + 'nivel-siguiente.png')
+        background-image: asset-url('design/nivel-siguiente.png')
   .leyenda
     position: relative
     text-align: center
     height: 40px
     font-size: 15px
-    background-image: url($design_path + 'fondo-centro.png')
+    background-image: asset-url('design/fondo-centro.png')
     background-repeat: repeat-x
     background-size: auto 100%
     margin-left: 120px
@@ -127,11 +127,11 @@
       background-size: auto 100%
     &:after
       left: -20px
-      background-image: url($design_path + 'fondo-left.png')
+      background-image: asset-url('design/fondo-left.png')
       background-position: right
     &:before
       right: -20px
-      background-image: url($design_path + 'fondo-right.png')
+      background-image: asset-url('design/fondo-right.png')
       background-position: left
     .center-xy
       width: 100%
@@ -178,7 +178,7 @@
             vertical-align: middle
             font-size: 25px
             text-transform: uppercase
-            background-image: url($design_path + 'fondo-titulo-leccion.png')
+            background-image: asset-url('design/fondo-titulo-leccion.png')
             background-repeat: repeat-x
             background-size: auto 100%
         .imagen
@@ -197,7 +197,7 @@
             top: 0px
             width: 4px
             height: 100%
-            background-image: url($design_path + 'puntos-vertical-gris.png')
+            background-image: asset-url('design/puntos-vertical-gris.png')
             background-repeat: repeat-y
             background-size: 100% auto
         .textoleccion
@@ -207,7 +207,7 @@
           width: 41%
           margin-left: 60%
           background-color: #FFF
-          background-image: url($design_path + 'fondo-puntos-grises.png')
+          background-image: asset-url('design/fondo-puntos-grises.png')
           background-size: 30px auto
           padding-top: 15px
           padding-left: 15px
@@ -221,7 +221,7 @@
             top: 0px
             width: 4px
             height: 100%
-            background-image: url($design_path + 'puntos-vertical-gris.png')
+            background-image: asset-url('design/puntos-vertical-gris.png')
             background-repeat: repeat-y
             background-size: 100% auto
           &:after
@@ -282,7 +282,7 @@
             
     .lesson_list
       border-top: solid 6px $yellowbrown
-      background-image: url($design_path + 'fondo-puntos-grises.png')
+      background-image: asset-url('design/fondo-puntos-grises.png')
       background-size: 30px auto
       position: absolute
       top: 66px
@@ -307,12 +307,12 @@
           left: 0px
           width: 40px
           height: 100%
-          background-image: url($design_path + 'circulo-gris.png')
+          background-image: asset-url('design/circulo-gris.png')
           background-repeat: no-repeat
           background-position: left center
           background-size: 15px 15px
         &.actual:after
-          background-image: url($design_path + 'circulo-amarillo.png')
+          background-image: asset-url('design/circulo-amarillo.png')
       span
         color: #000
         font-size: 12px
@@ -323,7 +323,7 @@
   padding-top: 55px
   padding-bottom: 50px
   background-color: #005580
-  background-image: url($design_path + 'fondo-novedades.jpg')
+  background-image: asset-url('design/fondo-novedades.jpg')
   background-size: 100% auto
   background-repeat: repeat-y
   position: relative
@@ -394,7 +394,7 @@
           top: 8px
           width: 30px
           height: 30px
-          background-image: url($design_path + 'esfera_blanca.png')
+          background-image: asset-url('design/esfera_blanca.png')
           background-repeat: no-repeat
           background-size: 100% 100%
         &:nth-child(odd) .fecha:after
