@@ -5,13 +5,15 @@ var _lessonListAbsoluteTop = 0;
 var _currentLesson = null;
 var _lessonContainerTop = 0;
 
-$(document).ready(function(){
+function ready_lesson_levels(){
 	_lessonListAbsoluteTop = $('.lesson_list').css('top');
 	_lessonContainerTop = $('.contenido-wrapper:first').position().top;
 	_currentLesson = $('.lesson_view_wrapper:first');
 	lessonListClick();
 	lessonListToFixed();
-})
+}
+$(document).ready(ready_lesson_levels)
+$(document).on('page:load', ready_lesson_levels)
 
 function lessonListClick(){
 	$('.lesson_list div').click(function(){
