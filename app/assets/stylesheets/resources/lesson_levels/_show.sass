@@ -317,6 +317,10 @@
         position: relative
         z-index: 4
         height: 25px
+        &.occupied
+          cursor: pointer
+          &:after
+            cursor: pointer
         &:after
           position: absolute
           z-index: 5
