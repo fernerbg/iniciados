@@ -1,4 +1,4 @@
-.lesson_view_wrapper data-id="#{lesson.id}"
+.lesson_view_wrapper data-id="#{lesson.id}" class=(lesson.lesson_level.class_s)
   .titulo.leccion-margen-contenido
     .titulo-texto = lesson.name
   = image_tag 'fondo-ejemplo-leccion.jpg', class: "imagen"

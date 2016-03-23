@@ -53,17 +53,26 @@
     .nivel
       z-index: 5
       position: absolute
-      top: 0px
+      top: -25px
       left: 50%
       width: 200px
       margin-left: -100px
       text-align: center
-      background-image: asset-url('design/logo-nivel.png')
       background-size: 100% auto
       background-repeat: no-repeat
-      padding-top: 58px
-      font-size: 28px
-      color: $yellowbrown
+      .level_name
+        font-size: 28px
+        margin-top: -22px
+      &.atma
+        svg
+          fill: $yellowbrown
+        .level_name
+          color: $yellowbrown
+      &.vidya
+        svg
+          fill: $bluepurple
+        .level_name
+          color: $bluepurple
     a
       position: relative
       color: #FFF
@@ -105,39 +114,31 @@
       a:after
         left: -30px
         background-image: asset-url('design/nivel-siguiente.png')
-  .leyenda
-    position: relative
-    text-align: center
-    height: 40px
-    font-size: 15px
-    background-image: asset-url('design/fondo-centro.png')
-    background-repeat: repeat-x
-    background-size: auto 100%
-    margin-left: 120px
-    margin-right: 120px
-    z-index: 4
-    &:after, &:before
-      content: ' '
-      position: absolute
-      z-index: 5
-      top: 0px
-      height: 40px
-      width: 20px
-      background-repeat: no-repeat
-      background-size: auto 100%
-    &:after
-      left: -20px
-      background-image: asset-url('design/fondo-left.png')
-      background-position: right
-    &:before
-      right: -20px
-      background-image: asset-url('design/fondo-right.png')
-      background-position: left
-    .center-xy
+  .leyenda-wrapper
+    padding: 0 120px
+    width: 100%
+    .leyenda
+      text-align: center
+      height: 0px
+      font-size: 15px
+      border-right: 20px solid transparent
+      border-left: 20px solid transparent
+      border-bottom: 40px solid $yellowbrown
+      .center-xy
+        width: 100%
+        height: 40px
+        color: black
+    .white-line
       width: 100%
-      height: 40px
-      height: 40px
-
+      height: 2px
+      background-color: white
+      margin: 0
+    &.atma
+      .leyenda
+        border-bottom: 40px solid $yellowbrown
+    &.vidya
+      .leyenda
+        border-bottom: 40px solid $bluepurple
 .sky-lecciones
   .contenido-wrapper
     position: relative
@@ -278,10 +279,17 @@
 
         .imagen:after
           left: -2px
-          
-            
+        &.atma
+          .imagen, .textoleccion
+            border-top: solid 6px $yellowbrown
+        &.vidya
+          .imagen
+            border-top: solid 6px $bluepurple
+          .textoleccion
+            border-top: solid 6px $bluepurple
+            .enlaceleccion
+              background-color: $bluepurple
     .lesson_list
-      border-top: solid 6px $yellowbrown
       background-image: asset-url('design/fondo-puntos-grises.png')
       background-size: 30px auto
       position: absolute
@@ -292,6 +300,16 @@
       background-color: #FFF
       padding: 10px
       overflow: hidden
+      &.atma
+        border-top: solid 6px $yellowbrown
+        div
+          &.actual:after
+            background-color: $yellowbrown
+      &.vidya
+        border-top: solid 6px $bluepurple
+        div
+          &.actual:after
+            background-color: $bluepurple
       div
         padding-left: 25px
         padding-top: 3px
@@ -305,14 +323,14 @@
           content: ' '
           top: 0px
           left: 0px
-          width: 40px
-          height: 100%
-          background-image: asset-url('design/circulo-gris.png')
-          background-repeat: no-repeat
-          background-position: left center
-          background-size: 15px 15px
+          width: 15px
+          height: 15px
+          border-radius: 50%
+          background-color: gray
+          top: 5px
         &.actual:after
-          background-image: asset-url('design/circulo-amarillo.png')
+          border-radius: 50%
+
       span
         color: #000
         font-size: 12px
