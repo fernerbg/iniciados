@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
   get 'home', to: "users#home"
 
-  get "/private/content/file/:id/:basename.:extension", to: "contents#delivery"
+  get "/private/content/file/:id/:title", to: "contents#delivery", as: "delivery"
 
   root 'users#home'
 

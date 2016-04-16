@@ -36,6 +36,8 @@ gem 'cancan'
 
 gem 'country_select'
 
+gem 'pdfjs_rails'
+
 group :test, :development do
   gem 'rspec-rails'
 end

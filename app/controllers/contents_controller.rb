@@ -42,7 +42,7 @@ class ContentsController < ApplicationController
 
   def delivery
     @content = Content.find(params[:id])
-    send_file @content.file.current_path, :x_sendfile=>true
+    send_file @content.file.current_path, :x_sendfile=>true, :disposition => 'inline'
   end
 
   private

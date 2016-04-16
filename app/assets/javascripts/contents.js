@@ -3,6 +3,7 @@
 */
 
 function ready_contents(){
+	/*
 	if ($('.flipbook').size() > 0){
 		$('.flipbook').turn({
 			width:922,
@@ -11,7 +12,33 @@ function ready_contents(){
 			gradients: true,
 			autoCenter: true
 		});
-	}
+	}*/
+	//var myPDF = new PDFObject({url: "/private/content/file/1"}).embed("path-container")
+	
+
+	PDFJS.getDocument("/private/content/file/1").then(function (pdf) {
+		alert('here')
+    // Fetch the page.
+
+    pdf.getPage(1).then(function (page) {
+      var scale = 1.5;
+
+      var viewport = page.getViewport(scale);
+
+      // Prepare canvas using PDF page dimensions.
+      var canvas = document.getElementById('the-canvas');
+      var context = canvas.getContext('2d');
+      canvas.height = viewport.height;
+      canvas.width = viewport.width;
+
+      // Render PDF page into canvas context.
+      var renderContext = {
+        canvasContext: context,
+        viewport: viewport
+      };
+      page.render(renderContext);
+    });
+  });
 }
 
 $(document).ready(ready_contents)

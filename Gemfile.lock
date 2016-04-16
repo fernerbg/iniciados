@@ -241,6 +241,7 @@ GEM
     nokogiri (1.6.7.2-x86-mingw32)
       mini_portile2 (~> 2.0.0.rc2)
     orm_adapter (0.5.0)
+    pdfjs_rails (0.0.1)
     pg (0.18.4)
     pg (0.18.4-x86-mingw32)
     phantomjs (1.9.8.0)
@@ -417,6 +418,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   newrelic_rpm
+  pdfjs_rails
   pg
   postgres-copy
   rails (= 4.1.8)
