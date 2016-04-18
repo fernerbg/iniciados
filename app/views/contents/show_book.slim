@@ -1,1 +1,17 @@
-iframe src="#{Content.find(1).file.url}" style="border: 0" width="100%" height="600" frameborder="0" scrolling="no"
+.navigation-options
+	#change-page-wrapper
+		= form_tag show_book_contents_path do
+	   		= hidden_field_tag :title, @content.title
+	   		= hidden_field_tag :page_number, "#{@content.page_number.to_i + 1}"
+	   		= button_tag "Siguiente Página", type: :input
+		
+		= form_tag show_book_contents_path do
+	   		= hidden_field_tag :title, @content.title
+	   		= hidden_field_tag :page_number, "#{@content.page_number.to_i - 1}"
+	   		= button_tag "Página Anterior", type: :input
+
+		= text_field_tag :page_number
+		#total-pages = "/#{@total_pages}"
+	#slider
+
+= image_tag "#{@content.file.url}", id: "book-page", data: {title: @content.title, total_pages: @total_pages}

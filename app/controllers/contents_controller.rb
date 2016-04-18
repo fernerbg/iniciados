@@ -13,7 +13,8 @@ class ContentsController < ApplicationController
   end
 
   def show_book
-    
+    @content = Content.where('title = :title AND page_number = :page_number', {title: params[:title], page_number: 1}).first
+    @total_pages = Content.where('title = :title', {title: params[:title]}).select("page_number").order(page_number: :desc).first.page_number
   end
 
   def new
@@ -42,7 +43,33 @@ class ContentsController < ApplicationController
 
   def delivery
     @content = Content.find(params[:id])
-    send_file @content.file.current_path, :x_sendfile=>true, :disposition => 'inline'
+    respond_to do |format|
+      format.html do
+        send_file @content.file.current_path, :x_sendfile=>true, :disposition => 'inline'
+      end
+      format.json do
+        data = Base64.encode64(File.read(@content.file.current_path)).gsub("\n", '')
+        render json: {image: "data:image/png;base64,#{data}"}
+      end
+    end
+  end
+
+  def delivery_pages
+    by_page = 10
+    @contents = Content.where('title = :title AND page_number >= :start_page AND page_number <= :end_page', {title: "#{params[:title]}", start_page: params[:page_number], end_page: params[:page_number].to_i + by_page}).order(:page_number)
+    respond_to do |format|
+      format.html do
+        send_file @contents.first.file.current_path, :x_sendfile=>true, :disposition => 'inline'
+      end
+      format.json do
+        data = []
+        @contents.each do |content|
+          base_64 = Base64.encode64(File.read(content.file.current_path)).gsub("\n", '')
+          data << "data:image/png;base64,#{base_64}"
+        end
+        render json: {images: data}
+      end
+    end
   end
 
   private
@@ -51,6 +78,6 @@ class ContentsController < ApplicationController
     end
 
     def content_params
-      params.require(:content).permit(:title, :description, :type, :thumbnail, :url, :file)
+      params.require(:content).permit(:title, :description, :type, :thumbnail, :url, :file, :page_number)
     end
 end

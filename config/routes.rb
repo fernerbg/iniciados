@@ -5,7 +5,8 @@ Rails.application.routes.draw do
 
   resources :contents do
     collection do
-      get 'show_book'      
+      post 'show_book'
+      post 'delivery_pages'
     end
   end
 
@@ -25,7 +26,8 @@ Rails.application.routes.draw do
 
   get 'home', to: "users#home"
 
-  get "/private/content/file/:id/:title", to: "contents#delivery", as: "delivery"
+  post "/private/content/file/:id/:title.:ext", to: "contents#delivery", as: "delivery"
+
 
   root 'users#home'
 

@@ -2,135 +2,36 @@
  * Basic sample
 */
 
+var bookImages = []
+var currentPage = 1
 function ready_contents(){
-	/*
-	if ($('.flipbook').size() > 0){
-		$('.flipbook').turn({
-			width:922,
-			height:600,
-			elevation: 50,
-			gradients: true,
-			autoCenter: true
-		});
-	}*/
-	//var myPDF = new PDFObject({url: "/private/content/file/1"}).embed("path-container")
-	
+	var jqxhr = $.post( 'delivery_pages.json',{page_number: 1, title: $('#book-page').data('title')}, function(data) {
+	  bookImages = data.images
+	  $('#book-page').attr('src', bookImages[0])
+	  $('#book-page').show()
+	}, 'json')
+	/*$('img').bind('contextmenu', function(e) {
+	    return false;
+	}); */
+	$('#slider').slider({
+		slide: refreshSwatch,
+	  	change: refreshSwatch,
+	  	value: 80,
+	  	min: 20,
+	  	max: 100
+	})
+}
 
-	PDFJS.getDocument("/private/content/file/1").then(function (pdf) {
-		alert('here')
-    // Fetch the page.
-
-    pdf.getPage(1).then(function (page) {
-      var scale = 1.5;
-
-      var viewport = page.getViewport(scale);
-
-      // Prepare canvas using PDF page dimensions.
-      var canvas = document.getElementById('the-canvas');
-      var context = canvas.getContext('2d');
-      canvas.height = viewport.height;
-      canvas.width = viewport.width;
-
-      // Render PDF page into canvas context.
-      var renderContext = {
-        canvasContext: context,
-        viewport: viewport
-      };
-      page.render(renderContext);
-    });
-  });
+function refreshSwatch(){
+	$('#book-page').css('width', $('#slider').slider('value') + '%')
 }
 
 $(document).ready(ready_contents)
 $(document).on('page:load', ready_contents)
-
-function addPage(page, book) {
-
-	var id, pages = book.turn('pages');
-
-	// Create a new element for this page
-	var element = $('<div />', {});
-
-	// Add the page to the flipbook
-	if (book.turn('addPage', element, page)) {
-
-		// Add the initial HTML
-		// It will contain a loader indicator and a gradient
-		element.html('<div class="gradient"></div><div class="loader"></div>');
-
-		// Load the page
-		loadPage(page, element);
-	}
-
-}
-
-function loadPage(page, pageElement) {
-
-	// Create an image element
-
-	var img = $('<img />');
-
-	img.mousedown(function(e) {
-		e.preventDefault();
-	});
-
-	img.load(function() {
-		
-		// Set the size
-		$(this).css({width: '100%', height: '100%'});
-
-		// Add the image to the page after loaded
-
-		$(this).appendTo(pageElement);
-
-		// Remove the loader indicator
-		
-		pageElement.find('.loader').remove();
-	});
-
-	// Load the page
-
-	img.attr('src', 'pages/' +  page + '.jpg');
-
-}
-
-
-function loadLargePage(page, pageElement) {
-	
-	var img = $('<img />');
-
-	img.load(function() {
-
-		var prevImg = pageElement.find('img');
-		$(this).css({width: '100%', height: '100%'});
-		$(this).appendTo(pageElement);
-		prevImg.remove();
-		
-	});
-
-	// Loadnew page
-	
-	img.attr('src', 'pages/' +  page + '-large.jpg');
-}
-
-
-function loadSmallPage(page, pageElement) {
-	
-	var img = pageElement.find('img');
-
-	img.css({width: '100%', height: '100%'});
-
-	img.unbind('load');
-	// Loadnew page
-
-	img.attr('src', 'pages/' +  page + '.jpg');
-}
-
-
-
-// http://code.google.com/p/chromium/issues/detail?id=128488
-function isChrome() {
-
-	return navigator.userAgent.indexOf('Chrome')!=-1;
-
+document.onmousedown=function(event){
+	console.log(event)
+	if(event.button==2)
+   {
+     return false;    
+   }
 }

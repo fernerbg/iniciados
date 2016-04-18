@@ -13,6 +13,7 @@ gem 'schema_associations'
 # Frontend stuff
 gem 'slim-rails'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 # Authentication
 gem 'devise'
