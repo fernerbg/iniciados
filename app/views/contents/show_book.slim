@@ -1,17 +1,13 @@
-.navigation-options
+#navigation-options
 	#change-page-wrapper
-		= form_tag show_book_contents_path do
-	   		= hidden_field_tag :title, @content.title
-	   		= hidden_field_tag :page_number, "#{@content.page_number.to_i + 1}"
-	   		= button_tag "Siguiente Página", type: :input
-		
-		= form_tag show_book_contents_path do
-	   		= hidden_field_tag :title, @content.title
-	   		= hidden_field_tag :page_number, "#{@content.page_number.to_i - 1}"
-	   		= button_tag "Página Anterior", type: :input
-
-		= text_field_tag :page_number
+		| pagina 
+		= text_field_tag :page_number, "1", id: 'current-page'
 		#total-pages = "/#{@total_pages}"
-	#slider
+		span.glyphicon.glyphicon-arrow-left#prev-page
+		span.glyphicon.glyphicon-arrow-right#next-page
+		
+	#slider-wrapper
+		span.glyphicon.glyphicon-zoom-in
+		#slider
 
-= image_tag "#{@content.file.url}", id: "book-page", data: {title: @content.title, total_pages: @total_pages}
+= image_tag "#{@content.file.url}", id: "book-page", data: {title: @content.title, "total-pages": @total_pages}

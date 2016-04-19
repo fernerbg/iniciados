@@ -55,8 +55,7 @@ class ContentsController < ApplicationController
   end
 
   def delivery_pages
-    by_page = 10
-    @contents = Content.where('title = :title AND page_number >= :start_page AND page_number <= :end_page', {title: "#{params[:title]}", start_page: params[:page_number], end_page: params[:page_number].to_i + by_page}).order(:page_number)
+    @contents = Content.where(title: params[:title]).order(:page_number).offset(params[:offset]).limit(params[:chunk_size])
     respond_to do |format|
       format.html do
         send_file @contents.first.file.current_path, :x_sendfile=>true, :disposition => 'inline'

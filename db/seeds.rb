@@ -81,6 +81,12 @@ ls = Lesson.create(name: "La Recreación", lesson_level: ll, number_level: 3, nu
 
 LessonLevel.create(name: "Shiva")
 
+for i in 1..32 
+	c = Content.create(title: 'El Principito', page_number: i)
+	c.file.store!(File.open(File.join(Rails.root, "private/principito/file-page#{i}.jpg")))
+	c.save
+end
+
 
 u.lesson = ls
 u.save()

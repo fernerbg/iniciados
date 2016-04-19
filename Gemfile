@@ -14,6 +14,7 @@ gem 'schema_associations'
 gem 'slim-rails'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'backbone-on-rails'
 
 # Authentication
 gem 'devise'

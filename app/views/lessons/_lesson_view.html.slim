@@ -6,7 +6,7 @@
     .titulonumerico= "Lección #{lesson.number}"
     .resumenleccion= lesson.description.html_safe
    	= form_tag show_book_contents_path do
-   		= hidden_field_tag :title, lesson.name
+   		= hidden_field_tag :title, 'El Principito'
    		= button_tag "Ver Lección", type: :input, class: "enlaceleccion"
     
 

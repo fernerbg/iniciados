@@ -1,16 +1,29 @@
 body, html
 	height: 100%
 	text-align: center
-.navigation-options
-	padding: 10px 20%
-	#slider
-		width: 50%
-.transparencia
-	position: fixed
-	width: 100%
-	top: 0px
-	left: 0px
-	height: 100%
-#book-page
-	width: 100%
-	display: none
+	#navigation-options
+		padding: 10px 20%
+		position: fixed
+		top: 0px
+		background: white
+		width: 100%
+		#change-page-wrapper
+			display: inline-block
+			#next-page
+				margin-left: 5px
+				margin-right: 10px
+			#current-page
+				width: 40px
+				text-align: center
+			#total-pages
+				display: inline-block
+				margin-right: 5px
+		#slider-wrapper
+			display: inline
+			#slider
+				width: 50%
+				display: inline-block
+	#book-page
+		width: 100%
+		display: none
+		width: 1080px
