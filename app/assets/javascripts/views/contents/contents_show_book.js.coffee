@@ -22,6 +22,12 @@ class Iniciados.Views.ContentsShowBook extends Backbone.View
 
   prevPages: []
 
+  loading: false
+
+  waitingConfirmation: false
+
+  confirmationFunction: null
+
   initialize: ->
   	self = @
   	@lastPage = parseInt $('#book-page').data('total-pages') - 1
@@ -52,43 +58,84 @@ class Iniciados.Views.ContentsShowBook extends Backbone.View
 			  		@currentChunk + 2,
 			  		(data) ->
 			  			self.book.push.apply(self.book, data.images))
+
 	  		else if @currentPage is 7 && @book.length <= @chunkSize
 			  	@requestChunk(
 			  		@currentChunk + 1,
 			  		(data) ->
 			  			self.book.push.apply(self.book, data.images))
 
-		  if @currentPage is 20
-		  	@book.splice(0, 10)
-		  	@currentPage = 10
-		  	@currentChunk++
+		  if @currentPage is 20 || (@currentPage is 10 &&  @book.length == @chunkSize)
+		  	@chunkLoaded(
+		  		->
+		  			self.book.splice(0, 10)
+				  	self.currentPage = 10
+				  	self.currentChunk++)
 
 		  @changePage()
 
   prevPage: ->
   	self = @
   	if @currentPage + @currentChunk * @chunkSize > 0
-	  	@currentPage = @currentPage - 12
+	  	@currentPage = @currentPage - 1
 	  	if @currentPage is 3 && @currentChunk > 0
 		  	@requestChunk(
 		  		@currentChunk - 1,
 		  		(data) ->
 	  				self.book.unshift.apply(self.book, data.images)
 	  				self.currentPage = self.currentPage + self.chunkSize
-	  				console.log("Down new CurrentPage: " + self.currentPage)
 	  				self.currentChunk--)
 		  
 		  if @currentPage is 9
-		  	@book.splice(20, 10)
+		  	@chunkLoaded(
+		  		->
+		  			self.book.splice(20, 10))
+		  	
 
 		  @changePage()
 
   goToPage: (event) ->
 			if event.keyCode is 13
 				newPage = parseInt $('#current-page').val()
-				if newPage >= 1 && newPage <= (@lastPage + 1)
-					@currentPage = newPage - 1
-					@changePage()
+				
+				if newPage >= 1 && newPage <= @lastPage + 1
+					newChunk = parseInt(newPage / @chunkSize)
+					
+					if @currentChunk == newChunk
+						newPage = newPage % @chunkSize - 1
+						@currentPage = newPage
+						
+						@changePage()
+						@setBookState()
+
+					else if newChunk == @currentChunk + 1 && @book.length > @chunkSize
+						newPage = newPage % @chunkSize - 1 + @chunkSize
+						@currentPage = newPage
+						
+						@changePage()
+						@setBookState()
+
+					else if newChunk == @currentChunk + 2 && @book.length > @chunkSize * 2
+						newPage = newPage % @chunkSize - 1 + @chunkSize * 2
+						@currentPage = newPage
+						@book.splice(0, 10)
+						
+						@changePage()
+						@setBookState()
+
+					else
+						self = @
+						newPage = newPage % @chunkSize - 1
+						@requestChunk(
+				  		newChunk,
+				  		(data) ->
+			  				self.book = data.images
+			  				self.currentPage = newPage
+			  				self.currentChunk = newChunk)
+						@chunkLoaded(
+							->
+								self.changePage()
+								self.setBookState())
 				else
 					$('#current-page').val(@currentPage + 1)
 
@@ -101,6 +148,7 @@ class Iniciados.Views.ContentsShowBook extends Backbone.View
 
 		requestChunk: (chunk, callback) ->
 			self = @
+			@loading = true
 			jqxhr = $.post(
 	  		'delivery_pages.json',
 	  		{
@@ -108,9 +156,60 @@ class Iniciados.Views.ContentsShowBook extends Backbone.View
 	  			chunk_size: self.chunkSize
 	  			offset: self.chunkSize * chunk
 	  		},
-	  		((data) ->
+	  		(data) ->
 			  	callback(data)
-				))
+			  	self.closeLoading())
+
+		closeLoading: ->
+			@loading = false
+			if @waitingConfirmation
+				@confirmationFunction()
+				@waitingConfirmation = false
+				$('#book-page').show()
+				$('#loading').hide()
+				$('#transparency').css('top', '44px')
+				$('#navigation-options').css('opacity', '1')
+
+		setBookState: ->
+			self = @
+			if @currentPage >= 17 && @book.length <= @chunkSize * 2
+  			@requestChunk(
+		  		@currentChunk + 2,
+		  		(data) ->
+		  			self.book.push.apply(self.book, data.images))
+
+  		else if @currentPage >= 7 && @book.length <= @chunkSize
+		  	@requestChunk(
+		  		@currentChunk + 1,
+		  		(data) ->
+		  			self.book.push.apply(self.book, data.images))
+
+		  if @currentPage is 20
+		  	@book.splice(0, 10)
+		  	@currentPage = 10
+		  	@currentChunk++
+
+		  if @currentPage <= 3 && @currentChunk > 0
+		  	@requestChunk(
+		  		@currentChunk - 1,
+		  		(data) ->
+	  				self.book.unshift.apply(self.book, data.images)
+	  				self.currentPage = self.currentPage + self.chunkSize
+	  				self.currentChunk--)
+		  
+		  if @currentPage <= 9
+		  	@book.splice(20, 10)
+
+		chunkLoaded: (callback) ->
+			if @loading
+				@waitingConfirmation = true
+				@confirmationFunction = callback
+				$('#book-page').hide()
+				$('#loading').show()
+				$('#transparency').css('top', '0px')
+				$('#navigation-options').css('opacity', '0.5')
+			else
+				callback()
 
 	  notAllowMenu: ->
 		  return false
