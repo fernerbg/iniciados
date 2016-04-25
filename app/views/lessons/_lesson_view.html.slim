@@ -1,7 +1,7 @@
 .lesson_view_wrapper data-id="#{lesson.id}" class=(lesson.lesson_level.class_s)
   .titulo.leccion-margen-contenido
     .titulo-texto = lesson.name
-  = image_tag 'fondo-ejemplo-leccion.jpg', class: "imagen"
+  = image_tag "view-lesson-#{lesson.number}.jpg", class: "imagen"
   .textoleccion
     .titulonumerico= "Lección #{lesson.number}"
     .resumenleccion= lesson.description.html_safe

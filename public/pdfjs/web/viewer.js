@@ -1292,8 +1292,8 @@ var SecondaryToolbar = {
     this.presentationMode.addEventListener('click',
       this.presentationModeClick.bind(this));
     this.openFile.addEventListener('click', this.openFileClick.bind(this));
-    //this.print.addEventListener('click', this.printClick.bind(this));
-    //this.download.addEventListener('click', this.downloadClick.bind(this));
+    this.print.addEventListener('click', this.printClick.bind(this));
+    this.download.addEventListener('click', this.downloadClick.bind(this));
 
     this.firstPage.addEventListener('click', this.firstPageClick.bind(this));
     this.lastPage.addEventListener('click', this.lastPageClick.bind(this));
@@ -3875,8 +3875,8 @@ document.addEventListener('DOMContentLoaded', function webViewerLoad(evt) {
   }
 
   if (!PDFView.supportsPrinting) {
-    //document.getElementById('print').classList.add('hidden');
-    //document.getElementById('secondaryPrint').classList.add('hidden');
+    document.getElementById('print').classList.add('hidden');
+    document.getElementById('secondaryPrint').classList.add('hidden');
   }
 
   if (!PDFView.supportsFullscreen) {
@@ -3976,11 +3976,11 @@ document.addEventListener('DOMContentLoaded', function webViewerLoad(evt) {
   document.getElementById('openFile').addEventListener('click',
     SecondaryToolbar.openFileClick.bind(SecondaryToolbar));
 
-  //document.getElementById('print').addEventListener('click',
-//    SecondaryToolbar.printClick.bind(SecondaryToolbar));
+  document.getElementById('print').addEventListener('click',
+    SecondaryToolbar.printClick.bind(SecondaryToolbar));
 
-  //document.getElementById('download').addEventListener('click',
-  //  SecondaryToolbar.downloadClick.bind(SecondaryToolbar));
+  document.getElementById('download').addEventListener('click',
+    SecondaryToolbar.downloadClick.bind(SecondaryToolbar));
 
   document.getElementById('contextFirstPage').addEventListener('click',
     SecondaryToolbar.firstPageClick.bind(SecondaryToolbar));

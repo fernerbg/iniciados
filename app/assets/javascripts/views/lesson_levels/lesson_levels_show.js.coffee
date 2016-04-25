@@ -1,26 +1,27 @@
 class Iniciados.Views.LessonLevelsIndex extends Backbone.View
 
-  el: 'body'
+	el: 'body'
 
-  lessonListAbsoluteTop: 0
+	lessonListAbsoluteTop: 0
 
-  currentLesson: null
+	currentLesson: null
 
-  lessonContainerTop: 0
+	lessonContainerTop: 0
 
-  events:
-  	'click .lesson_list div': 'scrollToLesson'
-  	'scroll window': 'fixLessonList'
-  initilize: ->
-		@lessonListAbsoluteTop = $('.lesson_list').css('top');
-		@lessonContainerTop = $('.contenido-wrapper:first').position().top;
-		@currentLesson = $('.lesson_view_wrapper:first');
-		@lessonListToFixed();
+	events:
+		'click .lesson_list div': 'scrollToLesson'
+		'scroll window': 'fixLessonList'
+
+	initilize: ->
+		@lessonListAbsoluteTop = $('.lesson_list').css('top')
+		@lessonContainerTop = $('.contenido-wrapper:first').position().top
+		@currentLesson = $('.lesson_view_wrapper:first')
+		@lessonListToFixed()
 
 	scrollToLesson: (event) ->
-		lesson_id = $(event.target).data('id');
-		top =  + @lessonContainerTop + $(".lesson_view_wrapper[data-id='" +lesson_id+ "']:first").position().top;
-		$("html, body").animate({ scrollTop: top }, 1000);
+		lesson_id = $(event.target).data('id')
+		top =  + @lessonContainerTop + $(".lesson_view_wrapper[data-id='" +lesson_id+ "']:first").position().top
+		$("html, body").animate({ scrollTop: top }, 1000)
 	
 	fixLessonList: (event) ->
 		top = $('.contenido-wrapper:first').position().top
