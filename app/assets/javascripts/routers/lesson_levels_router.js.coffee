@@ -1,6 +1,7 @@
 class Iniciados.Routers.LessonLevels extends Backbone.Router
-	routers:
+	routes:
 		'lesson_levels/:id': 'show'
 
 	show: ->
 		new Iniciados.Views.LessonLevelsShow()
+		alert('sdf')

@@ -1,4 +1,4 @@
-class Iniciados.Views.LessonLevelsIndex extends Backbone.View
+class Iniciados.Views.LessonLevelsShow extends Backbone.View
 
 	el: 'body'
 
@@ -12,11 +12,10 @@ class Iniciados.Views.LessonLevelsIndex extends Backbone.View
 		'click .lesson_list div': 'scrollToLesson'
 		'scroll window': 'fixLessonList'
 
-	initilize: ->
+	initialize: ->
 		@lessonListAbsoluteTop = $('.lesson_list').css('top')
 		@lessonContainerTop = $('.contenido-wrapper:first').position().top
 		@currentLesson = $('.lesson_view_wrapper:first')
-		@lessonListToFixed()
 
 	scrollToLesson: (event) ->
 		lesson_id = $(event.target).data('id')
@@ -27,22 +26,22 @@ class Iniciados.Views.LessonLevelsIndex extends Backbone.View
 		top = $('.contenido-wrapper:first').position().top
 		windowTop = $(event.target).scrollTop()
 		if windowTop >= top
-		  $('.lesson_list').css
-		    position: 'fixed'
-		    top: _lessonContainerTop - 45
+			$('.lesson_list').css
+				position: 'fixed'
+				top: _lessonContainerTop - 45
 		else
-		  $('.lesson_list').css
-		    position: 'absolute'
-		    top: _lessonListAbsoluteTop
+			$('.lesson_list').css
+				position: 'absolute'
+				top: _lessonListAbsoluteTop
 		if windowTop >= _lessonContainerTop + _currentLesson.position().top + _currentLesson.height() + parseInt(_currentLesson.css('margin-top'))
-		  nextLesson = _currentLesson.next()
-		  if typeof nextLesson.position() != 'undefined'
-		    _currentLesson = nextLesson
-		    $('.lesson_list .actual').removeClass 'actual'
-		    $('.lesson_list div[data-id="' + _currentLesson.data('id') + '"]').addClass 'actual'
+			nextLesson = _currentLesson.next()
+			if typeof nextLesson.position() != 'undefined'
+				_currentLesson = nextLesson
+				$('.lesson_list .actual').removeClass 'actual'
+				$('.lesson_list div[data-id="' + _currentLesson.data('id') + '"]').addClass 'actual'
 		else if windowTop < _lessonContainerTop + _currentLesson.position().top
-		  prevLesson = _currentLesson.prev()
-		  if typeof prevLesson.position() != 'undefined'
-		    _currentLesson = prevLesson
-		    $('.lesson_list .actual').removeClass 'actual'
-		    $('.lesson_list div[data-id="' + _currentLesson.data('id') + '"]').addClass 'actual'
+			prevLesson = _currentLesson.prev()
+			if typeof prevLesson.position() != 'undefined'
+				_currentLesson = prevLesson
+				$('.lesson_list .actual').removeClass 'actual'
+				$('.lesson_list div[data-id="' + _currentLesson.data('id') + '"]').addClass 'actual'
