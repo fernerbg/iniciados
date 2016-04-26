@@ -30,7 +30,11 @@
     &:after
       background-image: asset-url('design/esquina-top-right-vidya.png')
   &.shiva
-    background-image: asset-url('design/fondo-novedades-vidya.jpg')
+    background-image: asset-url('design/fondo-novedades-shiva.jpg')
+    &:before
+      background-image: asset-url('design/esquina-top-left-shiva.png')
+    &:after
+      background-image: asset-url('design/esquina-top-right-shiva.png')
   &:before, &:after
     content: ' '
     position: absolute
@@ -84,6 +88,11 @@
           fill: $bluepurple
         .level_name
           color: $bluepurple
+      &.shiva
+        svg
+          fill: $blueocean
+        .level_name
+          color: $blueocean
     a
       position: relative
       color: #FFF
@@ -150,6 +159,9 @@
     &.vidya
       .leyenda
         border-bottom: 40px solid $bluepurple
+    &.shiva
+      .leyenda
+        border-bottom: 40px solid $blueocean
 .sky-lecciones
   .contenido-wrapper
     position: relative
@@ -303,6 +315,13 @@
             border-top: solid 6px $bluepurple
             .enlaceleccion
               background-color: $bluepurple
+        &.shiva
+          .imagen
+            border-top: solid 6px $blueocean
+          .textoleccion
+            border-top: solid 6px $blueocean
+            .enlaceleccion
+              background-color: $blueocean
     .lesson_list
       background-image: asset-url('design/fondo-puntos-grises.png')
       background-size: 30px auto
@@ -325,6 +344,11 @@
         div
           &.actual:after
             background-color: $bluepurple
+      &.shiva
+        border-top: solid 6px $blueocean
+        div
+          &.actual:after
+            background-color: $blueocean
       div
         padding-left: 25px
         padding-top: 3px

@@ -103,29 +103,36 @@ Lesson.create(name: "Liberar el Karma", lesson_level: ll, number_level: 10, numb
 <p>Así debería rezar la idea que nos libere, la que nos permita disgregar de nuestra mente la irrealidad a la que nos sometemos cada vez que intentamos Ser. Es necesario que nos propongamos alcanzar, de una buena vez, la estancia superior de nuestro objetivo, al haber sido creados por y para un fin único: Ser.</p>
 <p>Lo que malamente asumimos como Karma no es más que una tarea, sujeta a nuestro propio propósito y tras nuestro propio mandato...</p>")
 
+Lesson.create(name: "Alcanzar la Paz", lesson_level: ll, number_level: 11, number: 23, description: "<p>Muchos pensarán que la Paz se solicita. Y no es así, hay que construirla. Nadie puede alcanzarla en tanto no la trabaje. ¿Cómo? Y el asunto podría ser complejo si nos limitamos a entenderla como una acción, más que como una consecuencia.</p>
+<p>Siendo en realidad la acción y la consecuencia, el intento y el resultado, la inversión y la ganancia. La Paz es lo que obtenemos tras librar nuestras más duras batallas internas.</p>")
+
+Lesson.create(name: "Mantener la Realidad del Ser", lesson_level: ll, number_level: 12, number: 24, description: "<p>Ya una vez dispuestos, la idea es proseguir, tratando de sostener en nosotros la forma más coherente de realidad que hayamos encontrado. Unirla así, como si de una receta se tratara, con lo que hemos alcanzado como principio de Fe, y disolver en esta mezcla todos nuestros temores.</p>
+<p>Una vez alcanzado esto como logro, en nuestra calidad de Adeptos, lo que queda es perseverar como almas adscritas aún a este plano, y dispuestas a ascender desde aquí hasta las vibraciones de Amor que se disponen.</p>")
+
+
 
 ll = LessonLevel.create(name: "Shiva")
 
-Lesson.create(name: "Vivir en el Ser", lesson_level: ll, number_level: 1, number: 23, description: "<p>La experiencia de vida, cualquiera que sea, debe ser tomada como una bondad. Son pocas las personas que se sostienen en este entendimiento, prefiriendo permanecer sujetas a los vaivenes que marcan los hechos, sin advertir que siempre serán producto de nuestras propias acciones.</p>
+Lesson.create(name: "Vivir en el Ser", lesson_level: ll, number_level: 1, number: 25, description: "<p>La experiencia de vida, cualquiera que sea, debe ser tomada como una bondad. Son pocas las personas que se sostienen en este entendimiento, prefiriendo permanecer sujetas a los vaivenes que marcan los hechos, sin advertir que siempre serán producto de nuestras propias acciones.</p>
 <p>Seguir manejándonos como un colectivo de fuerzas desintegradas, no nos ha dado ningún resultado loable, más que dispersar la real fuerza de evolución y unión que nos mantendría en una situación distinta, y siempre pensamos que mejor.</p>")
 
-Lesson.create(name: "Confiar en el Plan", lesson_level: ll, number_level: 2, number: 24, description: "<p>¿Sacarías la cabeza en un avión en movimiento? ¿Lo harías? Más o menos eso es lo que tienes que hacer ahora, en este momento, en este tiempo.</p>
+Lesson.create(name: "Confiar en el Plan", lesson_level: ll, number_level: 2, number: 26, description: "<p>¿Sacarías la cabeza en un avión en movimiento? ¿Lo harías? Más o menos eso es lo que tienes que hacer ahora, en este momento, en este tiempo.</p>
 <p>¿Existen tantas formas de integrarte definitivamente al Plan, que tal vez buscarías una menos arriesgada, y estarías en tu razón. Eso sí, si desde alguna parte de ti no sientes la alerta constante, el llamado continuo, la necesidad de una respuesta inmediata. Por eso tienes que graduarte, realizar una medición interior que te dé razones propias para adaptarte a tu Verdad.</p>")
 
-Lesson.create(name: "Madre: su Sutil Manifiesto", lesson_level: ll, number_level: 3, number: 25, description: "<p>Las comprensiones del Dios pueden contener el registro de lo que nuestra conciencia alberga ya como Verdad.</p>
+Lesson.create(name: "Madre: su Sutil Manifiesto", lesson_level: ll, number_level: 3, number: 27, description: "<p>Las comprensiones del Dios pueden contener el registro de lo que nuestra conciencia alberga ya como Verdad.</p>
 <p>Estamos sujetos a lo que realmente existe dentro de nosotros, lo que no significa que sea lo que Es. Vamos alcanzando luces en la medida que avanzamos en nuestro camino evolutivo, que no es más que una constante cósmica predeterminada por nuestro Ser en conjunción con la Conciencia Superior.</p>")
 
-Lesson.create(name: "Padre: El Gran Ejecutor", lesson_level: ll, number_level: 4, number: 26, description: "<p>\Las firmezas con las que hoy cuentas en tu vida son aquellas expresiones del Ser que has alcanzado en ti. Son, básicamente, tus logros, tus recursos y, finalmente, tu herencia.</p>
+Lesson.create(name: "Padre: El Gran Ejecutor", lesson_level: ll, number_level: 4, number: 28, description: "<p>\Las firmezas con las que hoy cuentas en tu vida son aquellas expresiones del Ser que has alcanzado en ti. Son, básicamente, tus logros, tus recursos y, finalmente, tu herencia.</p>
 <p>¿Has pensado de quién has heredado todo? ¿Cuántas causales te han llegado para recibir un legado que consideras propio?</p>
 <p>Y no son muchos los que le confieren al Padre esa distinción: Ser el Todo. Ser el Creador y el productor de TODO. Ser quien acciona y quien recibe.</p>")
 
-Lesson.create(name: "Sin Pasado ni Futuro", lesson_level: ll, number_level: 5, number: 27, description: "<p>Recordemos sin vicios que acomplejan y reducen, espectemos sin malograr las fuerzas que podrían rendirse, establezcamos lo que somos hoy muy profundamente, sin alterar nada, acogiendo la verdad propia sin temor. Es el tiempo de crear más fórmulas internas que nos hagan trascender más allá de lo que hoy mismo somos.</p>
+Lesson.create(name: "Sin Pasado ni Futuro", lesson_level: ll, number_level: 5, number: 29, description: "<p>Recordemos sin vicios que acomplejan y reducen, espectemos sin malograr las fuerzas que podrían rendirse, establezcamos lo que somos hoy muy profundamente, sin alterar nada, acogiendo la verdad propia sin temor. Es el tiempo de crear más fórmulas internas que nos hagan trascender más allá de lo que hoy mismo somos.</p>
 <p>Nuestra percepción del tiempo se hace muy limitada en este plano y no tendría que ser así. Claro que hemos recurrido a sostener en nosotros tan sólo una milésima de nuestro ejercicio consciente de vida para poder avanzar.</p>")
 
-ls = Lesson.create(name: "Presente Siempre Presente", lesson_level: ll, number_level: 6, number: 28, description: "<p> La posibilidad reales enfatizar nuestra propuesta a partir del presente que nos cobija, como esta forma de habitar una y otra vez la existencia.</p>
+ls = Lesson.create(name: "Presente Siempre Presente", lesson_level: ll, number_level: 6, number: 30, description: "<p> La posibilidad reales enfatizar nuestra propuesta a partir del presente que nos cobija, como esta forma de habitar una y otra vez la existencia.</p>
 <p>Debemos de relacionarnos, sin temor, con la temporalidad que existe como resolución de Luz dentro del Cosmos y sujetar nuestra materia tan sólo a las experiencias de Luz concretas que nos han permitido la evolución y la conexión con el Propósito.</p>")
 
-for i in 1..3
+for i in 1..5
 	c = Content.create(title: 'La Búsqueda', page_number: i)
 	c.file.store!(File.open(File.join(Rails.root, "private/lessons/1/file-page#{i}.jpg")))
 	c.save
