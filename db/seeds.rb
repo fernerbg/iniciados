@@ -76,14 +76,58 @@ Lesson.create(name: "El consentimiento", lesson_level: ll, number_level: 1, numb
 Lesson.create(name: "La Reacción", lesson_level: ll, number_level: 2, number: 14, description: "<p>Nuestras estructuras están dispuestas, tácitamente y aunque no lo sepamos, no lo aceptemos, ni lo evidenciemos, dentro de un orden perfecto. Por supuesto que, desde el Ideal Divino, se espera que la reacción ante esta Verdad se exprese ya.</p>
 <p>Sin estar sujeta a tantas condicionantes humanas, dificultando cada día más que esta reacción activa produzca, en el tiempo ideal y en las maravillosas condiciones divinas, una favorable situación espiritual, y quede así establecido en este planeta el Principio Único: el Amor.</p>")
 
-ls = Lesson.create(name: "La Recreación", lesson_level: ll, number_level: 3, number: 15, description: "<p>Lecciones destinadas al desarrollo espiritual de los miembros de la Escuela Valores Divinos. Material de enseñanza exclusiva para quienes han elegido mantenerse en resguardo y guía del linaje de Maestros que las imparten. No se recomienda su reproducción total o parcial.</p>
+Lesson.create(name: "La Recreación", lesson_level: ll, number_level: 3, number: 15, description: "<p>Lecciones destinadas al desarrollo espiritual de los miembros de la Escuela Valores Divinos. Material de enseñanza exclusiva para quienes han elegido mantenerse en resguardo y guía del linaje de Maestros que las imparten. No se recomienda su reproducción total o parcial.</p>
 <p>¿Qué hemos creado desde nosotros mismos, sintiéndonos qué o quiénes dentro de la vasta ecuación creadora? ¿Cómo podemos reaccionar hoy ante la re-creación que hemos hecho? Sólo quienes han retomado la conciencia pueden percibir todo cuanto somos o, lo más temible, lo que no somos. Por lo que toma este tiempo para crear definitivamente lo que debes: tu Ser.</p>")
 
-LessonLevel.create(name: "Shiva")
+Lesson.create(name: "La Fortaleza", lesson_level: ll, number_level: 4, number: 16, description: "<p>Es intensa la dinámica que se descubre cuando, por aquello de despertar, coincidir con el propósito y establecer la Fe, nos encontramos. Es en esa realidad, en la que habitamos desde algún aspecto, que no tardamos en descifrar y sostener dentro de nosotros, pero con el único fin de disuadirlo, un aspecto negador.</p>
+<p>Para que nos permita entrar a nuestro Ser interior, para luego estar y permanecer en la invisible y sublime estancia que nos reserva. Sólo así, bajo la esperanza consciente del Ser, podemos alcanzar la fortaleza en Luz para seguir. </p>")
 
-for i in 1..32 
-	c = Content.create(title: 'El Principito', page_number: i)
-	c.file.store!(File.open(File.join(Rails.root, "private/principito/file-page#{i}.jpg")))
+Lesson.create(name: "El Autonocimiento", lesson_level: ll, number_level: 5, number: 17, description: "<p>El poder de lo Creado es inmenso, tanto como el Creador mismo. Él se ha inspirado de tal manera, que todo cuanto lo conforma cuenta con sus cualidades. Entre las más propagadas, aunque menos logradas, está la perfección.</p>
+<p>En esta aventura de autoservirnos, de andar ya sobre procesos de conocimiento, autoconocimiento y reconocimiento, ronda su más hermosa energía, ubicándose en nuestra Alma, cada vez menos peregrina, para llevarla a la propuesta más exacta: servirle en Luz.</p>")
+
+Lesson.create(name: "La Revelación", lesson_level: ll, number_level: 6, number: 18, description: "<p>Estamos más que dispuestos en este Universo para llevar a cabo un Plan que ha sido objeto de todo tipo de atentados y divagaciones, con el único objeto de que no se cumpla. Muchos pueden creer que la programación previa no podía haber sido distorsionada y muchos menos trastocada.</p>
+<p>Lo fue y sigue siéndolo, por lo que es imperioso que ajustemos, de una vez, nuestras conciencias activas, y disipemos registros negadores, que sólo atentan contra la exquisita bendición de ser parte de la Luz del mismo Creador.</p>")
+
+Lesson.create(name: "Controlar la Mente", lesson_level: ll, number_level: 7, number: 19, description: "<p>En este no saber nos encontramos con que, en alguna parte de nosotros, habita la clave más firme para descubrirnos. Puede que en cada uno exista una clave diferente, pero lo que no debería estar en duda ni tampoco negarse, es que venimos de la Conciencia de Luz más hermosa que existe.</p>
+<p>Esta clave se ha sostenido desde hace mucho en nuestra mente y es ahora el momento para obtenerla, y dejar que ya no sea sólo la razón la que gobierne la Naturaleza Divina del Ser, la que espera ser activada...</p>")
+
+Lesson.create(name: "Liberar el Karma", lesson_level: ll, number_level: 8, number: 20, description: "<p>\"Agoto lo que soy y no soy y así llego a la constante infinita\".</p>
+<p>Así debería rezar la idea que nos libere, la que nos permita disgregar de nuestra mente la irrealidad a la que nos sometemos cada vez que intentamos Ser. Es necesario que nos propongamos alcanzar, de una buena vez, la estancia superior de nuestro objetivo, al haber sido creados por y para un fin único: Ser.</p>
+<p>Lo que malamente asumimos como Karma no es más que una tarea, sujeta a nuestro propio propósito y tras nuestro propio mandato...</p>")
+
+Lesson.create(name: "Liberar el Karma", lesson_level: ll, number_level: 9, number: 21, description: "<p>\"Agoto lo que soy y no soy y así llego a la constante infinita\".</p>
+<p>Así debería rezar la idea que nos libere, la que nos permita disgregar de nuestra mente la irrealidad a la que nos sometemos cada vez que intentamos Ser. Es necesario que nos propongamos alcanzar, de una buena vez, la estancia superior de nuestro objetivo, al haber sido creados por y para un fin único: Ser.</p>
+<p>Lo que malamente asumimos como Karma no es más que una tarea, sujeta a nuestro propio propósito y tras nuestro propio mandato...</p>")
+
+Lesson.create(name: "Liberar el Karma", lesson_level: ll, number_level: 10, number: 22, description: "<p>\"Agoto lo que soy y no soy y así llego a la constante infinita\".</p>
+<p>Así debería rezar la idea que nos libere, la que nos permita disgregar de nuestra mente la irrealidad a la que nos sometemos cada vez que intentamos Ser. Es necesario que nos propongamos alcanzar, de una buena vez, la estancia superior de nuestro objetivo, al haber sido creados por y para un fin único: Ser.</p>
+<p>Lo que malamente asumimos como Karma no es más que una tarea, sujeta a nuestro propio propósito y tras nuestro propio mandato...</p>")
+
+
+ll = LessonLevel.create(name: "Shiva")
+
+Lesson.create(name: "Vivir en el Ser", lesson_level: ll, number_level: 1, number: 23, description: "<p>La experiencia de vida, cualquiera que sea, debe ser tomada como una bondad. Son pocas las personas que se sostienen en este entendimiento, prefiriendo permanecer sujetas a los vaivenes que marcan los hechos, sin advertir que siempre serán producto de nuestras propias acciones.</p>
+<p>Seguir manejándonos como un colectivo de fuerzas desintegradas, no nos ha dado ningún resultado loable, más que dispersar la real fuerza de evolución y unión que nos mantendría en una situación distinta, y siempre pensamos que mejor.</p>")
+
+Lesson.create(name: "Confiar en el Plan", lesson_level: ll, number_level: 2, number: 24, description: "<p>¿Sacarías la cabeza en un avión en movimiento? ¿Lo harías? Más o menos eso es lo que tienes que hacer ahora, en este momento, en este tiempo.</p>
+<p>¿Existen tantas formas de integrarte definitivamente al Plan, que tal vez buscarías una menos arriesgada, y estarías en tu razón. Eso sí, si desde alguna parte de ti no sientes la alerta constante, el llamado continuo, la necesidad de una respuesta inmediata. Por eso tienes que graduarte, realizar una medición interior que te dé razones propias para adaptarte a tu Verdad.</p>")
+
+Lesson.create(name: "Madre: su Sutil Manifiesto", lesson_level: ll, number_level: 3, number: 25, description: "<p>Las comprensiones del Dios pueden contener el registro de lo que nuestra conciencia alberga ya como Verdad.</p>
+<p>Estamos sujetos a lo que realmente existe dentro de nosotros, lo que no significa que sea lo que Es. Vamos alcanzando luces en la medida que avanzamos en nuestro camino evolutivo, que no es más que una constante cósmica predeterminada por nuestro Ser en conjunción con la Conciencia Superior.</p>")
+
+Lesson.create(name: "Padre: El Gran Ejecutor", lesson_level: ll, number_level: 4, number: 26, description: "<p>\Las firmezas con las que hoy cuentas en tu vida son aquellas expresiones del Ser que has alcanzado en ti. Son, básicamente, tus logros, tus recursos y, finalmente, tu herencia.</p>
+<p>¿Has pensado de quién has heredado todo? ¿Cuántas causales te han llegado para recibir un legado que consideras propio?</p>
+<p>Y no son muchos los que le confieren al Padre esa distinción: Ser el Todo. Ser el Creador y el productor de TODO. Ser quien acciona y quien recibe.</p>")
+
+Lesson.create(name: "Sin Pasado ni Futuro", lesson_level: ll, number_level: 5, number: 27, description: "<p>Recordemos sin vicios que acomplejan y reducen, espectemos sin malograr las fuerzas que podrían rendirse, establezcamos lo que somos hoy muy profundamente, sin alterar nada, acogiendo la verdad propia sin temor. Es el tiempo de crear más fórmulas internas que nos hagan trascender más allá de lo que hoy mismo somos.</p>
+<p>Nuestra percepción del tiempo se hace muy limitada en este plano y no tendría que ser así. Claro que hemos recurrido a sostener en nosotros tan sólo una milésima de nuestro ejercicio consciente de vida para poder avanzar.</p>")
+
+ls = Lesson.create(name: "Presente Siempre Presente", lesson_level: ll, number_level: 6, number: 28, description: "<p> La posibilidad reales enfatizar nuestra propuesta a partir del presente que nos cobija, como esta forma de habitar una y otra vez la existencia.</p>
+<p>Debemos de relacionarnos, sin temor, con la temporalidad que existe como resolución de Luz dentro del Cosmos y sujetar nuestra materia tan sólo a las experiencias de Luz concretas que nos han permitido la evolución y la conexión con el Propósito.</p>")
+
+for i in 1..3
+	c = Content.create(title: 'La Búsqueda', page_number: i)
+	c.file.store!(File.open(File.join(Rails.root, "private/lessons/1/file-page#{i}.jpg")))
 	c.save
 end
 

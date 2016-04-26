@@ -13,11 +13,24 @@
 .sky-lecciones
   padding-top: 30px
   background-color: #005580
-  background-image: asset-url('design/fondo-novedades.jpg')
   background-size: 100% auto
   background-repeat: repeat-y
   position: relative
   z-index: 4
+  &.atma
+    background-image: asset-url('design/fondo-novedades-atma.jpg')
+    &:before
+      background-image: asset-url('design/esquina-top-left-atma.png')
+    &:after
+      background-image: asset-url('design/esquina-top-right-atma.png')
+  &.vidya
+    background-image: asset-url('design/fondo-novedades-vidya.jpg')
+    &:before
+      background-image: asset-url('design/esquina-top-left-vidya.png')
+    &:after
+      background-image: asset-url('design/esquina-top-right-vidya.png')
+  &.shiva
+    background-image: asset-url('design/fondo-novedades-vidya.jpg')
   &:before, &:after
     content: ' '
     position: absolute
@@ -28,11 +41,9 @@
   &:before
     top: 10px
     left: 10px
-    background-image: asset-url('design/esquina-top-left.png')
   &:after
     top: 10px
     right: 10px
-    background-image: asset-url('design/esquina-top-right.png')
   .menu1
     width: 100%
     height: 100px
@@ -144,7 +155,7 @@
     position: relative
     padding-left: 100px
     padding-right: 100px
-    padding-top: 5px
+    padding-top: 30px
     padding-bottom: 30px
     &:after, &:before
       position: absolute
@@ -167,7 +178,9 @@
         padding-right: 10px
         position: relative
         color: #666
-        margin-top: 60px
+        margin-top: 100px
+        &:first-child
+          margin-top: 60px
         .titulo
           position: absolute
           top: -50px
@@ -242,6 +255,7 @@
             position: absolute
             z-index: 5
             background-color: $yellowbrown
+            color: white
             div
               display: table-cell
               vertical-align: middle
@@ -293,7 +307,7 @@
       background-image: asset-url('design/fondo-puntos-grises.png')
       background-size: 30px auto
       position: absolute
-      top: 66px
+      top: 90px
       right: 100px
       z-index: 4
       width: 20%

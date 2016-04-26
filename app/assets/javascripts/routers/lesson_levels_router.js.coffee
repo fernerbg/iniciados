@@ -4,4 +4,3 @@ class Iniciados.Routers.LessonLevels extends Backbone.Router
 
 	show: ->
 		new Iniciados.Views.LessonLevelsShow()
-		alert('sdf')

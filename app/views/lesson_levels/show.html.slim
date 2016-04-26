@@ -1,7 +1,7 @@
 = render partial: "layouts/header", locals: {color_class: @lesson_level.class_s}
 
 .body_container
-  .sky-lecciones
+  div(class="sky-lecciones #{@lesson_level.class_s}")
     .menu1
       .anterior
         - if @lesson_level.name == 'Shiva'
