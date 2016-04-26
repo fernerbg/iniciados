@@ -8,6 +8,7 @@ class CreateContents < ActiveRecord::Migration
       t.text :url
       t.integer :page_number
       t.string :file
+      t.references :tag, index: true
       t.timestamps
     end
   end

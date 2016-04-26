@@ -72,6 +72,8 @@ class UsersController < ApplicationController
 
   def home
     @user = current_user
+    tag = Tag.where(name: 'carousel principal')
+    @carousel_images = Content.where(tag: tag)
   end
 
 

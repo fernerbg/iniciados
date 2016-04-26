@@ -1,16 +1,16 @@
 = render partial: "layouts/header"
-
 #carousel-example-generic.carousel.slide data-ride="carousel" 
   /! Indicators
   ol.carousel-indicators
     li.active data-slide-to="0" data-target="#carousel-example-generic" 
     li data-slide-to="1" data-target="#carousel-example-generic" 
   /! Wrapper for slides
-  .carousel-inner role="listbox" 
-    .item.active
-      = image_tag 'foto-home.jpg'
-    .item
-      = image_tag 'iniciacion.jpg'
+  .carousel-inner role="listbox"
+  	- @carousel_images.each_with_index do |image, index|
+  		- if index == 0
+  			.item.active = image_tag image.file.url
+  		- else
+	    	.item = image_tag image.file.url
   /! Controls
   a.left.carousel-control data-slide="prev" href="#carousel-example-generic" role="button" 
     span.glyphicon.glyphicon-chevron-left aria-hidden="true" 
@@ -19,6 +19,9 @@
     span.glyphicon.glyphicon-chevron-right aria-hidden="true" 
     span.sr-only Next
 
+#carousel-images
+	- @carousel_images.each_with_index do |image, index|
+		.image = image_tag image.file.url
 
 = render partial: "layouts/footer"
 = render partial: "layouts/calendar"

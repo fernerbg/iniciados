@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :tags
+
   resources :level_contents
 
   resources :lesson_contents
@@ -26,8 +28,9 @@ Rails.application.routes.draw do
 
   get 'home', to: "users#home"
 
-  post "/private/content/file/:id/:title.:ext", to: "contents#delivery", as: "delivery"
+  get "/private/content/file/:id/:title.:ext", to: "contents#delivery", as: "delivery"
 
+  #get "/private/content/open/file/:id/:title.:ext", to: "contents#delivery", as: "delivery"
 
   root 'users#home'
 

@@ -28,6 +28,7 @@ u.level = lv
 
 ll = LessonLevel.create(name: "Atma")
 
+
 Lesson.create(name: "La Búsqueda", lesson_level: ll, number_level: 1, number: 1, description: "<p>En entrega de lo que buscas. Respondiendo siempre a lo que como necesidad expones. Debes saber que donde menos lo creas está la Verdad y si se te dificulta llegar a ella, habla, pide, exige, pero no te quedes atrapado en la ignorancia, en el falso sueño, en la irrealidad.</p>
 <p>Di, desde tu Ser más interno: Estoy preparando en mí la mejor forma de entrega y también de recibir. Estoy en la disposición de abrir en mí la puerta hacia mi interior.</p>")
 
@@ -135,6 +136,16 @@ ls = Lesson.create(name: "Presente Siempre Presente", lesson_level: ll, number_l
 for i in 1..5
 	c = Content.create(title: 'La Búsqueda', page_number: i)
 	c.file.store!(File.open(File.join(Rails.root, "private/lessons/1/file-page#{i}.jpg")))
+	c.save
+end
+
+t = Tag.create(name: 'carousel principal')
+Tag.create(name: 'instruccion')
+Tag.create(name: 'leccion')
+
+for i in 1..2
+	c = Content.create(title: "carousel#{i}", tag: t)
+	c.file.store!(File.open(File.join(Rails.root, "private/carousel/carousel#{i}.jpg")))
 	c.save
 end
 

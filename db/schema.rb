@@ -16,6 +16,12 @@ ActiveRecord::Schema.define(version: 20160204164654) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "tags", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "contents", force: true do |t|
     t.string   "title"
     t.text     "description"
@@ -24,8 +30,11 @@ ActiveRecord::Schema.define(version: 20160204164654) do
     t.text     "url"
     t.integer  "page_number"
     t.string   "file"
+    t.integer  "tag_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["tag_id"], :name => "index_contents_on_tag_id"
+    t.foreign_key ["tag_id"], "tags", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_contents_tag_id"
   end
 
   create_table "countries", force: true do |t|
