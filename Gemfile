@@ -40,6 +40,8 @@ gem 'country_select'
 
 gem 'pdfjs_rails'
 
+gem 'aws-sdk', '~> 2'
+
 group :test, :development do
   gem 'rspec-rails'
 end
