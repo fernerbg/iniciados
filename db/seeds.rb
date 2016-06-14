@@ -135,7 +135,7 @@ ls = Lesson.create(name: "Presente Siempre Presente", lesson_level: ll, number_l
 
 for i in 1..5
 	c = Content.create(title: 'La Búsqueda', page_number: i)
-	c.file.store!(File.open(File.join(Rails.root, "private/lessons/1/file-page#{i}.jpg")))
+	c.file.store!(File.open(File.join(Rails.root, "private/lessons/1/file-page#{i}.gif")))
 	c.save
 end
 

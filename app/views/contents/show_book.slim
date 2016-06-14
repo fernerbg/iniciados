@@ -10,7 +10,12 @@
 		span.glyphicon.glyphicon-zoom-in
 		#slider
 #book-content
-	= image_tag "#{@content.file.url}", id: "book-page", data: {title: @content.title, "total-pages": @total_pages}
-	h1#loading Cargando...
+	= image_tag "", id: "book-page", data: {title: @content.title, "total-pages": @total_pages}
+	#loading
+		h1
+			| Cargando...
+		#loading-progress.progress
+		  .progress-bar aria-valuemax="100" aria-valuemin="0" aria-valuenow="0" role="progressbar" 
+		    | 0%
 
 = image_tag "transparency.png", id: "transparency"

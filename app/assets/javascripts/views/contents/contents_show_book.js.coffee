@@ -36,6 +36,7 @@ class Iniciados.Views.ContentsShowBook extends Backbone.View
   		(data) ->
   				self.book = data.images
   				$('#book-page').attr 'src', self.book[0]
+  				$('#loading').hide()
   				$('#book-page').show())
 
   	$('#slider').slider({
@@ -149,17 +150,34 @@ class Iniciados.Views.ContentsShowBook extends Backbone.View
 		requestChunk: (chunk, callback) ->
 			self = @
 			@loading = true
-			jqxhr = $.post(
-	  		'delivery_pages.json',
-	  		{
-	  			title: $('#book-page').data('title')
-	  			chunk_size: self.chunkSize
-	  			offset: self.chunkSize * chunk
-	  		},
-	  		(data) ->
+			data =  { title: $('#book-page').data('title'), chunk_size: self.chunkSize, offset: self.chunkSize * chunk }
+			$.ajax
+			  method: 'POST'
+			  url: 'delivery_pages.json'
+			  dataType: 'json'
+			  data: data
+			  success: (data) ->
+			  	d = new Date()
+			  	console.log(d.getSeconds())
 			  	callback(data)
-			  	self.closeLoading())
-
+			  	self.closeLoading()
+			  	return
+			  error: ->
+			  	console.log 'AWWW!'
+			  	return
+			  xhr: ->
+			  	xhr = new (window.XMLHttpRequest)
+			  	xhr.addEventListener 'progress', ((evt) ->
+			  		if evt.lengthComputable
+			  			d = new Date()
+			  			console.log(d.getSeconds())
+			  			percentComplete = evt.loaded / evt.total
+			  			$('#loading-progress .progress-bar').css("width",  percentComplete * 100 + "%")
+			  			$('#loading-progress .progress-bar').html(parseInt(percentComplete * 100) + "%")
+			  		return
+			  	), false
+			  	xhr
+			    
 		closeLoading: ->
 			@loading = false
 			if @waitingConfirmation
