@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     collection do
       post 'show_book'
       post 'delivery_pages'
+      get 'binary_data'
     end
   end
 

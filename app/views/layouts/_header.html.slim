@@ -1,8 +1,28 @@
 .sky-header
-  .link-evd.center-xy class= (color_class if defined? color_class != nil)
-    =link_to "EVD", root_path, class: "centered"
-  .link-instruccion.center-xy
-    /= link_to "Instrucción SKY", level_path(current_user.level), class: "centered"
-    = link_to "Instrucción SKY", root_path, class: "centered"
-  .link-ensenanza.center-xy
-    = link_to "Lecciones SKY", lesson_level_path(current_user.lesson.level), class: "centered"
+  .logo-container
+    .logo-wrapper
+      = image_tag "design2/icon.png"
+    .title-wrapper
+      = "Iniciados SKY"
+  .links-container
+    .link
+      | Audio
+    .link
+      | Video
+    .link
+      | Novedades
+  .right-container
+    .user-options-container
+      .user-name-container
+        | Juan Perez Carvajal &nbsp
+        span.caret
+      ul.user-options
+        li= "Cerrar Sesión"
+  /*
+    .link-evd.center-xy class= (color_class if defined? color_class != nil)
+      =link_to "EVD", root_path, class: "centered"
+    .link-instruccion.center-xy
+      /= link_to "Instrucción SKY", level_path(current_user.level), class: "centered"
+      = link_to "Instrucción SKY", root_path, class: "centered"
+    .link-ensenanza.center-xy
+      = link_to "Lecciones SKY", lesson_level_path(current_user.lesson.level), class: "centered"

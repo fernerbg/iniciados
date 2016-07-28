@@ -57,11 +57,10 @@ group :test do
   gem "selenium-webdriver", "~> 2.34.0"
 end
 
-group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
-  gem 'uglifier'
-end
+gem 'sass-rails'
+gem 'coffee-rails'
+gem 'uglifier'
+gem "compass-rails"
 
 group :production do
 

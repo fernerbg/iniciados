@@ -1,10 +1,69 @@
 .sky-header
-  width: 100%
-  background-color: #FFF
+  width: 90%
+  left: 5%
   position: fixed
   z-index: 10
-  top: 0px
-  height: 70px
+  top: 20px
+  background-color: rgba(0, 0, 0, 0.2)
+  text-align: left
+  .logo-container
+    display: inline-block
+    background-color: white
+    .logo-wrapper
+      display: inline-block
+      padding: 5px
+      border-right: 1px solid black
+      img
+        width: 38px
+    .title-wrapper
+      display: inline-block
+      color: black
+      padding: 0px 12px
+      padding-right: 14px
+      font-size: 17px
+      position: relative
+      top: 2px
+  .links-container
+    display: inline-block
+    padding-left: 60px
+    .link
+      display: inline-block
+      color: white
+      font-size: 14px
+      padding-right: 50px
+  .right-container
+    display: inline-block
+    float: right
+    color: white
+    font-size: 14px
+    .user-options-container
+      position: relative
+      text-align: center
+      cursor: pointer
+      &:hover
+        .user-name-container
+          background-color: $lightgray
+        .user-options
+          max-height: 500px
+      .user-name-container
+        background-color: white
+        color: black
+        display: inline-block
+        padding: 14px
+      .user-options
+        position: absolute
+        top: 100%
+        width: 100%
+        background: white
+        color: black
+        max-height: 0px
+        overflow: hidden
+        li
+          padding: 10px
+          border-top: 1px solid black
+          border-bottom: 1px solid black
+          &:hover
+            background-color: $lightgray
   .link-evd, .link-ensenanza, .link-instruccion
     height: 70px
   .link-evd

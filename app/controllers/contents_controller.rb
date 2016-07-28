@@ -72,6 +72,10 @@ class ContentsController < ApplicationController
     end
   end
 
+  def binary_data
+    
+  end
+  
   private
     def set_content
       @content = Content.find(params[:id])
