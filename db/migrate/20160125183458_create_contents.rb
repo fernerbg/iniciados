@@ -3,11 +3,8 @@ class CreateContents < ActiveRecord::Migration
     create_table :contents do |t|
       t.string :title
       t.text :description
-      t.string :type
-      t.text :thumbnail
-      t.text :url
       t.integer :page_number
-      t.string :file
+      t.string :document
       t.references :tag, index: true
       t.timestamps
     end

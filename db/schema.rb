@@ -32,11 +32,8 @@ ActiveRecord::Schema.define(version: 20160614195221) do
   create_table "contents", force: true do |t|
     t.string   "title"
     t.text     "description"
-    t.string   "type"
-    t.text     "thumbnail"
-    t.text     "url"
     t.integer  "page_number"
-    t.string   "file"
+    t.string   "document"
     t.integer  "tag_id"
     t.datetime "created_at"
     t.datetime "updated_at"

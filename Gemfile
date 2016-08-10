@@ -34,13 +34,20 @@ gem 'state_machine', require: 'state_machine/core'
 
 gem 'carrierwave'
 
+gem 'carrierwave_direct'
+
+# Gem used to handle image uploading
+gem 'fog', '>= 1.3.1'
+  
+gem 'sidekiq'
+
 gem 'cancan'
 
 gem 'country_select'
 
-gem 'pdfjs_rails'
+gem 'inherited_resources',        '1.6.0'
 
-gem 'aws-sdk', '~> 2'
+gem 'has_scope', '0.6.0'
 
 group :test, :development do
   gem 'rspec-rails'
@@ -63,9 +70,6 @@ gem 'uglifier'
 gem "compass-rails"
 
 group :production do
-
-  # Gem used to handle image uploading
-  gem 'fog', '>= 1.3.1'
 
   # Workers, forks and all that jazz
   gem 'unicorn'

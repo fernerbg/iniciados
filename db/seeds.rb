@@ -135,7 +135,7 @@ ls = Lesson.create(name: "Presente Siempre Presente", lesson_level: ll, number_l
 
 for i in 1..5
 	c = Content.create(title: 'La Búsqueda', page_number: i)
-	c.file.store!(File.open(File.join(Rails.root, "private/lessons/1/file-page#{i}.gif")))
+	c.document.store!(File.open(File.join(Rails.root, "private/lessons/1/file-page#{i}.gif")))
 	c.save
 end
 
@@ -145,7 +145,7 @@ Tag.create(name: 'leccion')
 
 for i in 1..2
 	c = Content.create(title: "carousel#{i}", tag: t)
-	c.file.store!(File.open(File.join(Rails.root, "private/carousel/carousel#{i}.jpg")))
+	c.document.store!(File.open(File.join(Rails.root, "private/carousel/carousel#{i}.jpg")))
 	c.save
 end
 
