@@ -1,476 +1,57 @@
-.center-xy
-  display: table
-  text-align: center
-  .centered
-    display: table-cell
-    vertical-align: middle
-
-.sky-fondo-home
-  width: 100%
+.lessons-container
   height: 100%
-  background-image: asset-url('foto-home.jpg')
-  background-size: 100% 100%
-.sky-lecciones
-  padding-top: 30px
-  background-color: #005580
-  background-size: 100% auto
-  background-repeat: repeat-y
-  position: relative
-  z-index: 4
-  &.atma
-    background-image: asset-url('design/fondo-novedades-atma.jpg')
+  .lesson-container
     &:before
-      background-image: asset-url('design/esquina-top-left-atma.png')
-    &:after
-      background-image: asset-url('design/esquina-top-right-atma.png')
-  &.vidya
-    background-image: asset-url('design/fondo-novedades-vidya.jpg')
-    &:before
-      background-image: asset-url('design/esquina-top-left-vidya.png')
-    &:after
-      background-image: asset-url('design/esquina-top-right-vidya.png')
-  &.shiva
-    background-image: asset-url('design/fondo-novedades-shiva.jpg')
-    &:before
-      background-image: asset-url('design/esquina-top-left-shiva.png')
-    &:after
-      background-image: asset-url('design/esquina-top-right-shiva.png')
-  &:before, &:after
-    content: ' '
-    position: absolute
-    z-index: 5
-    width: 180px
-    height: 180px
-    background-size: 100% 100%
-  &:before
-    top: 10px
-    left: 10px
-  &:after
-    top: 10px
-    right: 10px
-  .menu1
-    width: 100%
-    height: 100px
-    margin-bottom: 5px
-    position: relative
-    z-index: 4
-    &:before
-      content: ' '
-      z-index: 5
-      position: absolute
-      top: -18px
-      right: 50%
-      width: 50%
-      margin-right: -25%
-      height: 6px
-      border-top: solid 1px #FFF
-      border-bottom: dotted 1px #FFF
-    .nivel
-      z-index: 5
-      position: absolute
-      top: -25px
-      left: 50%
-      width: 200px
-      margin-left: -100px
-      text-align: center
-      background-size: 100% auto
-      background-repeat: no-repeat
-      .level_name
-        font-size: 28px
-        margin-top: -22px
-      &.atma
-        svg
-          fill: $yellowbrown
-        .level_name
-          color: $yellowbrown
-      &.vidya
-        svg
-          fill: $bluepurple
-        .level_name
-          color: $bluepurple
-      &.shiva
-        svg
-          fill: $blueocean
-        .level_name
-          color: $blueocean
-    a
-      position: relative
-      color: #FFF
-    .anterior, .siguiente
-      position: absolute
-      z-index: 5
-      font-size: 15px
-      text-align: center
-      padding-top: 37px
-    .anterior
-      right: 50%
-      padding-top: 37px
-      padding-right: 120px
-      margin-right: 4%
-      a:after
-        content: ' '
-        position: absolute
-        top: -3px
-        width: 20px
-        height: 25px
-        background-repeat: no-repeat
-        background-size: 100% auto
-    .siguiente a:after
-      content: ' '
-      position: absolute
-      top: -3px
-      width: 20px
-      height: 25px
-      background-repeat: no-repeat
-      background-size: 100% auto
-    .anterior a:after
-      right: -30px
-      background-image: asset-url('design/nivel-anterior.png')
-    .siguiente
-      left: 50%
-      padding-top: 37px
-      padding-left: 120px
-      margin-left: 4%
-      a:after
-        left: -30px
-        background-image: asset-url('design/nivel-siguiente.png')
-  .leyenda-wrapper
-    padding: 0 120px
-    width: 100%
-    .leyenda
-      text-align: center
-      height: 0px
-      font-size: 15px
-      border-right: 20px solid transparent
-      border-left: 20px solid transparent
-      border-bottom: 40px solid $yellowbrown
-      .center-xy
-        width: 100%
-        height: 40px
-        color: black
-    .white-line
-      width: 100%
-      height: 2px
-      background-color: white
-      margin: 0
-    &.atma
-      .leyenda
-        border-bottom: 40px solid $yellowbrown
-    &.vidya
-      .leyenda
-        border-bottom: 40px solid $bluepurple
-    &.shiva
-      .leyenda
-        border-bottom: 40px solid $blueocean
-.sky-lecciones
-  .contenido-wrapper
-    position: relative
-    padding-left: 100px
-    padding-right: 100px
-    padding-top: 30px
-    padding-bottom: 30px
-    &:after, &:before
-      position: absolute
-      top: 0px
-      content: ' '
-      width: 6px
+      content: ''
+      display: inline-block
       height: 100%
-    &:after
-      left: 11px
-      border-left: solid 1px #FFF
-      border-right: dotted 1px #FFF
-    &:before
-      right: 11px
-      border-right: solid 1px #FFF
-      border-left: dotted 1px #FFF
-    .lesson_view_container
-      width: 74%
-      .lesson_view_wrapper
+      vertical-align: middle
+      margin-right: -0.25em
+    .lesson-wrapper
+      display: inline-block
+      vertical-align: middle
+      float: none
+      margin-left: 0px
+      .title
+        line-height: initial
+        font-size: 45px
+        color: black
+        font-family: 'Majesti Banner'
+        font-weight: 700
+        display: inline-block
+        border-bottom: solid 1px black
+        margin-bottom: 25px
         width: 100%
-        padding-right: 10px
-        position: relative
-        color: #666
-        margin-top: 100px
-        &:first-child
-          margin-top: 60px
-        .titulo
-          position: absolute
-          top: -50px
-          .titulo-texto
-            padding-left: 15px
-            padding-right: 15px
-            display: table-cell
-            height: 40px
-            vertical-align: middle
-            font-size: 25px
-            text-transform: uppercase
-            background-image: asset-url('design/fondo-titulo-leccion.png')
-            background-repeat: repeat-x
-            background-size: auto 100%
-        .imagen
-          position: absolute
-          top: 0px
-          left: 0px
-          z-index: 4
-          border-top: solid 6px $yellowbrown
-          width: 60%
-          height: 100%
-          background-color: #FFF
-          &:after
-            z-index: 7
-            content: ' '
-            position: absolute
-            top: 0px
-            width: 4px
-            height: 100%
-            background-image: asset-url('design/puntos-vertical-gris.png')
-            background-repeat: repeat-y
-            background-size: 100% auto
-        .textoleccion
-          min-height: 400px
-          position: relative
-          border-top: solid 6px $yellowbrown
-          width: 41%
-          margin-left: 60%
-          background-color: #FFF
-          background-image: asset-url('design/fondo-puntos-grises.png')
-          background-size: 30px auto
-          padding-top: 15px
-          padding-left: 15px
-          padding-right: 15px
-          padding-bottom: 45px
-          z-index: 4
-          &:after, &:before
-            z-index: 7
-            content: ' '
-            position: absolute
-            top: 0px
-            width: 4px
-            height: 100%
-            background-image: asset-url('design/puntos-vertical-gris.png')
-            background-repeat: repeat-y
-            background-size: 100% auto
-          &:after
-            right: -2px
-          &:before
-            left: -2px
-          .titulonumerico
-            font-size: 20px
-            text-transform: uppercase
-            text-decoration: underline
-            padding-bottom: 10px
-          .resumenleccion
-            text-align: justify
-          .enlaceleccion
-            bottom: 5px
-            right: 5px
-            position: absolute
-            z-index: 5
-            background-color: $yellowbrown
-            color: white
-            div
-              display: table-cell
-              vertical-align: middle
-              text-transform: uppercase
-              height: 30px
-              padding-right: 10px
-              padding-left: 40px
-              color: #000
-              border-top: solid 1px #BBB
-              border-left: solid 1px #BBB
-              border-bottom: solid 1px #000
-              border-right: solid 1px #000
-              position: relative
-              z-index: 5
-              &:after
-                position: absolute
-                z-index: 6
-                top: 0
-                left: 0px
-                width: 30px
-                height: 100%
-                border-right: solid 1px #BBB
-                text-align: center
-                padding-top: 4px
-                font-size: 17px
-                /* Estilos tomados de Glyphicon PLAY */
-                content: '\e072'
-                display: inline-block
-                font-family: 'Glyphicons Halflings'
-                font-style: normal
-                font-weight: normal
-                line-height: 1
-                -webkit-font-smoothing: antialiased
-                -moz-osx-font-smoothing: grayscale
-
-        .imagen:after
-          left: -2px
-        &.atma
-          .imagen, .textoleccion
-            border-top: solid 6px $yellowbrown
-        &.vidya
-          .imagen
-            border-top: solid 6px $bluepurple
-          .textoleccion
-            border-top: solid 6px $bluepurple
-            .enlaceleccion
-              background-color: $bluepurple
-        &.shiva
-          .imagen
-            border-top: solid 6px $blueocean
-          .textoleccion
-            border-top: solid 6px $blueocean
-            .enlaceleccion
-              background-color: $blueocean
-    .lesson_list
-      background-image: asset-url('design/fondo-puntos-grises.png')
-      background-size: 30px auto
-      position: absolute
-      top: 90px
-      right: 100px
-      z-index: 4
-      width: 20%
-      background-color: #FFF
-      padding: 10px
-      overflow: hidden
-      text-align: left
-      &.atma
-        border-top: solid 6px $yellowbrown
-        div
-          &.actual:after
-            background-color: $yellowbrown
-      &.vidya
-        border-top: solid 6px $bluepurple
-        div
-          &.actual:after
-            background-color: $bluepurple
-      &.shiva
-        border-top: solid 6px $blueocean
-        div
-          &.actual:after
-            background-color: $blueocean
-      div
-        padding-left: 25px
-        padding-top: 3px
-        padding-bottom: 3px
-        position: relative
-        z-index: 4
-        height: 25px
-        &.occupied
-          cursor: pointer
-          &:after
+        padding-bottom: 5px
+      .summary
+        p
+          font-size: 14px
+      .options-wrapper
+        margin-top: 30px
+        border-top: solid 1px black
+        overflow: hidden
+        padding-bottom: 20px
+        .left-options
+          float: left
+        .right-options
+          float: right
+        .option
+          margin: 10px 0px
+          width: 40px
+          display: inline-block
+          .icon
+            width: 100%
             cursor: pointer
-        &:after
-          position: absolute
-          z-index: 5
-          content: ' '
-          top: 0px
-          left: 0px
-          width: 15px
-          height: 15px
-          border-radius: 50%
-          background-color: gray
-          top: 5px
-        &.actual:after
-          border-radius: 50%
-
-      span
-        color: #000
-        font-size: 12px
-      .actual a
-        font-weight: bold
-
-.sky-novedades-body
-  padding-top: 55px
-  padding-bottom: 50px
-  background-color: #005580
-  background-image: asset-url('design/fondo-novedades.jpg')
-  background-size: 100% auto
-  background-repeat: repeat-y
-  position: relative
-  z-index: 4
-  &:after
-    content: ' '
-    position: absolute
-    z-index: 5
-    width: 90%
-    height: 6px
-    top: 40px
-    left: 5%
-    border-top: solid 1px #FFF
-    border-bottom: solid 2px #FFF
-  .mes
-    .nombre-mes
-      width: 100%
-      text-align: center
-      font-size: 30px
-      color: #FFF
-      text-transform: uppercase
-    .entradas
-      min-height: 300px
-      position: relative
-      padding-top: 120px
-      padding-left: 80px
-      padding-right: 80px
-      &:after
-        content: ' '
-        position: absolute
-        top: 0px
-        left: 50%
-        width: 0px
-        height: 100%
-        border: 1px solid #FFF
-      .entrada
-        margin-top: -100px
-        width: 50%
-        min-height: 140px
-        color: #000
-        .fecha
-          position: relative
-          z-index: 4
-          text-transform: uppercase
-          border-bottom: 6px solid $yellowbrown
-          color: #FFF
-        .contenido
-          background-color: #FFF
-          padding-top: 20px
-          padding-bottom: 30px
-          padding-left: 30px
-          padding-right: 30px
-          .titulonovedad
-            font-size: 25px
-            padding-bottom: 10px
-        &:nth-child(odd)
-        &:nth-child(even)
-          margin-left: 50%
-        &:nth-child(odd) .fecha
-          padding-right: 50px
-          text-align: right
-        &:nth-child(even) .fecha
-          padding-left: 50px
-          text-align: left
-        .fecha:after
-          position: absolute
-          content: ' '
-          top: 8px
-          width: 30px
-          height: 30px
-          background-image: asset-url('design/esfera_blanca.png')
-          background-repeat: no-repeat
-          background-size: 100% 100%
-        &:nth-child(odd) .fecha:after
-          right: -14px
-        &:nth-child(even) .fecha:after
-          left: -14px
-        &:nth-child(odd) .contenido
-          margin-right: 50px
-        &:nth-child(even) .contenido
-          margin-left: 50px
-
-/* personalizacoines PAR - IMPAR */
-
-/* COLORES DE LAS ESFERAS HOME Y OTROS... */
-
-.pagina-lecciones
-  .sky-header .link-evd, .sky-middle-header .novedades-titulo
-    background-color: $yellowbrown
+            &:hover
+              g
+                path:nth-child(1)
+                  opacity: 0.6  
+            g
+              path:nth-child(1)
+                +transition(all, .2s)
+  .lesson-image-wrapper
+    height: 100%
+    background-attachment: fixed
+    background-repeat: no-repeat
+    background-position: center center
+    +background-size(cover)

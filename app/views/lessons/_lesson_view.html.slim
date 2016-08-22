@@ -1,13 +1,21 @@
-.lesson_view_wrapper data-id="#{lesson.id}" class=(lesson.lesson_level.class_s)
-  .titulo.leccion-margen-contenido
-    .titulo-texto = lesson.name
-  = image_tag "view-lesson-#{lesson.number}.jpg", class: "imagen"
-  .textoleccion
-    .titulonumerico= "Lección #{lesson.number}"
-    .resumenleccion= lesson.description.html_safe
-   	= form_tag show_book_contents_path do
-   		= hidden_field_tag :title, 'La Búsqueda'
-   		= button_tag "Ver Lección", type: :input, class: "enlaceleccion"
-    
-
-
+.lesson-container.row
+  .lesson-wrapper.col-lg-6.col-lg-offset-3 data-id="#{lesson.id}" class=(lesson.lesson_level.class_s)
+    p.title = lesson.name
+    .summary
+      = lesson.description.html_safe
+     	= form_tag show_book_contents_path do
+     		= hidden_field_tag :title, 'La Búsqueda'
+     		= button_tag "Ver Lección", type: :input, class: "enlaceleccion"
+    .options-wrapper
+      .left-options
+        .option.prev-item
+          = embedded_svg 'design2/prev-item-icon.svg', class: 'icon'
+        .option.next-item
+          = embedded_svg 'design2/next-item-icon.svg', class: 'icon'
+      .right-options
+        .option.play-video
+          = embedded_svg 'design2/play-video-icon.svg', class: 'icon'
+        .option.view-pdf
+          = embedded_svg 'design2/view-pdf-icon.svg', class: 'icon'
+     		
+.lesson-image-wrapper style=("background-image: url(\"/assets/view-lesson-#{lesson.number}.jpg\")")

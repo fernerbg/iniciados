@@ -4,14 +4,19 @@ window.Iniciados =
 	Views: {}
 	Routers: {}
 	initialize: ->
-		new Iniciados.Routers.Contents()
-		new Iniciados.Routers.LessonLevels()
-		new Iniciados.Routers.Users()
+		$('#button-downward').click( ->
+			$("html, body").animate({ scrollTop: window.innerHeight }, 700)
+		)
+		controller = $('body').data('controller')
+		console.log controller
+		new Iniciados.Routers.Contents() if controller == 'contents'
+		new Iniciados.Routers.LessonLevels() if controller == 'lessonlevels'
+		new Iniciados.Routers.Users() if controller == 'users'
+		new Iniciados.Routers.Levels() if controller == 'levels'
 		Backbone.history.stop() 
 		Backbone.history.start( pushState: true )
-
+		
 $(document).ready ->
 	Iniciados.initialize()
-	$('#carousel-example-generic').carousel()
 
 $(document).on('page:load', Iniciados.initialize)

@@ -1,0 +1,143 @@
+#carousel-images
+	top: 0px
+	left: 0px
+	width: 100%
+	height: 100%
+	overflow: hidden
+	.carousel-inner
+		height: 100%
+		.item
+			background-repeat: no-repeat
+			background-position: center center
+			height: 100%
+			+background-size(cover)
+	.main-options-wrapper
+		width: 100%
+		height: 100%
+		position: absolute
+		top: 0px
+		left: 0px
+		.main-options
+			display: inline-block
+			vertical-align: middle
+			width: 100%
+			text-align: center
+			background: transparent
+			position: relative
+			top: 50%
+			margin-top: -60px
+			font-size: 25px
+			color: white
+			.text-option
+				display: inline-block
+				.main-link
+					border: solid 3px transparent
+					border-bottom: solid 3px white
+					padding: 10px 43px
+					letter-spacing: 4px
+					+transition(all, .2s)
+					&:hover
+						background-color: black
+						border: solid 3px white
+						a
+							text-decoration: none
+					a
+						color: white
+						&:active
+							text-decoration: none
+					
+			.circle-option-wrapper
+				display: inline-block
+				height: 180px
+				width: 180px
+				padding: 10px
+				background-color: rgba(0, 0, 0, 0.3)
+				margin: 0px 5px
+				+border-radius(50%)
+				.inner-link
+					&:hover
+						text-decoration: none
+						.inner-option
+							background-color: black
+							.word-wrapper
+								.high-word
+									font-size: 40px
+				.inner-option
+					width: 100%
+					height: 100%
+					border-radius: 50%
+					border: solid 3px white
+					font-family: 'Verlag'
+					font-weight: 700
+					+transition(all, 0.2s)
+					&:before
+						content: ''
+						display: inline-block
+						height: 100%
+						vertical-align: middle
+						margin-right: -0.25em
+					.word-wrapper
+						display: inline-block
+						vertical-align: middle
+						font-size: 16px
+						line-height: 23px
+						letter-spacing: 3px
+						.small-word
+							font-size: 10px
+							font-family: Verlag
+							font-weight: 400
+						.medium-word
+							font-size: 25px
+							font-family: Verlag
+							font-weight: 900
+						.high-word
+							font-size: 36px
+							font-family: Verlag
+							font-weight: 900
+							color: white
+							padding-top: 13px
+							padding-left: 4px
+							letter-spacing: 4px
+							+transition(all, 0.2s)
+			.main-link-below
+				margin-top: 30px
+				.border-bottom
+					display: inline-block
+					font-size: 18px
+					font-family: Verlag
+					font-weight: 700
+					color: white
+					border: solid 1px transparent
+					border-bottom: solid 1px white
+					padding: 5px
+					cursor: pointer
+					+transition(all, 0.2s)
+					&:hover
+						border: solid 1px white
+						background-color: black
+					
+	#button-downward
+		border: solid 2px white
+		padding: 10px
+		width: 40px
+		height: 40px
+		position: absolute
+		bottom: 5%
+		margin-left: -16px
+		display: inline-block
+		cursor: pointer
+		+border-radius(50%)
+		+transition(all, 0.2s)
+		&:hover
+			border: solid 2px black
+			.triangle
+				border-color: black transparent transparent transparent
+		.triangle
+			width: 0
+			height: 0
+			border-style: solid
+			border-width: 17px 9px 0 9px
+			border-color: #ffffff transparent transparent transparent
+			margin-left: -1px
+			margin-top: 1px
+			+transition(all, 0.2s)

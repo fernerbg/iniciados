@@ -1,5 +1,3 @@
-= render partial: "layouts/header"
-
 #carousel-images.carousel.slide data-ride="carousel"
   /! Indicators
   /*
@@ -9,21 +7,24 @@
   /! Wrapper for slides
   /
   .carousel-inner role="listbox" 
-    .item.active
+    .item.active style="background-image: url('/assets/design2/foto-home.jpg')"
   
   .main-options-wrapper
     .main-options
       .text-option
         .main-link.verlag-bold
-          | INSTRUCCIÓN SKY
+          = link_to "INSTRUCCIÓN SKY", level_path(current_user.level)
       .circle-option-wrapper
-        .evd-option.verlag-black
-          | EVD
+        = link_to "http://escuelavaloresdivinos.com", class: "inner-link", target: "_blank" do
+          .inner-option
+            .word-wrapper
+              p.high-word
+                |EVD
       .text-option
         .main-link.verlag-bold
-          | ENSEÑANZA SKY
+          = link_to "ENSEÑANZA SKY", lesson_level_path(current_user.lesson.level)
   
-  .button-downward
+  #button-downward
     .triangle
   
 /*

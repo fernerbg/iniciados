@@ -23,8 +23,13 @@ u.profiles << p
 
 lv = Level.create(name: "Fuego")
 
+Level.create(name: "Luz")
+Level.create(name: "Cósmico")
+les = Level.create(name: "Estelar")
+Level.create(name: "Madre")
+
 lv.save()
-u.level = lv
+u.level = les
 
 ll = LessonLevel.create(name: "Atma")
 

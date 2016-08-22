@@ -1,0 +1,219 @@
+#book-content-wrapper
+	position: absolute
+	top: 5%
+	left: 0px
+	overflow-y: auto
+	padding-top: 75px
+	height: 90%
+	width: 90%
+	margin-left: 5%
+	background: rgba(white, 0.9)
+	display: none
+	.title
+		color: black
+		font-size: 30px
+		font-family: 'Majesti Banner'
+		font-weight: 700
+		padding: 8px 10px
+		border-bottom: solid 1px black
+		display: inline-block
+		margin-bottom: 30px
+	.close-icon
+		position: absolute
+		right: 20px
+		top: 40px
+		width: 50px
+		cursor: pointer
+		opacity: 0.5
+		+transition(all, 0.2s)
+		&:hover
+			opacity: 1
+	.content-container
+		overflow: hidden
+		padding: 0 2%
+		.content-section
+			float: left
+			display: inline-block
+			width: 25%
+			text-align: left
+			padding: 0 10px
+			margin: 10px 0px
+			.content-section-title
+				background-color: black
+				color: white
+				text-transform: uppercase
+				letter-spacing: 1px
+				padding: 0px 10px
+				display: block
+				margin-bottom: 5px
+				&.line
+					margin-bottom: 0px
+			.fragment
+				margin-left: 10px
+				a
+					color: black
+					+transition(all, 0.2s)
+					&:active
+						text-decoration: none
+				&:hover
+					a
+						color: white
+						text-decoration: none
+						background-color: black
+	
+.lesson-container
+	padding-top: 50px
+	.title
+		color: black
+		font-size: 30px
+		font-family: 'Majesti Banner'
+		font-weight: 700
+		padding: 8px 10px
+		border-bottom: solid 1px black
+		display: inline-block
+		margin-bottom: 30px
+	.level-key
+		margin-bottom: 70px
+		p
+			color: $mediumgray
+			text-transform: uppercase
+			margin: 20px 0px
+			font-family: Verlag
+			font-weight: 700
+			font-size: 16px
+			letter-spacing: 2px
+	.main-links-wrapper
+		background-image: url($design_path + "creerse-bcg.png")
+		background-attachment: fixed
+		background-repeat: no-repeat
+		background-position: center center
+		+background-size(cover)
+		.main-links
+			a
+				font-family: Verlag
+				font-weight: 700
+				font-size: 16px
+				color: black
+				padding: 5px 10px
+				text-transform: uppercase
+				text-decoration: none
+				margin: 12px 0px
+				letter-spacing: 2px
+				display: block
+				+transition(all, 0.2s)
+				&:hover
+					background-color: black
+					color: white
+					letter-spacing: 3px
+		.text-value
+			font-family: Verlag
+			font-weight: 400
+			font-size: 70px
+			text-transform: uppercase
+			letter-spacing: 20px
+			color: $mediumgray
+			margin-top: 95px
+			margin-bottom: 95px
+			.darker
+				font-weight: 900
+				
+	.sections-container
+		margin-top: 2px
+		.section-group-1
+			width: 50%
+			float: left
+		.section-wraper
+			position: relative
+			background-repeat: no-repeat
+			background-position: center center
+			display: inline-block
+			float: left
+			+background-size(cover)
+			&.section-1
+				width: 50%
+				background-image: url($design_path + "section-1-bg.jpg")
+			&.section-2
+				width: 50%
+				background-image: url($design_path + "section-2-bg.jpg")
+			&.section-3
+				width: 25%
+				background-image: url($design_path + "section-3-bg.jpg")
+			&.section-4
+				width: 25%
+				background-image: url($design_path + "section-4-bg.jpg")
+			&.section-5
+				width: 25%
+				background-image: url($design_path + "section-5-bg.jpg")
+			&.section-6
+				width: 50%
+				background-image: url($design_path + "section-6-bg.jpg")
+			&.section-7
+				width: 25%
+				background-image: url($design_path + "section-7-bg.jpg")
+			&.section-8
+				width: 100%
+				background-image: url($design_path + "section-8-bg.jpg")
+			&.section-9
+				width: 50%
+				background-image: url($design_path + "section-9-bg.jpg")
+			&.section-10
+				width: 50%
+				background-image: url($design_path + "section-10-bg.jpg")
+			&.section-11
+				width: 50%
+				background-image: url($design_path + "section-11-bg.jpg")
+			&:before
+				content: ''
+				width: 100%
+				height: 100%
+				background-color: black
+				opacity: 0
+				position: absolute
+				top: 0px
+				left: 0px
+				+transition(all, 0.2s)
+			&:hover
+				&:before
+					+opacity(0.6)
+				.section
+					.section-title
+						margin-top: 0px
+						.btns-wrapper
+							.btn
+								opacity: 1
+			.image-ratio
+				visibility: hidden
+				width: 100%
+				vertical-align: sub
+			.section
+				position: absolute
+				top: 0px
+				left: 0px
+				width: 100%
+				height: 100%
+				&:before
+					content: ''
+					display: inline-block
+					height: 100%
+					vertical-align: middle
+					margin-right: -0.25em
+				.section-title
+					display: inline-block
+					margin-top: 108px
+					vertical-align: middle
+					color: white
+					font-family: 'Majesti Banner'
+					font-weight: 700
+					font-size: 30px
+					line-height: 40px
+					width: 99%
+					+transition(all, 0.2s)
+					p
+						font-family: 'Majesti Banner'
+						font-weight: 700
+						font-size: 30px
+					.btns-wrapper
+						margin-top: 30px
+						.btn
+							+opacity(0)
+							+transition(all, 0.3s)

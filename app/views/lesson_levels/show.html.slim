@@ -1,43 +1,74 @@
-= render partial: "layouts/header", locals: {color_class: @lesson_level.class_s}
+#carousel-images.carousel.slide data-ride="carousel"
+  /! Indicators
+  /*
+    ol.carousel-indicators
+      li.active data-slide-to="0" data-target="#carousel-images" 
+      li data-slide-to="1" data-target="#carousel-images" 
+  /! Wrapper for slides
+  /
+  .carousel-inner role="listbox" 
+    .item.active style="background-image: url('/assets/design2/foto-home.jpg')"
+  
+  .main-options-wrapper
+    .main-options
+      .circle-option-wrapper
+        .inner-option
+          .word-wrapper
+            p.small-word
+              |NIVEL 
+            p.medium-word
+              = @lesson_level.name.upcase
+  
+  #button-downward
+    .triangle
+    
+.lessons-container.container
+  - for level in @available_lessons
+  	= render partial: "lessons/lesson_view", locals: {lesson: level}
+.lessons-list class=(@lesson_level.class_s)
+  = render partial: "lessons/lesson_li", collection: @available_lessons
+        
+/*
+  .body_container
+    div(class="sky-lecciones #{@lesson_level.class_s}")
+      .menu1
+        .anterior
+          - if @lesson_level.name == 'Shiva'
+            = link_to "Nivel anterior", LessonLevel.find_by(name: 'Vidya')
+          - if @lesson_level.name == 'Vidya'
+            = link_to "Nivel anterior", LessonLevel.find_by(name: 'Atma')
+        .siguiente
+          - if current_user.lesson.lesson_level.id > @lesson_level.id
+            - if @lesson_level.name == 'Atma'
+              = link_to "Siguiente nivel", LessonLevel.find_by(name: 'Vidya')
+            - elsif @lesson_level.name == 'Vidya'
+              = link_to "Siguiente nivel", LessonLevel.find_by(name: 'Shiva')
+        .nivel class=(@lesson_level.class_s)
+          = embedded_svg( "lesson-level-icon.svg" )
+          p.level_name= @lesson_level
+      .leyenda-wrapper class=(@lesson_level.class_s)
+        .leyenda
+          .center-xy
+            .centered
+              | Instrucciones de Transformación y Ascención de Ma Shaktiananda y los Maestros Inmortales
+        hr.white-line
+      .contenido-wrapper
+        .lesson_view_container
+          - for level in @available_lessons 
+          	= render partial: "lessons/lesson_view", locals: {lesson: level}
+        .lesson_list class=(@lesson_level.class_s)
+          - for i in 0..11
+            - if i <  @available_lessons.size
+              = render partial: "lessons/lesson_li", locals: {lesson: @available_lessons[i]}
+            - else
+              div
+  
+  
 
-.body_container
-  div(class="sky-lecciones #{@lesson_level.class_s}")
-    .menu1
-      .anterior
-        - if @lesson_level.name == 'Shiva'
-          = link_to "Nivel anterior", LessonLevel.find_by(name: 'Vidya')
-        - if @lesson_level.name == 'Vidya'
-          = link_to "Nivel anterior", LessonLevel.find_by(name: 'Atma')
-      .siguiente
-        - if current_user.lesson.lesson_level.id > @lesson_level.id
-          - if @lesson_level.name == 'Atma'
-            = link_to "Siguiente nivel", LessonLevel.find_by(name: 'Vidya')
-          - elsif @lesson_level.name == 'Vidya'
-            = link_to "Siguiente nivel", LessonLevel.find_by(name: 'Shiva')
-      .nivel class=(@lesson_level.class_s)
-        = embedded_svg( "lesson-level-icon.svg" )
-        p.level_name= @lesson_level
-    .leyenda-wrapper class=(@lesson_level.class_s)
-      .leyenda
-        .center-xy
-          .centered
-            | Instrucciones de Transformación y Ascención de Ma Shaktiananda y los Maestros Inmortales
-      hr.white-line
-    .contenido-wrapper
-      .lesson_view_container
-        - for level in @available_lessons 
-        	= render partial: "lessons/lesson_view", locals: {lesson: level}
-      .lesson_list class=(@lesson_level.class_s)
-        - for i in 0..11
-          - if i <  @available_lessons.size
-            = render partial: "lessons/lesson_li", locals: {lesson: @available_lessons[i]}
-          - else
-            div
-
-= render partial: "layouts/footer", locals: {color_class: @lesson_level.class_s}
-= render partial: "layouts/calendar"
-
-
-= link_to 'Edit', edit_lesson_level_path(@lesson_level)
-'|
-= link_to 'Back', lesson_levels_path
+  = render partial: "layouts/calendar"
+  
+  = render partial: "layouts/footer", locals: {color_class: @lesson_level.class_s}
+  
+  = link_to 'Edit', edit_lesson_level_path(@lesson_level)
+  '|
+  = link_to 'Back', lesson_levels_path

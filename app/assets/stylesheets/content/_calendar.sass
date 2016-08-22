@@ -7,14 +7,18 @@
 		font-size: 35px
 		border-bottom: solid 1px black
 		padding: 7px 80px
-		margin-bottom: 20px
 		display: inline-block
+		margin-bottom: 30px
 	.month
 		margin-bottom: 70px
+		padding-top: 20px
+		background-attachment: fixed
+		background-repeat: no-repeat
+		background-position: center center
+		+background-size(cover)
 		&.january
 			&.enero-bcg
 				background-image: url($design_path+"enero-bcg.png")
-				background-size: 100%
 			.month-title
 				background-color: $janorange
 				color: black
@@ -26,7 +30,6 @@
 		&.december
 			&.diciembre-bcg
 				background-image: url($design_path+"diciembre-bcg.png")
-				background-size: 100%
 			.month-title
 				background-color: $decblue
 				color: black

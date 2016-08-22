@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate_user!
 	
-	helper_method :embedded_svg
+	helper_method :embedded_svg, :namespace
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, :alert => exception.message
@@ -20,4 +20,9 @@ class ApplicationController < ActionController::Base
     svg.to_html.html_safe
   end
   
+  def namespace
+    names = self.class.to_s.split('::')
+    return "null" if names.length < 2
+    names[0..(names.length-2)].map(&:downcase).join('_')
+  end
 end

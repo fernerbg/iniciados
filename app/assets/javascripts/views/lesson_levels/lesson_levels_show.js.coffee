@@ -11,7 +11,8 @@ class Iniciados.Views.LessonLevelsShow extends Backbone.View
 	events:
 		'click .lesson_list div': 'scrollToLesson'
 		'scroll window': 'fixLessonList'
-
+		'click .prev-item': 'scrollPrevLesson'
+		'click .next-item': 'scrollNextLesson'
 	initialize: ->
 		self = this
 		@lessonListAbsoluteTop = $('.lesson_list').css('top')
@@ -21,12 +22,31 @@ class Iniciados.Views.LessonLevelsShow extends Backbone.View
 			self.fixLessonList()
 		)
 		@fixLessonList()
-
+		
 	scrollToLesson: (event) ->
 		lesson_id = $(event.target).data('id')
 		top =  + @lessonContainerTop + $(".lesson_view_wrapper[data-id='" +lesson_id+ "']:first").position().top
 		$("html, body").animate({ scrollTop: top }, 1000)
 	
+	scrollPrevLesson: (event) ->
+		lessonContainer = $(event.target).closest('.lesson-container')
+		previousLesson = lessonContainer.prev().prev()
+		if typeof previousLesson.position() is 'undefined'
+			top = 0
+		else
+			top = @lessonContainerTop + previousLesson.position().top
+		
+		$("html, body").animate({ scrollTop: top }, 700)
+	
+	scrollNextLesson: (event) ->
+		lessonContainer = $(event.target).closest('.lesson-container')
+		nextLesson = lessonContainer.next().next()
+		if typeof nextLesson.position() is 'undefined'
+			top = document.body.scrollHeight
+		else
+			top = @lessonContainerTop + nextLesson.position().top
+		$("html, body").animate({ scrollTop: top }, 700)
+		
 	fixLessonList: () ->
 		top = $('.contenido-wrapper:first').position().top + parseInt $('.contenido-wrapper:first').css('padding-top')
 		windowTop = $(window).scrollTop()

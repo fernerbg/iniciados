@@ -1,0 +1,19 @@
+doctype 5
+html
+  head
+    title
+      | Iniciados
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag :application
+    = csrf_meta_tags
+    meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+
+body.pagina-home[data-namespace="#{namespace}" data-controller="#{controller_name}" data-action="#{action_name}"]
+= render partial: "layouts/header"
+= yield
+
+
+/*
+	- if current_user
+  	= link_to("Sign out", destroy_user_session_path, method: :delete)
+  	<br/>

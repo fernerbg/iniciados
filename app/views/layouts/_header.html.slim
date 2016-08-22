@@ -2,25 +2,42 @@
   .logo-container
     .logo-wrapper
       = image_tag "design2/icon.png"
-    .title-wrapper.clarendon-light
-      = "Iniciados SKY"
-  .links-container
-    .link.clarendon-light
-      | Audio
-    .link.clarendon-light
-      | Video
-    .link.clarendon-light
-      | Novedades
+    = link_to root_path do
+      .title-wrapper
+        |INICIADOS SKY
+    - if controller_name == "lesson_levels"
+      = link_to root_path do
+        .title-wrapper.left-divider
+          |INSTRUCCIÓN SKY
+    - if controller_name == "levels"
+      = link_to root_path do
+        .title-wrapper.left-divider
+          |ENSEÑANZA SKY
+  .sandwish-container
+    .icon-container
+      = embedded_svg 'design2/sandwish.svg'
+    ul.sandwish-options
+      li= link_to "Instrucción SKY", root_path
+      li= link_to "Enseñanza SKY", root_path
+      li= link_to "Audios SKY", root_path
+      li= link_to "Videos SKY", root_path
+      li= link_to "Novedades SKY", root_path
+      li= link_to "Calendario de Actividades SKY", root_path
+  /*    
+    .links-container
+      = link_to "Audio", root_path
+      = link_to "Video", root_path
+      = link_to "Novedades", root_path
   .right-container
     .user-options-container
-      .user-name-container.clarendon-light
+      .user-name-container
         | Juan Perez Carvajal &nbsp
         span.caret
       ul.user-options
-        li.clarendon-light= "Cerrar Sesión"
+        li= link_to "Cerrar Sesión", root_path
   /*
     .link-evd.center-xy class= (color_class if defined? color_class != nil)
-      =link_to "EVD", root_path, class: "centered"
+      = link_to "EVD", "http://escuelavaloresdivinos.com", class: "centered", target: "_blank"
     .link-instruccion.center-xy
       /= link_to "Instrucción SKY", level_path(current_user.level), class: "centered"
       = link_to "Instrucción SKY", root_path, class: "centered"
