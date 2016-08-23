@@ -1,5 +1,5 @@
-.lesson-container.row
-  .lesson-wrapper.col-lg-6.col-lg-offset-3 data-id="#{lesson.id}" class=(lesson.lesson_level.class_s)
+.lesson-container.row data-id="#{lesson.id}"
+  .lesson-wrapper.col-lg-6.col-lg-offset-3 class=(lesson.lesson_level.class_s)
     p.title = lesson.name
     .summary
       = lesson.description.html_safe
@@ -15,7 +15,8 @@
       .right-options
         .option.play-video
           = embedded_svg 'design2/play-video-icon.svg', class: 'icon'
-        .option.view-pdf
-          = embedded_svg 'design2/view-pdf-icon.svg', class: 'icon'
+        = link_to show_book_contents_path(title: 'La Búsqueda'), method: :post do
+          .option.view-pdf
+            = embedded_svg 'design2/view-pdf-icon.svg', class: 'icon'
      		
 .lesson-image-wrapper style=("background-image: url(\"/assets/view-lesson-#{lesson.number}.jpg\")")

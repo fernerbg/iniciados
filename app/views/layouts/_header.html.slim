@@ -6,13 +6,27 @@
       .title-wrapper
         |INICIADOS SKY
     - if controller_name == "lesson_levels"
-      = link_to root_path do
-        .title-wrapper.left-divider
+      .options-container.left-divider
+        .title-wrapper
           |INSTRUCCIÓN SKY
+        ul.options-wrapper
+          .options-title
+            = "NIVEL #{@lesson_level}"
+          .lessons-options
+            = render partial: "lessons/lesson_option", collection: @available_lessons.reverse
     - if controller_name == "levels"
-      = link_to root_path do
-        .title-wrapper.left-divider
+      .options-container.left-divider
+        .title-wrapper
           |ENSEÑANZA SKY
+        ul.options-wrapper
+          .lessons-options
+            li.option= "LIBRO FUEGO I"
+            li.option= "LIBRO FUEGO II"
+            li.option= "LIBRO LUZ I"
+            li.option= "LIBRO LUZ II"
+            li.option= "LIBRO COSMICO I"
+            li.option.actual= "LIBRO ESTELAR I"
+          
   .sandwish-container
     .icon-container
       = embedded_svg 'design2/sandwish.svg'

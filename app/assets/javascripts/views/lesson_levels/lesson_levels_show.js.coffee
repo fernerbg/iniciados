@@ -9,23 +9,28 @@ class Iniciados.Views.LessonLevelsShow extends Backbone.View
 	lessonContainerTop: 0
 
 	events:
-		'click .lesson_list div': 'scrollToLesson'
+		'click .occupied': 'scrollToLesson'
+		'click .lessons-options li' : 'scrollToLesson'
 		'scroll window': 'fixLessonList'
 		'click .prev-item': 'scrollPrevLesson'
 		'click .next-item': 'scrollNextLesson'
+		
 	initialize: ->
 		self = this
-		@lessonListAbsoluteTop = $('.lesson_list').css('top')
-		@lessonContainerTop = $('.contenido-wrapper:first').position().top
-		@currentLesson = $('.lesson_view_wrapper:first')
+		@currentLesson = $('.lesson-container:first')
 		$(window).on('scroll', ->
 			self.fixLessonList()
 		)
 		@fixLessonList()
-		
+		$('.lesson-image-wrapper').height(window.innerHeight)
+		$(window).resize( ->
+			$('.lesson-image-wrapper').height(window.innerHeight)	
+		)
 	scrollToLesson: (event) ->
+		target = $(event.target)
+		target = $(event.target).closest('.occupied') if not target.hasClass('occupied') || target.hasClass('option')
 		lesson_id = $(event.target).data('id')
-		top =  + @lessonContainerTop + $(".lesson_view_wrapper[data-id='" +lesson_id+ "']:first").position().top
+		top = $(".lesson-container[data-id='" +lesson_id+ "']:first").position().top - (window.innerHeight / 4)
 		$("html, body").animate({ scrollTop: top }, 1000)
 	
 	scrollPrevLesson: (event) ->
@@ -48,26 +53,29 @@ class Iniciados.Views.LessonLevelsShow extends Backbone.View
 		$("html, body").animate({ scrollTop: top }, 700)
 		
 	fixLessonList: () ->
-		top = $('.contenido-wrapper:first').position().top + parseInt $('.contenido-wrapper:first').css('padding-top')
+		marginTop = 180
+		top = window.innerHeight + marginTop
+		$('.lessons-list').css('top', top + "px")
 		windowTop = $(window).scrollTop()
-		console.log(top)
-		if windowTop >= top
-			$('.lesson_list').css
+		if windowTop >= top - marginTop
+			$('.lessons-list').css
 				position: 'fixed'
-				top: @lessonContainerTop - 45
+				top: marginTop
 		else
-			$('.lesson_list').css
+			$('.lessons-list').css
 				position: 'absolute'
-				top: @lessonListAbsoluteTop
-		if windowTop >= @lessonContainerTop + @currentLesson.position().top + @currentLesson.height() + parseInt(@currentLesson.css('margin-top'))
-			nextLesson = @currentLesson.next()
-			if typeof nextLesson.position() != 'undefined'
-				@currentLesson = nextLesson
-				$('.lesson_list .actual').removeClass 'actual'
-				$('.lesson_list div[data-id="' + @currentLesson.data('id') + '"]').addClass 'actual'
-		else if windowTop < @lessonContainerTop + @currentLesson.position().top
-			prevLesson = @currentLesson.prev()
-			if typeof prevLesson.position() != 'undefined'
-				@currentLesson = prevLesson
-				$('.lesson_list .actual').removeClass 'actual'
-				$('.lesson_list div[data-id="' + @currentLesson.data('id') + '"]').addClass 'actual'
+				top: top
+		nextLesson = @currentLesson.next().next()
+		prevLesson = @currentLesson.prev().prev()
+		if typeof nextLesson.position() != 'undefined' && windowTop >= nextLesson.position().top - (window.innerHeight / 2)
+			@currentLesson = nextLesson
+			$('.lessons-list .actual').removeClass 'actual'
+			$('.lessons-list div[data-id="' + @currentLesson.data('id') + '"]').addClass 'actual'
+			$('.lessons-options .actual').removeClass 'actual'
+			$('.lessons-options li[data-id="' + @currentLesson.data('id') + '"]').addClass 'actual'
+		else if typeof prevLesson.position() != 'undefined' && windowTop <  @currentLesson.position().top - (window.innerHeight / 2)
+			@currentLesson = prevLesson
+			$('.lessons-list .actual').removeClass 'actual'
+			$('.lessons-list div[data-id="' + @currentLesson.data('id') + '"]').addClass 'actual'
+			$('.lessons-options .actual').removeClass 'actual'
+			$('.lessons-options li[data-id="' + @currentLesson.data('id') + '"]').addClass 'actual'

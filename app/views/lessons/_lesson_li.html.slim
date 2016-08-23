@@ -1,1 +1,3 @@
-div.occupied data-id="#{lesson_li.id}" = "Lección #{lesson_li.number}"
+div.occupied data-id="#{lesson_li.id}" class=("actual" if lesson_li_counter == 0)
+    .text
+        = "Lección #{lesson_li.number}"

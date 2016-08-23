@@ -1,18 +1,44 @@
 class ContentsController < ApplicationController
-  
-  inherit_resources
-  
+  before_action :set_content, only: [:show, :edit, :update, :destroy]
+
   respond_to :html
-  
-  def new
-    @content = Content.new
-    @file = @content.document
-    @file.success_action_status = "201"
+
+  def index
+    @contents = Content.all
+    respond_with(@contents)
+  end
+
+  def show
+    respond_with(@content)
   end
 
   def show_book
     @content = Content.where('title = :title AND page_number = :page_number', {title: params[:title], page_number: 1}).first
     @total_pages = Content.where('title = :title', {title: params[:title]}).select("page_number").order(page_number: :desc).first.page_number
+  end
+
+  def new
+    @content = Content.new
+    respond_with(@content)
+  end
+
+  def edit
+  end
+
+  def create
+    @content = Content.new(content_params)
+    @content.save
+    respond_with(@content)
+  end
+
+  def update
+    @content.update(content_params)
+    respond_with(@content)
+  end
+
+  def destroy
+    @content.destroy
+    respond_with(@content)
   end
 
   def delivery
@@ -46,11 +72,11 @@ class ContentsController < ApplicationController
     end
   end
 
-  def binary_data
-    
-  end
-  
   private
+    def set_content
+      @content = Content.find(params[:id])
+    end
+
     def content_params
       params.require(:content).permit(:title, :description, :type, :thumbnail, :url, :file, :page_number)
     end

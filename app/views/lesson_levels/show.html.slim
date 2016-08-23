@@ -22,7 +22,7 @@
   #button-downward
     .triangle
     
-.lessons-container.container
+.lessons-container
   - for level in @available_lessons
   	= render partial: "lessons/lesson_view", locals: {lesson: level}
 .lessons-list class=(@lesson_level.class_s)

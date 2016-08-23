@@ -10,7 +10,7 @@ window.Iniciados =
 		controller = $('body').data('controller')
 		console.log controller
 		new Iniciados.Routers.Contents() if controller == 'contents'
-		new Iniciados.Routers.LessonLevels() if controller == 'lessonlevels'
+		new Iniciados.Routers.LessonLevels() if controller == 'lesson_levels'
 		new Iniciados.Routers.Users() if controller == 'users'
 		new Iniciados.Routers.Levels() if controller == 'levels'
 		Backbone.history.stop() 

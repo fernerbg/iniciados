@@ -1,5 +1,4 @@
 .lessons-container
-  height: 100%
   .lesson-container
     &:before
       content: ''
@@ -50,8 +49,58 @@
               path:nth-child(1)
                 +transition(all, .2s)
   .lesson-image-wrapper
-    height: 100%
     background-attachment: fixed
     background-repeat: no-repeat
     background-position: center center
     +background-size(cover)
+.lessons-list
+  position: absolute
+  top: 90px
+  right: 100px
+  z-index: 4
+  padding: 10px
+  overflow: hidden
+  padding-right: 20px
+  text-align: left
+  .occupied
+    padding-left: 25px
+    padding-top: 3px
+    padding-bottom: 3px
+    position: relative
+    z-index: 4
+    height: 25px
+    color: black
+    font-family: Verlag
+    font-weight: 400
+    letter-spacing: 1px
+    text-transform: uppercase
+    cursor: pointer
+    &:after
+      position: absolute
+      z-index: 5
+      content: ' '
+      top: 0px
+      right: -20px
+      width: 15px
+      height: 15px
+      border-radius: 50%
+      background-color: gray
+      top: 5px
+      +transition(all, 0.2s)
+    &.actual
+      .text
+        right: 0px
+      &:after
+        background-color: $yellow
+    &:hover
+      .text
+        right: 0px
+    .text
+      position: relative
+      right: -93px
+      +transition(all, 0.2s)
+  span
+    color: #000
+    font-size: 12px
+  .actual a
+    font-weight: bold

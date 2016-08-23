@@ -1,3 +1,3 @@
 class Content < ActiveRecord::Base
-	 mount_uploader :document, ContentUploader
+	 mount_uploader :file, ContentUploader
 end
