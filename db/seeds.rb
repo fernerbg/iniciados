@@ -148,12 +148,6 @@ t = Tag.create(name: 'carousel principal')
 Tag.create(name: 'instruccion')
 Tag.create(name: 'leccion')
 
-for i in 1..2
-	c = Content.create(title: "carousel#{i}", tag: t)
-	c.document.store!(File.open(File.join(Rails.root, "private/carousel/carousel#{i}.jpg")))
-	c.save
-end
-
 
 u.lesson = ls
 u.save()

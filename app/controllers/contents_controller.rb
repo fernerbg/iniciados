@@ -45,10 +45,10 @@ class ContentsController < ApplicationController
     @content = Content.find(params[:id])
     respond_to do |format|
       format.html do
-        send_file @content.file.current_path, :x_sendfile=>true, :disposition => 'inline'
+        send_file @content.document.current_path, :x_sendfile=>true, :disposition => 'inline'
       end
       format.json do
-        data = Base64.encode64(File.read(@content.file.current_path)).gsub("\n", '')
+        data = Base64.encode64(File.read(@content.document.current_path)).gsub("\n", '')
         render json: {image: "data:image/png;base64,#{data}"}
       end
     end
@@ -58,12 +58,12 @@ class ContentsController < ApplicationController
     @contents = Content.where(title: params[:title]).order(:page_number).offset(params[:offset]).limit(params[:chunk_size])
     respond_to do |format|
       format.html do
-        send_file @contents.first.file.current_path, :x_sendfile=>true, :disposition => 'inline'
+        send_file @contents.first.document.current_path, :x_sendfile=>true, :disposition => 'inline'
       end
       format.json do
         data = []
         @contents.each do |content|
-          base_64 = Base64.encode64(File.read(content.file.current_path)).gsub("\n", '')
+          base_64 = Base64.encode64(File.read(content.document.current_path)).gsub("\n", '')
           data << "data:image/png;base64,#{base_64}"
           #data << content.page_number
         end

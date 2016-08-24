@@ -12,9 +12,9 @@ CarrierWave.configure do |config|
   
   config.fog_directory = Configuration['S3_bucket_dev']
   
-  config.fog_public = false
+  #config.fog_public = false
   
-  config.use_action_status = true
+  #config.use_action_status = true
   
   # This avoids uploaded files from saving to public/ and so
   # they will not be available for pubsadflic (non-authenticated) downloading
