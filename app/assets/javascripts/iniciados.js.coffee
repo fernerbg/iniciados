@@ -20,3 +20,6 @@ $(document).ready ->
 	Iniciados.initialize()
 
 $(document).on('page:load', Iniciados.initialize)
+
+$(document).on "turbolinks:load", ->
+	Iniciados.initialize()
