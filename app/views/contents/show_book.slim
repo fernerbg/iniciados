@@ -1,16 +1,18 @@
 #navigation-options
 	#change-page-wrapper
 		| pagina 
-		= text_field_tag :page_number, "1", id: 'current-page'
+		= text_field_tag :page_number, @page_number, id: 'current-page'
 		#total-pages = "/#{@total_pages}"
-		span.glyphicon.glyphicon-arrow-left#prev-page
-		span.glyphicon.glyphicon-arrow-right#next-page
+		= link_to show_book_contents_path(title: @content.title, page_number: (@page_number - 1).to_s, total_pages: @total_pages.to_s), method: :post do
+			span.glyphicon.glyphicon-arrow-left#prev-page
+		= link_to show_book_contents_path(title: @content.title, page_number: (@page_number + 1).to_s, total_pages: @total_pages.to_s), method: :post do
+			span.glyphicon.glyphicon-arrow-right#next-page
 		
 	#slider-wrapper
 		span.glyphicon.glyphicon-zoom-in
 		#slider
 #book-content
-	= image_tag "", id: "book-page", data: {title: @content.title, "total-pages": @total_pages}
+	= image_tag @data, id: "book-page", data: {title: @content.title, "total-pages": @total_pages}
 	#loading
 		h1
 			| Cargando...

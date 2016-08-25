@@ -30,6 +30,17 @@ class Iniciados.Views.ContentsShowBook extends Backbone.View
 
   initialize: ->
   	self = @
+  	$('#slider').slider({
+				slide: -> $('#book-page').css('width', (parseInt($('#slider').slider('value')) / 100 * self.maxPageWidth) + 'px')
+				change: -> $('#book-page').css('width', (parseInt($('#slider').slider('value')) / 100 * self.maxPageWidth) + 'px')
+				value: 80
+				min: 20
+				max: 100
+			})
+	
+			$("#slider .ui-slider-handle").unbind('keydown')
+  	###
+  	
   	@lastPage = parseInt $('#book-page').data('total-pages') - 1
   	@requestChunk(
   		0,
@@ -38,16 +49,7 @@ class Iniciados.Views.ContentsShowBook extends Backbone.View
   				$('#book-page').attr 'src', self.book[0]
   				$('#loading').hide()
   				$('#book-page').show())
-
-  	$('#slider').slider({
-				slide: -> $('#book-page').css('width', (parseInt($('#slider').slider('value')) / 100 * self.maxPageWidth) + 'px')
-				change: -> $('#book-page').css('width', (parseInt($('#slider').slider('value')) / 100 * self.maxPageWidth) + 'px')
-				value: 80
-				min: 20
-				max: 100
-			})
-
-			$("#slider .ui-slider-handle").unbind('keydown')
+		###
 		
   nextPage: ->
   	self = @
