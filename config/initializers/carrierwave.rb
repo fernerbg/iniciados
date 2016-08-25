@@ -3,14 +3,15 @@ CarrierWave.configure do |config|
   # the servers
   # config.permissions = 0600
   # config.directory_permissions = 0700
-  config.fog_credentials = {
-    :provider               => 'AWS',       # required
-    :aws_access_key_id      => Configuration['AWS_id'],       # required
-    :aws_secret_access_key  => Configuration['AWS_secret'],       # required
-    :region                 => 'us-west-2'  # optional, defaults to 'us-east-1'
-  }
-  
-  config.fog_directory = Configuration['S3_bucket_dev']
+  if Configuration['AWS_id']
+    config.fog_credentials = {
+      :provider               => 'AWS',       # required
+      :aws_access_key_id      => Configuration['AWS_id'],       # required
+      :aws_secret_access_key  => Configuration['AWS_secret'],       # required
+      :region                 => 'us-west-2'  # optional, defaults to 'us-east-1'
+    }
+    
+    config.fog_directory = Configuration['S3_bucket_dev']
   
   #config.fog_public = false
   
