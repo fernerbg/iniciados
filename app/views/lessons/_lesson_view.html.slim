@@ -19,4 +19,4 @@
           .option.view-pdf
             = embedded_svg 'design2/view-pdf-icon.svg', class: 'icon'
      		
-.lesson-image-wrapper style=("background-image: url(\"/assets/view-lesson-#{lesson.number}.jpg\")")
+.lesson-image-wrapper style=("background-image: url(#{image_path('view-lesson-' + lesson.number.to_s + '.jpg')})")

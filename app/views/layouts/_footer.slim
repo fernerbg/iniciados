@@ -1,17 +1,18 @@
 .sky-footer
   = image_tag "design2/footer.jpg", class: "footer-image"
-  .footer-content
-    .footer-wrapper
-      .line
-        = link_to "-  Inicio", root_path
-        = link_to "-  Instrucción", root_path
-        = link_to "-  Enseñanza", root_path
-        = link_to "-  Audios SKY", root_path
-        = link_to "-  Videos SKY", root_path
-      .line
-        = link_to "-  Novedades SKY", root_path
-        = link_to "-  Calendario de Actividades", root_path
-        = link_to "-  Escuela Valores Divinos", root_path
+  - if current_user
+    .footer-content
+      .footer-wrapper
+        .line
+          = link_to "-  Inicio", root_path
+          = link_to "-  Instrucción", root_path
+          = link_to "-  Enseñanza", root_path
+          = link_to "-  Audios SKY", root_path
+          = link_to "-  Videos SKY", root_path
+        .line
+          = link_to "-  Novedades SKY", root_path
+          = link_to "-  Calendario de Actividades", root_path
+          = link_to "-  Escuela Valores Divinos", root_path
   .footer-information
     |Escuela Valores Divinos 2016 / Página Iniciados SKY
   
