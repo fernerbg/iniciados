@@ -68,7 +68,7 @@ Lesson.create(name: "Recibir Respuesta", lesson_level: ll, number_level: 11, num
 <p>Sólo tienes que aceptarte y empezar la cruzada interna para rendirte y así ganar el Juego Cósmico, ése que te ha dotado de todas las libertades humanas para que puedas emprender tu reto de Ser el más Divino.</p>
 <p>Cualquiera que sea tu respuesta, ya estás en la constante virtual de la existencia, en la que hoy, una vez más, decides hacia dónde plegarte: la Luz o la oscuridad.</p>")
 
-Lesson.create(name: "Mantener la Fe", lesson_level: ll, number_level: 12, number: 12, description: "<p>Así como haz pasado este año instruyéndote desde tu amor, imagina de lo que serías capaz, más cuando sabes que haz alcanzado a dar pasos hacia ti mismo tan importantes.</p>
+ls = Lesson.create(name: "Mantener la Fe", lesson_level: ll, number_level: 12, number: 12, description: "<p>Así como haz pasado este año instruyéndote desde tu amor, imagina de lo que serías capaz, más cuando sabes que haz alcanzado a dar pasos hacia ti mismo tan importantes.</p>
 <p>Revélate más, deja que todo siga tan bien como hasta ahora. Porque lo que debes saber es que cualquier cosa que haya ocurrido, todo cuanto has sentido y lo que has experimentado, forma parte de ti.</p>
 <p>Ya has empezado a construir tus cimientos de Fe y lo has llevado hasta la Esperanza, condiciones de Amor Divinas. Felicítate.</p>")
 
@@ -134,12 +134,12 @@ Lesson.create(name: "Padre: El Gran Ejecutor", lesson_level: ll, number_level: 4
 Lesson.create(name: "Sin Pasado ni Futuro", lesson_level: ll, number_level: 5, number: 29, description: "<p>Recordemos sin vicios que acomplejan y reducen, espectemos sin malograr las fuerzas que podrían rendirse, establezcamos lo que somos hoy muy profundamente, sin alterar nada, acogiendo la verdad propia sin temor. Es el tiempo de crear más fórmulas internas que nos hagan trascender más allá de lo que hoy mismo somos.</p>
 <p>Nuestra percepción del tiempo se hace muy limitada en este plano y no tendría que ser así. Claro que hemos recurrido a sostener en nosotros tan sólo una milésima de nuestro ejercicio consciente de vida para poder avanzar.</p>")
 
-ls = Lesson.create(name: "Presente Siempre Presente", lesson_level: ll, number_level: 6, number: 30, description: "<p> La posibilidad reales enfatizar nuestra propuesta a partir del presente que nos cobija, como esta forma de habitar una y otra vez la existencia.</p>
+Lesson.create(name: "Presente Siempre Presente", lesson_level: ll, number_level: 6, number: 30, description: "<p> La posibilidad reales enfatizar nuestra propuesta a partir del presente que nos cobija, como esta forma de habitar una y otra vez la existencia.</p>
 <p>Debemos de relacionarnos, sin temor, con la temporalidad que existe como resolución de Luz dentro del Cosmos y sujetar nuestra materia tan sólo a las experiencias de Luz concretas que nos han permitido la evolución y la conexión con el Propósito.</p>")
 
 for i in 1..5
 	c = Content.create(title: 'La Búsqueda', page_number: i)
-	c.document.store!(File.open(File.join(Rails.root, "private/lessons/1/file-page#{i}.gif")))
+	c.document.store!(File.open(File.join(Rails.root, "private/lessons/1/file-page#{i}.jpg")))
 	c.save
 end
 

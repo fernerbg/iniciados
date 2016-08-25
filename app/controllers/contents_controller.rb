@@ -63,8 +63,10 @@ class ContentsController < ApplicationController
       format.json do
         data = []
         @contents.each do |content|
-          base_64 = Base64.encode64(File.read(content.document.current_path)).gsub("\n", '')
-          data << "data:image/png;base64,#{base_64}"
+          if not content.document.nil?
+            base_64 = Base64.encode64(File.read(content.document.current_path)).gsub("\n", '')
+            data << "data:image/png;base64,#{base_64}"
+          end
           #data << content.page_number
         end
         render json: {images: data}
