@@ -12,7 +12,7 @@ CarrierWave.configure do |config|
     }
     
     config.fog_directory = Configuration['S3_bucket_dev']
-  
+  end
   #config.fog_public = false
   
   #config.use_action_status = true
