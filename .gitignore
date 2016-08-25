@@ -23,8 +23,6 @@ public/uploads/
 chromedriver.log
 .use_capybara_webkit
 config/locales/.wti
-private/carousel/*
-private/lessons/*
 private/principito/*
 npm-debug.log
 db/structure.sql
