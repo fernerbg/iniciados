@@ -29,7 +29,7 @@
       .options-wrapper
         position: absolute
         top: 100%
-        width: 100%
+        width: 99%
         overflow: hidden
         background: white
         padding: 0px 20px
@@ -44,18 +44,35 @@
           margin-top: 20px
         .lessons-options
           li
-            margin: 5px 0px
-            font-family: 'Majesti Banner'
-            font-weight: 700
-            color: $gray
-            cursor: pointer
-            +transition(all, 0.2s)
-            &:hover
-              color: black
-            &.actual
-              color: black
+            background-color: white
+            padding: 5px 0px
+            &:nth-child(1)
+              padding-top: 25px
             &:last-child
-              padding-bottom: 20px
+              padding-bottom: 25px
+            &.actual
+              .lesson-option
+                color: black
+            a
+              color: black
+              font-family: Verlag
+              font-weight: 400
+              text-transform: uppercase
+              letter-spacing: 1px
+              padding: 2px
+              +transition(all, 0.2s)
+              &:hover
+                background-color: black
+                color: white
+                text-decoration: none
+              &:active
+                text-decoration: none
+            .lesson-option
+              cursor: pointer
+              color: $gray
+              +transition(all, 0.2s)
+              &:hover
+                color: black
     .title-wrapper
       display: inline-block
       color: black

@@ -15,12 +15,19 @@ class ContentsController < ApplicationController
   def show_book
     @content = Content.where('title = :title AND page_number = :page_number', {title: params[:title], page_number: params[:page_number]}).first
     base_64 = Base64.encode64(File.read(@content.document.current_path)).gsub("\n", '')
-    @data = "data:image/png;base64,#{base_64}"
+    @data = "data:image/jpg;base64,#{base_64}"
     @page_number = params[:page_number].to_i
     if params[:total_pages] == "0"
       @total_pages = Content.where('title = :title', {title: params[:title]}).select("page_number").order(page_number: :desc).first.page_number
     else
         @total_pages = params[:total_pages]
+    end
+    respond_to do |format|
+      format.html
+      format.json do
+        data = @data
+        render json: {image: data}
+      end
     end
   end
 

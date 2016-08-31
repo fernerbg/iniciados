@@ -2,11 +2,7 @@ class Iniciados.Views.LessonLevelsShow extends Backbone.View
 
 	el: 'body'
 
-	lessonListAbsoluteTop: 0
-
 	currentLesson: null
-
-	lessonContainerTop: 0
 
 	events:
 		'click .occupied': 'scrollToLesson'
@@ -26,11 +22,17 @@ class Iniciados.Views.LessonLevelsShow extends Backbone.View
 		$(window).resize( ->
 			$('.lesson-image-wrapper').height(window.innerHeight)	
 		)
+		
 	scrollToLesson: (event) ->
 		target = $(event.target)
-		target = $(event.target).closest('.occupied') if not target.hasClass('occupied') || target.hasClass('option')
-		lesson_id = $(event.target).data('id')
-		top = $(".lesson-container[data-id='" +lesson_id+ "']:first").position().top - (window.innerHeight / 4)
+		if target.hasClass('lesson-option')
+			target = target.closest('li')
+		else
+			target = target.closest('.occupied') if not target.hasClass('occupied') || target.hasClass('option')
+		
+		lessonId = target.data('id')
+		lessonContainer = $(".lesson-container[data-id='" + lessonId + "']:first")
+		top = lessonContainer.position().top - ((window.innerHeight - lessonContainer.height()) / 2)
 		$("html, body").animate({ scrollTop: top }, 1000)
 	
 	scrollPrevLesson: (event) ->
@@ -39,7 +41,7 @@ class Iniciados.Views.LessonLevelsShow extends Backbone.View
 		if typeof previousLesson.position() is 'undefined'
 			top = 0
 		else
-			top = @lessonContainerTop + previousLesson.position().top
+			top = + previousLesson.position().top - ((window.innerHeight - previousLesson.height()) / 2)
 		
 		$("html, body").animate({ scrollTop: top }, 700)
 	
@@ -49,7 +51,8 @@ class Iniciados.Views.LessonLevelsShow extends Backbone.View
 		if typeof nextLesson.position() is 'undefined'
 			top = document.body.scrollHeight
 		else
-			top = @lessonContainerTop + nextLesson.position().top
+			top = nextLesson.position().top - ((window.innerHeight - nextLesson.height()) / 2)
+			
 		$("html, body").animate({ scrollTop: top }, 700)
 		
 	fixLessonList: () ->

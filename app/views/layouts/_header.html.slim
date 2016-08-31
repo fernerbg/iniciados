@@ -23,12 +23,12 @@
               |ENSEÑANZA SKY
             ul.options-wrapper
               .lessons-options
-                li.option= "LIBRO FUEGO I"
-                li.option= "LIBRO FUEGO II"
-                li.option= "LIBRO LUZ I"
-                li.option= "LIBRO LUZ II"
-                li.option= "LIBRO COSMICO I"
-                li.option.actual= "LIBRO ESTELAR I"
+                li.option= link_to "LIBRO FUEGO I", root_path
+                li.option= link_to "LIBRO FUEGO II", root_path
+                li.option= link_to "LIBRO LUZ I", root_path
+                li.option= link_to "LIBRO LUZ II", root_path
+                li.option= link_to  "LIBRO COSMICO I", root_path
+                li.option.actual= link_to "LIBRO ESTELAR I", root_path
     - if current_user 
       .sandwish-container
         .icon-container

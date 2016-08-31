@@ -6,7 +6,7 @@ class Iniciados.Views.ContentsShowBook extends Backbone.View
   	"click #next-page": "nextPage"
   	"click #prev-page": "prevPage"
   	"keypress #current-page": "goToPage"
-  	#contextmenu: "notAllowMenu"
+  	contextmenu: "notAllowMenu"
 
   currentPage: 0
   
@@ -30,6 +30,9 @@ class Iniciados.Views.ContentsShowBook extends Backbone.View
 
   initialize: ->
   	self = @
+    
+  	@maxPageWidth = window.innerWidth
+  	
   	$('#slider').slider({
 				slide: -> $('#book-page').css('width', (parseInt($('#slider').slider('value')) / 100 * self.maxPageWidth) + 'px')
 				change: -> $('#book-page').css('width', (parseInt($('#slider').slider('value')) / 100 * self.maxPageWidth) + 'px')
@@ -39,18 +42,44 @@ class Iniciados.Views.ContentsShowBook extends Backbone.View
 			})
 	
 			$("#slider .ui-slider-handle").unbind('keydown')
+			
+			$('img').on 'contextmenu', ->
+				false
+
   	###
-  	
   	@lastPage = parseInt $('#book-page').data('total-pages') - 1
-  	@requestChunk(
-  		0,
-  		(data) ->
-  				self.book = data.images
-  				$('#book-page').attr 'src', self.book[0]
-  				$('#loading').hide()
-  				$('#book-page').show())
-		###
+  	
+  	@requestPage(0, ->
+  		alert('done')
+  	)
+  	
+	  	@requestChunk(
+	  		0,
+	  		(data) ->
+	  				self.book = data.images
+	  				$('#book-page').attr 'src', self.book[0]
+	  				$('#loading').hide()
+	  				$('#book-page').show())
+	  
 		
+		requestPage: (page, callback) ->
+			self = @
+			data = { title: $('#book-page').data('title'), page_number: page }
+			$.ajax
+				method: 'POST'
+				url: 'show_book'
+				dataType: 'json'
+				data: data
+				success: (data) ->
+					img = new Image()
+					img.src = data
+					ctx = $('#image-canvas')
+					ctx.drawImage(img, 100, 100)
+					return
+				error: ->
+					console.log 'AWWW!'
+					return
+		###	
   nextPage: ->
   	self = @
   	if @currentPage + @currentChunk * @chunkSize < @lastPage
@@ -148,7 +177,7 @@ class Iniciados.Views.ContentsShowBook extends Backbone.View
 			$('#book-page').attr 'src', @book[@currentPage]
 			$('#current-page').val(@currentPage + @currentChunk * @chunkSize + 1)
 			$("html, body").scrollTop(0)
-
+			  	
 		requestChunk: (chunk, callback) ->
 			self = @
 			@loading = true
