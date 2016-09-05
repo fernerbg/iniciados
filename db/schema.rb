@@ -11,10 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160614195221) do
+ActiveRecord::Schema.define(version: 20160905171019) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "levels", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sections", force: true do |t|
+    t.string   "title"
+    t.integer  "start_page"
+    t.integer  "level_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["level_id"], :name => "index_sections_on_level_id"
+    t.foreign_key ["level_id"], "levels", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_sections_level_id"
+  end
+
+  create_table "chapters", force: true do |t|
+    t.string   "title"
+    t.integer  "start_page"
+    t.integer  "section_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["section_id"], :name => "index_chapters_on_section_id"
+    t.foreign_key ["section_id"], "sections", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_chapters_section_id"
+  end
 
   create_table "configurations", force: true do |t|
     t.text     "name"
@@ -77,12 +103,6 @@ ActiveRecord::Schema.define(version: 20160614195221) do
     t.index ["lesson_id"], :name => "index_lesson_contents_on_lesson_id"
     t.foreign_key ["content_id"], "contents", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_lesson_contents_content_id"
     t.foreign_key ["lesson_id"], "lessons", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_lesson_contents_lesson_id"
-  end
-
-  create_table "levels", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "level_contents", force: true do |t|

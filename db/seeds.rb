@@ -134,12 +134,12 @@ Lesson.create(name: "Padre: El Gran Ejecutor", lesson_level: ll, number_level: 4
 Lesson.create(name: "Sin Pasado ni Futuro", lesson_level: ll, number_level: 5, number: 29, description: "<p>Recordemos sin vicios que acomplejan y reducen, espectemos sin malograr las fuerzas que podrían rendirse, establezcamos lo que somos hoy muy profundamente, sin alterar nada, acogiendo la verdad propia sin temor. Es el tiempo de crear más fórmulas internas que nos hagan trascender más allá de lo que hoy mismo somos.</p>
 <p>Nuestra percepción del tiempo se hace muy limitada en este plano y no tendría que ser así. Claro que hemos recurrido a sostener en nosotros tan sólo una milésima de nuestro ejercicio consciente de vida para poder avanzar.</p>")
 
-Lesson.create(name: "Presente Siempre Presente", lesson_level: ll, number_level: 6, number: 30, description: "<p> La posibilidad reales enfatizar nuestra propuesta a partir del presente que nos cobija, como esta forma de habitar una y otra vez la existencia.</p>
+Lesson.create(name: "Presente Siempre Presente", lesson_level: ll, number_level: 6, number: 30, description: "<p> La posibilidad real es enfatizar nuestra propuesta a partir del presente que nos cobija, como esta forma de habitar una y otra vez la existencia.</p>
 <p>Debemos de relacionarnos, sin temor, con la temporalidad que existe como resolución de Luz dentro del Cosmos y sujetar nuestra materia tan sólo a las experiencias de Luz concretas que nos han permitido la evolución y la conexión con el Propósito.</p>")
 
 for i in 1..5
 	c = Content.create(title: 'La Búsqueda', page_number: i)
-	c.document.store!(File.open(File.join(Rails.root, "private/lessons/1/file-page#{i}.jpg")))
+	c.document.store!(File.open(File.join(Rails.root, "initial_content/lessons/1/file-page#{i}.jpg")))
 	c.save
 end
 

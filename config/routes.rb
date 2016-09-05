@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :chapters
+
+  resources :sections
+
   resources :tags
 
   resources :level_contents

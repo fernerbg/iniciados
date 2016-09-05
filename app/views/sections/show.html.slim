@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Title:
+  = @section.title
+p
+  strong Start page:
+  = @section.start_page
+p
+  strong Level:
+  = @section.level
+
+= link_to 'Edit', edit_section_path(@section)
+'|
+= link_to 'Back', sections_path
