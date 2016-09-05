@@ -1,18 +1,18 @@
 #navigation-options
 	#change-page-wrapper
 		| pagina 
-		= text_field_tag :page_number, @page_number, id: 'current-page'
+		= text_field_tag :page_number, @page_number, id: 'current-page', class: 'pdf-input'
 		#total-pages = "/#{@total_pages}"
-		= link_to show_book_contents_path(title: @content.title, page_number: (@page_number - 1).to_s, total_pages: @total_pages.to_s), method: :post do
-			span.glyphicon.glyphicon-arrow-left#prev-page
-		= link_to show_book_contents_path(title: @content.title, page_number: (@page_number + 1).to_s, total_pages: @total_pages.to_s), method: :post do
-			span.glyphicon.glyphicon-arrow-right#next-page
+		/= link_to show_book_contents_path(title: @content.title, page_number: (@page_number - 1).to_s, total_pages: @total_pages.to_s), method: :post do
+		span.glyphicon.glyphicon-arrow-left#prev-page.pdf-input
+		/= link_to show_book_contents_path(title: @content.title, page_number: (@page_number + 1).to_s, total_pages: @total_pages.to_s), method: :post do
+		span.glyphicon.glyphicon-arrow-right#next-page.pdf-input
 		
 	#slider-wrapper
 		span.glyphicon.glyphicon-zoom-in
 		#slider
 #book-content
-	= image_tag @data, id: "book-page", data: {title: @content.title, "total-pages": @total_pages}
+	canvas#book-page data-title=(@content.title) data-total-pages=(@total_pages) data-page=(@page_number) width="1366" height="1931"
 	#loading
 		h1
 			| Cargando...

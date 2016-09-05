@@ -18,7 +18,7 @@ class ContentsController < ApplicationController
     @data = "data:image/jpg;base64,#{base_64}"
     @page_number = params[:page_number].to_i
     if params[:total_pages] == "0"
-      @total_pages = Content.where('title = :title', {title: params[:title]}).select("page_number").order(page_number: :desc).first.page_number
+      @total_pages = Content.where('title = :title', {title: params[:title]}).count
     else
         @total_pages = params[:total_pages]
     end
