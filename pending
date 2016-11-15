@@ -1,0 +1,1 @@
+create_book action in contents_controller needs to send page_number as a mandatory parameter and will be send from javascript. That part is missing

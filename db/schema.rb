@@ -11,19 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160905171019) do
+ActiveRecord::Schema.define(version: 20161110194458) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "levels", force: true do |t|
     t.string   "name"
+    t.integer  "number"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "sections", force: true do |t|
     t.string   "title"
+    t.string   "video_url"
     t.integer  "start_page"
     t.integer  "level_id"
     t.datetime "created_at"
@@ -76,6 +78,17 @@ ActiveRecord::Schema.define(version: 20160905171019) do
     t.index ["name"], :name => "index_countries_on_name", :unique => true
   end
 
+  create_table "emanations", force: true do |t|
+    t.string   "image_url"
+    t.text     "message"
+    t.string   "title"
+    t.integer  "level_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["level_id"], :name => "index_emanations_on_level_id"
+    t.foreign_key ["level_id"], "levels", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_emanations_level_id"
+  end
+
   create_table "lesson_levels", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -114,6 +127,16 @@ ActiveRecord::Schema.define(version: 20160905171019) do
     t.index ["level_id"], :name => "index_level_contents_on_level_id"
     t.foreign_key ["content_id"], "contents", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_level_contents_content_id"
     t.foreign_key ["level_id"], "levels", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_level_contents_level_id"
+  end
+
+  create_table "pages", force: true do |t|
+    t.string   "image"
+    t.integer  "number"
+    t.integer  "level_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["level_id"], :name => "index_pages_on_level_id"
+    t.foreign_key ["level_id"], "levels", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_pages_level_id"
   end
 
   create_table "profiles", force: true do |t|

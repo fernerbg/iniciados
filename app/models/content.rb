@@ -1,3 +1,4 @@
 class Content < ActiveRecord::Base
-	 mount_uploader :document, ContentUploader
+    validates :title, presence: true
+    mount_uploader :document, ContentUploader
 end

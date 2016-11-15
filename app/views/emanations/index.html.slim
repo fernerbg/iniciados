@@ -1,0 +1,27 @@
+h1 Listing emanations
+
+table
+  thead
+    tr
+      th Image url
+      th Message
+      th Title
+      th Level
+      th
+      th
+      th
+
+  tbody
+    - @emanations.each do |emanation|
+      tr
+        td = emanation.image_url
+        td = emanation.message
+        td = emanation.title
+        td = emanation.level
+        td = link_to 'Show', emanation
+        td = link_to 'Edit', edit_emanation_path(emanation)
+        td = link_to 'Destroy', emanation, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Emanation', new_emanation_path

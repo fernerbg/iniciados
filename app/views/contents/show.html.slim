@@ -6,17 +6,6 @@ p
 p
   strong Description:
   = @content.description
-p
-  strong Type:
-  = @content.type
-p
-  strong Thumbnail:
-  = @content.thumbnail
-p
-  strong Url:
-  = @content.url
-p
-  = image_tag @content.file.url
 
 = link_to 'Edit', edit_content_path(@content)
 '|

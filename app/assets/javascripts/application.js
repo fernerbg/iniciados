@@ -13,10 +13,10 @@
 //= require jquery.min
 //= require jquery_ujs
 //= require jquery-ui
+//= require jquery-fileupload/basic
 //= require turbolinks
 //= require underscore
 //= require backbone
-//= require iniciados
 //= require_tree ../templates
 //= require_tree ./models
 //= require_tree ./collections

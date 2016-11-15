@@ -1,4 +1,4 @@
-class Iniciados.Views.ContentsNewBook extends Backbone.View
+class Iniciados.Views.ContentsNewContent extends Backbone.View
 
 	el: 'body'
 

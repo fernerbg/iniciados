@@ -11,7 +11,25 @@ class ContentsController < ApplicationController
   def show
     respond_with(@content)
   end
-
+  
+  def new_book
+    @content = Content.new
+    respond_with(@content)
+  end
+  
+  def create_book
+    @content = Content.new(book_params)
+    @content.save
+    respond_to do |format|
+      format.html do
+        respond_with @content
+      end
+      format.json do
+        render json: @content
+      end
+    end
+  end
+  
   def show_book
     @content = Content.where('title = :title AND page_number = :page_number', {title: params[:title], page_number: params[:page_number]}).first
     base_64 = Base64.encode64(File.read(@content.document.current_path)).gsub("\n", '')
@@ -94,6 +112,10 @@ class ContentsController < ApplicationController
     end
 
     def content_params
-      params.require(:content).permit(:title, :description, :type, :thumbnail, :url, :file, :page_number)
+      params.require(:content).permit(:title, :description, :file, :page_number)
+    end
+    
+    def book_params
+      params.require(:book).permit(:title, :page_number, :document)
     end
 end

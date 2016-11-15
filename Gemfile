@@ -68,6 +68,7 @@ gem 'sass-rails'
 gem 'coffee-rails'
 gem 'uglifier'
 gem "compass-rails"
+gem 'jquery-fileupload-rails'
 
 group :production do
 

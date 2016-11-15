@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :pages
+
+  resources :emanations
+
   resources :chapters
 
   resources :sections
@@ -12,6 +16,8 @@ Rails.application.routes.draw do
   resources :contents do
     collection do
       post 'show_book'
+      post 'create_book'
+      get 'new_book'
       post 'delivery_pages'
       get 'binary_data'
     end

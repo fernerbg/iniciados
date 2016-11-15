@@ -5,9 +5,7 @@ table
     tr
       th Title
       th Description
-      th Type
-      th Thumbnail
-      th Url
+      th page_number
       th
       th
       th
@@ -17,9 +15,7 @@ table
       tr
         td = content.title
         td = content.description
-        td = content.type
-        td = content.thumbnail
-        td = content.url
+        td = content.page_number
         td = link_to 'Show', content
         td = link_to 'Edit', edit_content_path(content)
         td = link_to 'Destroy', content, data: {:confirm => 'Are you sure?'}, :method => :delete

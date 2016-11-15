@@ -21,11 +21,13 @@ p.save()
 u.profiles << p
 
 
-Level.create(name: "Fuego")
-Level.create(name: "Luz")
-Level.create(name: "Cósmico")
-les = Level.create(name: "Estelar")
-Level.create(name: "Madre")
+les = Level.create(name: "Fuego I", number: 1)
+Level.create(name: "Fuego II", number: 2)
+Level.create(name: "Luz I", number: 3)
+Level.create(name: "Luz II", number: 4)
+Level.create(name: "Cósmico I", number: 5)
+Level.create(name: "Estelar I", number: 7)
+Level.create(name: "Madre I", number: 9)
 
 u.level = les
 u.save()
@@ -33,8 +35,8 @@ u.save()
 ll = LessonLevel.create(name: "Atma")
 
 
-Lesson.create(name: "La Búsqueda", lesson_level: ll, number_level: 1, number: 1, description: "<p>En entrega de lo que buscas. Respondiendo siempre a lo que como necesidad expones. Debes saber que donde menos lo creas está la Verdad y si se te dificulta llegar a ella, habla, pide, exige, pero no te quedes atrapado en la ignorancia, en el falso sueño, en la irrealidad.</p>
-<p>Di, desde tu Ser más interno: Estoy preparando en mí la mejor forma de entrega y también de recibir. Estoy en la disposición de abrir en mí la puerta hacia mi interior.</p>")
+Lesson.create(name: "La Búsqueda", lesson_level: ll, number_level: 1, number: 1, description: "<p>En entrega de lo que buscas.</p><p>Respondiendo siempre a lo que como necesidad expones.</p><p>Debes saber que donde menos lo creas está la Verdad</p><p>y si se te dificulta llegar a ella, habla, pide, exige,</p><p>pero no te quedes atrapado en la ignorancia,</p><p>en el falso sueño, en la irrealidad.</p>
+<p>Di, desde tu Ser más interno:</p><p><b>Estoy preparando en mí la mejor forma</p><p>de entrega y también de recibir.</p><p>Estoy en la disposición de abrir en mí</p><p>la puerta hacia mi interior.</p>")
 
 Lesson.create(name: "El Encuentro", lesson_level: ll, number_level: 2, number: 2, description: "<p>Ante lo que buscas se te prepara, es como ir resolviendo lo que como enigma ves: el Ser que Eres. Reconocerte, sentirte, estimularte desde ti, es la primera etapa de lo que crees es una búsqueda interminable. Pero, tan sólo en el hecho de iniciarte para emprender esta aventura, ya estás en el camino exacto.</p>
 <p>Dí con el entendimiento que te impulsa: 'Estoy expectante de mí. Me he ido sintiendo en lo que Soy, sólo busco lo que hay y es lo que espero encontrar. Nada más'</p>")
@@ -136,17 +138,6 @@ Lesson.create(name: "Sin Pasado ni Futuro", lesson_level: ll, number_level: 5, n
 
 Lesson.create(name: "Presente Siempre Presente", lesson_level: ll, number_level: 6, number: 30, description: "<p> La posibilidad real es enfatizar nuestra propuesta a partir del presente que nos cobija, como esta forma de habitar una y otra vez la existencia.</p>
 <p>Debemos de relacionarnos, sin temor, con la temporalidad que existe como resolución de Luz dentro del Cosmos y sujetar nuestra materia tan sólo a las experiencias de Luz concretas que nos han permitido la evolución y la conexión con el Propósito.</p>")
-
-for i in 1..5
-	c = Content.create(title: 'La Búsqueda', page_number: i)
-	c.document.store!(File.open(File.join(Rails.root, "initial_content/lessons/1/file-page#{i}.jpg")))
-	c.save
-end
-
-t = Tag.create(name: 'carousel principal')
-Tag.create(name: 'instruccion')
-Tag.create(name: 'leccion')
-
 
 u.lesson = ls
 u.save()
