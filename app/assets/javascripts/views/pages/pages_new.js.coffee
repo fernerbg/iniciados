@@ -7,6 +7,7 @@ class Iniciados.Views.PagesNew extends Backbone.View
 	uploadedPages: 0
 	
 	initialize: ->
+		alert 'here'
 		self = @
 		
 		$('#new_page').click ->
