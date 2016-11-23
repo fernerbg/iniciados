@@ -1,6 +1,6 @@
 class Iniciados.Routers.Pages extends Backbone.Router
 	routes:
-		'levels/:new' : 'new'
+		'pages/new' : 'new'
 		
-	show: ->
+	new: ->
 		view = new Iniciados.Views.PagesNew()

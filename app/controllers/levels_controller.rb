@@ -9,7 +9,7 @@ class LevelsController < ApplicationController
   end
 
   def show
-    respond_with(@level)
+    render @level.name
   end
 
   def new

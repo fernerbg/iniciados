@@ -70,11 +70,11 @@ gem 'uglifier'
 gem "compass-rails"
 gem 'jquery-fileupload-rails'
 
+# Workers, forks and all that jazz
+gem 'unicorn'
+  
 group :production do
-
-  # Workers, forks and all that jazz
-  gem 'unicorn'
-
+  
   # Enabling Gzip on Heroku
   # If you don't use Heroku, please comment the line below.
   gem 'heroku-deflater', '>= 0.4.1'

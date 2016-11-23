@@ -6,8 +6,8 @@ h1 New page
 			= form_for Page.new, class: 'form-inline' do |f|
 				= f.hidden_field :number
 				.form-group
-					= f.label :level
-					= f.select :level, options_for_select(Level.all.pluck(:name, :id), "page[level]"), class: 'form-control'
+					= f.label :level_id
+					= f.select :level_id, options_for_select(Level.all.pluck(:name, :id), "page[level]"), class: 'form-control'
 				.form-group
 					= f.label :image
 					= f.file_field "image", multiple: true, name: "page[image]", class: 'form-control'

@@ -3,7 +3,6 @@ h1 Listing pages
 table
   thead
     tr
-      th Page url
       th Number
       th Level
       th
@@ -13,9 +12,9 @@ table
   tbody
     - @pages.each do |page|
       tr
-        td = page.page_url
+        td = page.image.url
         td = page.number
-        td = page.level
+        td = page.level.name
         td = link_to 'Show', page
         td = link_to 'Edit', edit_page_path(page)
         td = link_to 'Destroy', page, data: {:confirm => 'Are you sure?'}, :method => :delete

@@ -7,7 +7,6 @@ class Iniciados.Views.PagesNew extends Backbone.View
 	uploadedPages: 0
 	
 	initialize: ->
-		alert 'here'
 		self = @
 		
 		$('#new_page').click ->
@@ -17,7 +16,7 @@ class Iniciados.Views.PagesNew extends Backbone.View
 			$('.uploaded-pages').html('0')
 			$('.failed-uploades').html('')
 			
-		$('#content_document').fileupload
+		$('#new_page').fileupload
 			dataType: "json"
 			add: (e, data) ->
 				self.totalPages = self.totalPages + 1
@@ -33,11 +32,11 @@ class Iniciados.Views.PagesNew extends Backbone.View
 						pageNumber = parseInt pageName
 				
 				if not isNaN pageNumber
-					$('#book_page_number').val(pageNumber)
+					$('#page_number').val(pageNumber)
 					data.submit()
 			success: (data) ->
-				if data.id == null
-					$('.failed-uploades').append('<li>' + data.document.url + '</li>')
+				if data == null
+					$('.failed-uploades').append('<li>' + data.number + '</li>')
 				else
 					self.uploadedPages = self.uploadedPages + 1
 					$('.uploaded-pages').html(self.uploadedPages)
