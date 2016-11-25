@@ -1,4 +1,4 @@
-class Iniciados.Views.PagesNew extends Backbone.View
+class Iniciados.Views.LevelPagesNew extends Backbone.View
 
 	el: 'body'
 	
@@ -9,14 +9,14 @@ class Iniciados.Views.PagesNew extends Backbone.View
 	initialize: ->
 		self = @
 		
-		$('#new_page').click ->
+		$('#new_level_page').click ->
 			self.totalPages = 0
 			self.uploadedPages = 0
 			$('.total-pages').html('0')
 			$('.uploaded-pages').html('0')
 			$('.failed-uploades').html('')
 			
-		$('#new_page').fileupload
+		$('#new_level_page').fileupload
 			dataType: "json"
 			add: (e, data) ->
 				self.totalPages = self.totalPages + 1
@@ -32,7 +32,7 @@ class Iniciados.Views.PagesNew extends Backbone.View
 						pageNumber = parseInt pageName
 				
 				if not isNaN pageNumber
-					$('#page_number').val(pageNumber)
+					$('#level_page_number').val(pageNumber)
 					data.submit()
 			success: (data) ->
 				if data == null

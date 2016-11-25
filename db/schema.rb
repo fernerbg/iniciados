@@ -129,14 +129,14 @@ ActiveRecord::Schema.define(version: 20161110194458) do
     t.foreign_key ["level_id"], "levels", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_level_contents_level_id"
   end
 
-  create_table "pages", force: true do |t|
+  create_table "level_pages", force: true do |t|
     t.string   "image"
     t.integer  "number"
     t.integer  "level_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["level_id"], :name => "index_pages_on_level_id"
-    t.foreign_key ["level_id"], "levels", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_pages_level_id"
+    t.index ["level_id"], :name => "index_level_pages_on_level_id"
+    t.foreign_key ["level_id"], "levels", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_level_pages_level_id"
   end
 
   create_table "profiles", force: true do |t|

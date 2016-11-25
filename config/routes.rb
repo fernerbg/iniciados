@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :pages
+  resources :level_pages
 
   resources :emanations
 

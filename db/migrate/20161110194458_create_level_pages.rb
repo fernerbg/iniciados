@@ -1,6 +1,6 @@
-class CreatePages < ActiveRecord::Migration
+class CreateLevelPages < ActiveRecord::Migration
   def change
-    create_table :pages do |t|
+    create_table :level_pages do |t|
       t.string :image
       t.integer :number
       t.references :level, index: true

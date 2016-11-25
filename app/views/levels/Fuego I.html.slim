@@ -195,7 +195,7 @@
             .btn.btn-play
               = link_to embedded_svg('design2/play-video-icon.svg'), root_path
             .btn.btn-read
-              = link_to embedded_svg('design2/view-pdf-icon.svg'), root_path
+              = link_to embedded_svg('design2/view-pdf-icon.svg'), level_page_path(level_id: @level.id, number: 5)
     .section-wraper.section-2.fuego-1
       = image_tag 'design2/100x50.jpg', class: "image-ratio"
       .section
