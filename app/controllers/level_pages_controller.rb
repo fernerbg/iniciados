@@ -14,14 +14,17 @@ class LevelPagesController < InheritedResources::Base
   end
   
   def show
-    @page = LevelPage.where(level_id: params[:level_id], number: params[:number]).first
-    base_64 = Base64.encode64(File.read(@page.image.current_path)).gsub("\n", '')
-    @data = "data:image/jpg;base64,#{base_64}"
     respond_to do |format|
-      format.html
+      format.html do
+        @page = LevelPage.where(level_id: params[:level_id], number: params[:number]).first
+        base_64 = Base64.encode64(File.read(@page.image.current_path)).gsub("\n", '')
+        gon.image = "data:image/jpg;base64,#{base_64}"
+      end
       format.json do
-        data = @data
-        render json: {image: data}
+        @page = LevelPage.find(params[:id])
+        base_64 = Base64.encode64(File.read(@page.image.current_path)).gsub("\n", '')
+        @data = "data:image/jpg;base64,#{base_64}"
+        render json: {image: @data, prev_link: level_page_path(@page.prev_page), next_link: level_page_path(@page.next_page)}
       end
     end
   end

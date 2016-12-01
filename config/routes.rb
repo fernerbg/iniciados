@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+  
   resources :level_pages
 
+  post 'level_pages/:id', to: "level_pages#show"
+  
   resources :emanations
 
   resources :chapters

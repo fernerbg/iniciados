@@ -12,6 +12,7 @@ log/
 tmp/**/*
 config/database.yml
 db/development_structure.sql
+private/*
 # Vim
 *.swp
 *.dump

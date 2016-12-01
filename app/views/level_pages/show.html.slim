@@ -1,18 +1,24 @@
 #navigation-options
 	#change-page-wrapper
 		| pagina 
-		= text_field_tag :page_number, @page_number, id: 'current-page', class: 'pdf-input'
-		#total-pages = "/#{@total_pages}"
+		= form_tag level_page_path(1), method: :get, id:"page-form" do
+			= text_field_tag :number, @page.number, id: 'current-page', class: 'pdf-input'
+			= hidden_field_tag :level_id, @page.level.id
+			
+		#total-pages = "/#{@page.level.pages.size}"
 		/= link_to show_book_contents_path(title: @content.title, page_number: (@page_number - 1).to_s, total_pages: @total_pages.to_s), method: :post do
-		span.glyphicon.glyphicon-arrow-left#prev-page.pdf-input
+		
+		= link_to @page.prev_page, remote: true, method: :post, "data-type": :json, id:"prev-page" do
+			span.glyphicon.glyphicon-arrow-left.pdf-input
 		/= link_to show_book_contents_path(title: @content.title, page_number: (@page_number + 1).to_s, total_pages: @total_pages.to_s), method: :post do
-		span.glyphicon.glyphicon-arrow-right#next-page.pdf-input
+		= link_to level_page_path(@page.next_page), remote: true, method: :post, "data-type": :json, id:"next-page" do
+			span.glyphicon.glyphicon-arrow-right.pdf-input
 		
 	#slider-wrapper
 		span.glyphicon.glyphicon-zoom-in
 		#slider
 #book-content
-	canvas#book-page data-url=(level_page_path(@page)) data-total-pages=(@page.level.pages.size) data-page=(@page.number) width="1366" height="1931"
+	canvas#book-page data-total-pages=(@page.level.pages.size) width="1366" height="1931"
 	#loading
 		h1
 			| Cargando...
