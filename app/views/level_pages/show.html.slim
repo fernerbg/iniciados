@@ -11,14 +11,13 @@
 		= link_to @page.prev_page, remote: true, method: :post, "data-type": :json, id:"prev-page" do
 			span.glyphicon.glyphicon-arrow-left.pdf-input
 		/= link_to show_book_contents_path(title: @content.title, page_number: (@page_number + 1).to_s, total_pages: @total_pages.to_s), method: :post do
-		= link_to level_page_path(@page.next_page), remote: true, method: :post, "data-type": :json, id:"next-page" do
+		= link_to @page.next_page, remote: true, method: :post, "data-type": :json, id:"next-page" do
 			span.glyphicon.glyphicon-arrow-right.pdf-input
 		
 	#slider-wrapper
 		span.glyphicon.glyphicon-zoom-in
 		#slider
 #book-content
-	canvas#book-page data-total-pages=(@page.level.pages.size) width="1366" height="1931"
 	#loading
 		h1
 			| Cargando...

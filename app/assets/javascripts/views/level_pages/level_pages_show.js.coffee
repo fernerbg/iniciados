@@ -10,8 +10,6 @@ class Iniciados.Views.LevelPagesShow extends Backbone.View
 
 	loading: false
 	
-	lastPage: 0
-	
 	currentPage: 0
 	
 	canvas: null
@@ -19,14 +17,12 @@ class Iniciados.Views.LevelPagesShow extends Backbone.View
 	initialize: ->
 		self = @
 		
-		@canvas = $('#book-page')
-		
 		@currentPage = parseInt $('#current-page').val()
 		
-		@renderImage gon.image
+		@renderImage gon.pieces
 		
 		$('#prev-page').on("ajax:success", (e, data, status, xhr) ->
-			self.renderImage(data.image)
+			self.renderImage(data.pieces)
 			self.unlockButtons(data.prev_link, data.next_link)
 			self.currentPage--
 			$('#current-page').val(self.currentPage)
@@ -52,24 +48,36 @@ class Iniciados.Views.LevelPagesShow extends Backbone.View
 		
 		$('img').on 'contextmenu', ->
 			false
-
-		@lastPage = parseInt @canvas.data('total-pages') - 1
 		
 	
-	renderImage: (image) ->
-		img = new Image()
-		img.src = image
-		canvas = @canvas
-		ctx = canvas[0].getContext("2d")
-		ctx.clearRect(0, 0, canvas[0].width, canvas[0].height)
-		ctx.drawImage(img, 0, 0, canvas[0].width, canvas[0].height)
-	
+	renderImage: (pieces) ->
+		arrangePieces = []
+		i = 0
+		while i < pieces.length
+			piece = pieces[i]
+			pieceNumber = parseInt(piece.name.split("piece_")[1])
+			arrangePieces[pieceNumber] = piece.data
+			i++
+		
+		i = 0
+		while i < arrangePieces.length
+			piece = arrangePieces[i]
+			img = new Image()
+			img.src = piece
+			canvas = document.createElement('canvas')
+			canvas.width = img.width
+			canvas.height = img.height
+			ctx = canvas.getContext("2d")
+			ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+			$('#book-content').append(canvas)
+			i++
+			
 	lockButtons: ->
-		@canvas.css('opacity', '0.7')
+		$('#container').css('opacity', '0.7')
 		$('.pdf-input').addClass('inactive')
 		
 	unlockButtons: (prev_link, next_link) ->
 		$('#next-page').attr('href', next_link)
 		$('#prev-page').attr('href', prev_link)
-		@canvas.css('opacity', '1')
+		$('#container').css('opacity', '1')
 		$('.inactive').removeClass('inactive')
