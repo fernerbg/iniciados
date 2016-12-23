@@ -6,7 +6,10 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-u = User.create(email: 'iniciado@gmail.com', password: 'sbabaji7', name: 'Cesar', surname: 'Valderrama')
+u = User.create(email: 'iniciado@gmail.com', password: 'sbabaji7', name: 'Cesar', surname: 'Valderrama', aws_identity: 'us-west-2:a697799f-48ec-452a-9773-9fea04ab454f')
+
+Configuration.create(name:"AWS_id", value:"AKIAIPOLUIWRXMEDLAKA")
+Configuration.create(name:"AWS_secret", value:"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")
 
 p = Profile.create(name: 'admin')
 p.save()

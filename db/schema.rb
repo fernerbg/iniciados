@@ -168,12 +168,13 @@ ActiveRecord::Schema.define(version: 20161201053837) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.integer  "country_id"
     t.string   "name"
     t.string   "surname"
+    t.string   "gender"
+    t.string   "aws_identity"
     t.integer  "lesson_id"
     t.integer  "level_id"
-    t.string   "gender"
+    t.integer  "country_id"
     t.index ["country_id"], :name => "index_users_on_country_id"
     t.index ["email"], :name => "index_users_on_email", :unique => true
     t.index ["lesson_id"], :name => "index_users_on_lesson_id"

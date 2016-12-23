@@ -38,7 +38,11 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { sessions: "users/sessions" }
 
-  resources :users
+  resources :users do
+    collection do
+      get 'get_cognito_token'
+    end
+  end
 
   get 'home', to: "users#home"
 

@@ -71,11 +71,18 @@ class UsersController < ApplicationController
   end
 
   def home
-    @user = current_user
-    tag = Tag.where(name: 'carousel principal')
-    @carousel_images = Content.where(tag: tag)
   end
 
+  def get_cognito_token
+    cognito =  Aws::CognitoIdentity::Client.new
+    identity_pool_id = 'us-west-2:d2b55f0f-9d2c-423d-84fc-6ea0ace7eaa3'
+	  cog = cognito.get_open_id_token_for_developer_identity({identity_pool_id: identity_pool_id, logins: {'login.evd.iniciados': current_user.id.to_s}})
+	  respond_to do |format|
+  	  format.json do
+        render json: { 'aws_credentials': cog, 'identity_pool_id': identity_pool_id }
+      end
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

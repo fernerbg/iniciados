@@ -49,6 +49,9 @@ gem 'inherited_resources',        '1.6.0'
 
 gem 'has_scope', '0.6.0'
 
+gem 'aws-sdk', '~> 2'
+
+
 group :test, :development do
   gem 'rspec-rails'
 end
