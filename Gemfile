@@ -71,7 +71,7 @@ gem 'sass-rails'
 gem 'coffee-rails'
 gem 'uglifier'
 gem "compass-rails"
-gem 'jquery-fileupload-rails'
+#gem 'jquery-fileupload-rails'
 gem 'gon'
 
 group :production do

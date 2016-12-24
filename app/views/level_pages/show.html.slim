@@ -1,28 +1,15 @@
 #navigation-options
 	#change-page-wrapper
 		| pagina 
-		= form_tag level_page_path(1), method: :get, id:"page-form" do
-			= text_field_tag :number, @page.number, id: 'current-page', class: 'pdf-input'
-			= hidden_field_tag :level_id, @page.level.id
+		= text_field_tag :number, @page.number, id: 'current-page', class: 'pdf-input'
 			
 		#total-pages = "/#{@page.level.pages.size}"
-		/= link_to show_book_contents_path(title: @content.title, page_number: (@page_number - 1).to_s, total_pages: @total_pages.to_s), method: :post do
-		
-		= link_to @page.prev_page, remote: true, method: :post, "data-type": :json, id:"prev-page" do
-			span.glyphicon.glyphicon-arrow-left.pdf-input
-		/= link_to show_book_contents_path(title: @content.title, page_number: (@page_number + 1).to_s, total_pages: @total_pages.to_s), method: :post do
-		= link_to @page.next_page, remote: true, method: :post, "data-type": :json, id:"next-page" do
-			span.glyphicon.glyphicon-arrow-right.pdf-input
+		span#prev-page.glyphicon.glyphicon-arrow-left.pdf-input
+		span#next-page.glyphicon.glyphicon-arrow-right.pdf-input
 		
 	#slider-wrapper
 		span.glyphicon.glyphicon-zoom-in
 		#slider
 #book-content
-	#loading
-		h1
-			| Cargando...
-		#loading-progress.progress
-		  .progress-bar aria-valuemax="100" aria-valuemin="0" aria-valuenow="0" role="progressbar"
-		    | 0%
-
+	
 = image_tag "transparency.png", id: "transparency"

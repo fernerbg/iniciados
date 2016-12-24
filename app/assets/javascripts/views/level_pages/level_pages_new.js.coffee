@@ -9,6 +9,8 @@ class Iniciados.Views.LevelPagesNew extends Backbone.View
 	initialize: ->
 		self = @
 		
+		webIniciados.checkCredentials()		
+		
 		$('#new_level_page').click ->
 			self.totalPages = 0
 			self.uploadedPages = 0
@@ -18,7 +20,8 @@ class Iniciados.Views.LevelPagesNew extends Backbone.View
 		
 		$('#image').on 'change', ->
 			$('.total-pages').html(this.files.length)
-			levelId = $('#level_id').val()
+			levelName = $('#level_id').val()
+			location = "levels/" + levelName + "/book/"
 			i = 0
 			while i < this.files.length
 				file = this.files[i]
@@ -33,47 +36,20 @@ class Iniciados.Views.LevelPagesNew extends Backbone.View
 						pageNumber = parseInt pageName
 				
 				if not isNaN pageNumber
-					((file, pageNumber) ->
-						imagePieces = []
-						if FileReader
-							fr = new FileReader
-						
-							fr.onload = ->
-								image = new Image()
-								image.src = fr.result
-								y = 0
-								while y < 10
-								  x = 0
-								  while x < 10
-								    canvas = document.createElement('canvas')
-								    widthOfOnePiece = image.width / 10
-								    heightOfOnePiece = image.height / 10
-								    canvas.width = widthOfOnePiece
-								    canvas.height = heightOfOnePiece
-								    context = canvas.getContext('2d')
-								    context.drawImage image, x * widthOfOnePiece, y * heightOfOnePiece, widthOfOnePiece, heightOfOnePiece, 0, 0, canvas.width, canvas.height
-								    dataUrl = canvas.toDataURL('image/jpeg')
-								    imagePieces.push(dataUrl.substr(dataUrl.indexOf('base64,') + 7))
-								    #imagePieces.push atob(dataUrl.substr(dataUrl.indexOf('base64,') + 7))
-								    ++x
-								  ++y
-								
-								$.ajax
-									type: 'POST'
-									data: pieces: imagePieces, "level_page[level_id]": levelId, "level_page[number]": pageNumber
-									url: gon.createUrl
-									dataType: "json"
-									success: (msg) ->
-										console.log msg
-										++self.uploadedPages
-										$('.uploaded-pages').html(self.uploadedPages)
-										return
-							
-							fr.readAsDataURL file
-					)(file, pageNumber)
-
+					pageKey = location + pageNumber + ".jpg"
+					webIniciados.s3.upload {
+						Key: pageKey
+						Body: file
+						ACL: 'authenticated-read'
+					}, (err, data) ->
+						if err
+							return console.log('There was an error uploading your photo: ', JSON.stringify(err))
+						self.uploadedPages++
+						$('.uploaded-pages').html(self.uploadedPages)
+						console.log(data)
+						return
 				i++
-		
+						
 		###	
 		$('#new_level_page').on('change', ->
 			dataType: "json"

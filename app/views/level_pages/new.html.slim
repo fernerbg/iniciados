@@ -5,7 +5,7 @@ h1 New page
 		.col-xs-8
 			.form-group
 				= label_tag :level
-				= select_tag :level_id, options_for_select(Level.all.pluck(:name, :id), "level_page[level_id]"), name: "level_page[level_id]", class: 'form-control'
+				= select_tag :level_id, options_for_select(Level.all.pluck(:name, :name), "level_page[level_id]"), name: "level_page[level_id]", class: 'form-control'
 			.form-group
 				= label_tag :image
 				= file_field_tag "image", multiple: true, name: "level_page[image]", class: 'form-control'

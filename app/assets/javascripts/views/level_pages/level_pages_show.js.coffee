@@ -3,12 +3,11 @@ class Iniciados.Views.LevelPagesShow extends Backbone.View
 	el: 'body'
 
 	events:
-		"keypress #current-page": "goToPage"
-		"ajax:send #prev-page, #next-page": "lockButtons"
+		"keypress #current-page" : "goToPage"
+		"click #prev-page" : "prevPage"
+		"click #next-page" : "nextPage"
 		
 	maxPageWidth: 1280
-
-	loading: false
 	
 	currentPage: 0
 	
