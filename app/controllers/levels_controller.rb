@@ -1,10 +1,10 @@
 class LevelsController < ApplicationController
   before_action :set_level, only: [:show, :edit, :update, :destroy]
-
+  before_action :get_levels
+  
   respond_to :html
 
   def index
-    @levels = Level.all
     respond_with(@levels)
   end
 
@@ -41,6 +41,10 @@ class LevelsController < ApplicationController
       @level = Level.find(params[:id])
     end
 
+    def get_levels
+      @available_levels = Level.available_levels(current_user.level.number)
+    end
+    
     def level_params
       params.require(:level).permit(:name)
     end

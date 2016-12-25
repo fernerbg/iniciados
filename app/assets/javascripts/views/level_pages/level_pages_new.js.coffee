@@ -23,96 +23,73 @@ class Iniciados.Views.LevelPagesNew extends Backbone.View
 			levelName = $('#level_id').val()
 			location = "levels/" + levelName + "/book/"
 			i = 0
+			bookPieces = 0
 			while i < this.files.length
 				file = this.files[i]
-				fileName = file.name
-				pageName = fileName.substr(fileName.length - 7)
-				pageNumber = parseInt pageName
-				if isNaN pageNumber
-					pageName = fileName.substr(fileName.length - 6)
-					pageNumber = parseInt pageName
-					if isNaN pageNumber
-						pageName = fileName.substr(fileName.length - 5)
+				do (file, i) ->
+					setTimeout (->
+						fileName = file.name
+						pageName = fileName.substr(fileName.length - 7)
 						pageNumber = parseInt pageName
-				
-				if not isNaN pageNumber
-					pageKey = location + pageNumber + ".jpg"
-					webIniciados.s3.upload {
-						Key: pageKey
-						Body: file
-						ACL: 'authenticated-read'
-					}, (err, data) ->
-						if err
-							return console.log('There was an error uploading your photo: ', JSON.stringify(err))
-						self.uploadedPages++
-						$('.uploaded-pages').html(self.uploadedPages)
-						console.log(data)
-						return
+						if isNaN pageNumber
+							pageName = fileName.substr(fileName.length - 6)
+							pageNumber = parseInt pageName
+							if isNaN pageNumber
+								pageName = fileName.substr(fileName.length - 5)
+								pageNumber = parseInt pageName
+						
+						if not isNaN pageNumber
+							if FileReader
+								fr = new FileReader
+							
+								fr.onload = ->
+									image = new Image()
+									image.src = fr.result
+									
+									piece = 1
+									yPieces = 2
+									xPieces = 2
+									totalPieces = yPieces * xPieces
+									uploadedPieces = 0
+									y = 0
+									while y < yPieces
+										x = 0
+										while x < xPieces
+											canvas = document.createElement('canvas')
+											widthOfOnePiece = image.width / xPieces
+											heightOfOnePiece = image.height / yPieces
+											canvas.width = widthOfOnePiece
+											canvas.height = heightOfOnePiece
+											context = canvas.getContext('2d')
+											context.drawImage image, x * widthOfOnePiece, y * heightOfOnePiece, widthOfOnePiece, heightOfOnePiece, 0, 0, canvas.width, canvas.height
+											do (x, canvas, pageNumber, piece) ->
+												dataUrl = canvas.toDataURL('image/jpeg')
+												d = dataUrl.substr(dataUrl.indexOf('base64,') + 7)
+												pageKey = location + pageNumber + "/" + piece + ".jpg"
+												console.log 'sending page ' + pageNumber + ' piece ' + piece
+												webIniciados.s3.upload {
+													Key: pageKey
+													Body: atob(d)
+													ACL: 'authenticated-read'
+												}, (err, data) ->
+													if err
+														$('.failed-uploades').append('<p>Página </p>' + pageNumber)
+														return console.log('There was an error uploading your photo: ', JSON.stringify(err))
+													else
+														++uploadedPieces
+														if uploadedPieces == totalPieces
+															self.uploadedPages++
+															$('.uploaded-pages').html(self.uploadedPages)
+															console.log 'page ' + pageNumber + ' uploaded'
+													return	    	
+												
+										
+											++x
+											++piece
+											++bookPieces
+											console.log 'book pieces ' + bookPieces 
+										++y
+								fr.readAsDataURL file
+					), 15000 * i			
+					
 				i++
-						
-		###	
-		$('#new_level_page').on('change', ->
-			dataType: "json"
-			add: (e, data) ->
-				self.totalPages = self.totalPages + 1
-				$('.total-pages').html(self.totalPages)
-				fileName = data.files[0].name
-				console.log(data.files[0])
-				pageName = fileName.substr(fileName.length - 7)
-				pageNumber = parseInt pageName
-				if isNaN pageNumber
-					pageName = fileName.substr(fileName.length - 6)
-					pageNumber = parseInt pageName
-					if isNaN pageNumber
-						pageName = fileName.substr(fileName.length - 5)
-						pageNumber = parseInt pageName
-				
-				if not isNaN pageNumber
-					$('#level_page_number').val(pageNumber)
-					imagePieces = []
-					
-				if FileReader and data.files and data.files.length
-					console.log 'all is good'
-					fr = new FileReader
-				
-					fr.onload = ->
-						image = new Image()
-						image.src = fr.result
-						y = 0
-						while y < 10
-						  x = 0
-						  while x < 10
-						    canvas = document.createElement('canvas')
-						    widthOfOnePiece = image.width / 10
-						    heightOfOnePiece = image.height / 10
-						    canvas.width = widthOfOnePiece
-						    canvas.height = heightOfOnePiece
-						    context = canvas.getContext('2d')
-						    context.drawImage image, x * widthOfOnePiece, y * heightOfOnePiece, widthOfOnePiece, heightOfOnePiece, 0, 0, canvas.width, canvas.height
-						    imagePieces.push atob(canvas.toDataURL())
-						    ++x
-						  ++y
-						
-						fileName = data.files[0]
-						$.ajax
-							type: 'POST'
-							data: pieces: imagePieces
-							url: $()
-							success: (msg) ->
-								console.log msg
-								self.uploadedPages = self.uploadedPages + 1
-								$('.uploaded-pages').html(self.uploadedPages)
-								return
-					
-					fr.readAsDataURL data.files[0]
-		)	
-		
-					#data.submit()
-		
-			success: (data) ->
-				if data == null
-					$('.failed-uploades').append('<li>' + data.number + '</li>')
-				else
-					self.uploadedPages = self.uploadedPages + 1
-					$('.uploaded-pages').html(self.uploadedPages)
-		###

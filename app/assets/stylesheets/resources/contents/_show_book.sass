@@ -10,6 +10,9 @@ body, html
 		z-index: 10
 		#change-page-wrapper
 			display: inline-block
+			.pdf-input
+				&.inactive
+					opacity: 0.2
 			#next-page
 				margin-left: 5px
 				margin-right: 10px
@@ -27,7 +30,11 @@ body, html
 				width: 50%
 				display: inline-block
 	#book-content
+		width: 100%
 		line-height: 0px
+		display: inline-block
+		canvas
+			width: 50%
 		#loading
 			display: none
 			#loading-progress

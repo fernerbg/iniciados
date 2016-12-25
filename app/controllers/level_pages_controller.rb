@@ -36,12 +36,8 @@ class LevelPagesController < InheritedResources::Base
   def show
     respond_to do |format|
       format.html do
-        @page = LevelPage.where(level_id: params[:level_id], number: params[:number]).first
-        gon.pieces = get_page_pieces
-      end
-      format.json do
-        @page = LevelPage.find(params[:id])
-        render json: {pieces: get_page_pieces, prev_link: level_page_path(@page.prev_page), next_link: level_page_path(@page.next_page)}
+        gon.path = "levels/" + params[:level] + "/book/"
+        gon.initial_page = params[:number]
       end
     end
   end

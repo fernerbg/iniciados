@@ -4,31 +4,32 @@
       .logo-wrapper
         = image_tag "design2/icon.png"
       
-      = link_to root_path do
+      = link_to root_path, class: 'header-link' do
         .title-wrapper
           |INICIADOS SKY
       - if current_user
         - if controller_name == "lesson_levels"
           .options-container.left-divider
             .title-wrapper
-              |INSTRUCCIÓN SKY
+              |ENSEÑANZA SKY&nbsp
+              span.caret
             ul.options-wrapper
               .options-title
                 = "NIVEL #{@lesson_level}"
               .lessons-options
-                = render partial: "lessons/lesson_option", collection: @available_lessons.reverse
+                - @available_lessons.reverse.each_with_index do |lesson, index|
+                  li.option data-id="#{lesson.id}" class=("actual" if index == 0)
+                    span.lesson-option= "#{lesson.name}"
         - if controller_name == "levels"
           .options-container.left-divider
             .title-wrapper
-              |ENSEÑANZA SKY
+              |INSTRUCCIÓN SKY&nbsp
+              span.caret
             ul.options-wrapper
               .lessons-options
-                li.option= link_to "LIBRO FUEGO I", root_path
-                li.option= link_to "LIBRO FUEGO II", root_path
-                li.option= link_to "LIBRO LUZ I", root_path
-                li.option= link_to "LIBRO LUZ II", root_path
-                li.option= link_to  "LIBRO COSMICO I", root_path
-                li.option.actual= link_to "LIBRO ESTELAR I", root_path
+                - @available_levels.each do |level|
+                  li.option= link_to level, level_path(level)
+                  
     - if current_user 
       .sandwish-container
         .icon-container

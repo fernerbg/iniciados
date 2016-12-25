@@ -1,9 +1,9 @@
 #navigation-options
 	#change-page-wrapper
 		| pagina 
-		= text_field_tag :number, @page.number, id: 'current-page', class: 'pdf-input'
+		= number_field_tag :number, params[:number], id: 'current-page', class: 'pdf-input'
 			
-		#total-pages = "/#{@page.level.pages.size}"
+		#total-pages
 		span#prev-page.glyphicon.glyphicon-arrow-left.pdf-input
 		span#next-page.glyphicon.glyphicon-arrow-right.pdf-input
 		
