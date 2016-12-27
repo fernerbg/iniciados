@@ -5,6 +5,4 @@ class Iniciados.Views.LessonsNewPdf extends Backbone.View
 	initialize: ->
 		webIniciados.checkCredentials()
 		
-		location = "lessons/" + $('#lesson_id').val() + "/reading/"
-		
-		$('#image').awsUploader(location)
+		$('#image').awsUploader()

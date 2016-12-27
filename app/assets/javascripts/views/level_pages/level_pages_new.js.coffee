@@ -5,6 +5,4 @@ class Iniciados.Views.LevelPagesNew extends Backbone.View
 	initialize: ->
 		webIniciados.checkCredentials()
 		
-		location = "levels/" + $('#level_id').val() + "/book/"
-		
 		$('#image').awsUploader(location)

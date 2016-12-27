@@ -52,7 +52,16 @@ window.webIniciados = do ->
 	
 	$.fn.awsUploader = (location) ->
 		$(this).on 'change', ->
-			console.log 'here twice'
+			controller = $('body').data('controller')
+			switch controller
+				when 'lessons'
+					location = "lessons/" + $('#lesson_id').val() + "/reading/"
+				when 'level_pages'
+					location = "levels/" + $('#level_id').val() + "/book/"
+				else
+					console.log 'not location'
+					return false
+			
 			$('.uploaded-pages').html('0')
 			$('.failed-uploades').html('')
 			$('.total-pages').html(this.files.length)
