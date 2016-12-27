@@ -51,6 +51,7 @@ gem 'has_scope', '0.6.0'
 
 gem 'aws-sdk', '~> 2'
 
+gem 'rake', '< 11.0'
 
 group :test, :development do
   gem 'rspec-rails'

@@ -51,8 +51,14 @@
 				width: 180px
 				padding: 10px
 				background-color: rgba(0, 0, 0, 0.3)
-				margin: 0px 5px
+				margin: 0px 20px
+				cursor: pointer
 				+border-radius(50%)
+				&.inactive
+					opacity: 0.3
+					+transition(all, .3s)
+					&:hover
+						opacity: 1
 				.inner-link
 					&:hover
 						text-decoration: none
@@ -74,13 +80,13 @@
 						display: inline-block
 						height: 100%
 						vertical-align: middle
-						margin-right: -0.25em
 					.word-wrapper
 						display: inline-block
 						vertical-align: middle
 						font-size: 16px
 						line-height: 23px
 						letter-spacing: 3px
+						color: white
 						.small-word
 							font-size: 10px
 							font-family: Verlag

@@ -1,65 +1,54 @@
 class Iniciados.Views.UsersHome extends Backbone.View
 
 	el: 'body'
-
-	video: document.querySelector('video')
+	newWidth: 0
 	
-	mimeCodec: 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
-	 
+	events:
+		"resize window" : "onResize"
+		
 	initialize: ->
 		self = this
-		xhr = new XMLHttpRequest
-		xhr.open 'get', 'videos/mov_bbb.mp4'
-		xhr.responseType = 'blob'
+		@.newWidth = parseInt($('.new-wrapper:first').css('width'))
+		@.setInfoProperties()
+		@.setImageProperties()
+		
+	setImageProperties: ->
+		if @.newWidth + 30 is window.innerWidth
+			$('.new-wrapper .content-wrapper img').css({'width': '100%', 'position': 'static'})
+		else
+			$('.new-wrapper .content-wrapper img').each ->
+				image = $(this)
+				image.css({'width': 'auto', 'position': 'relative'})
+				imageHeight = parseInt(image.css('height'))
+				imageWidth = parseInt(image.css('width'))
+				contentHeight = parseInt($('.new-wrapper:first .content-wrapper').css('height'))
+				contentWidth = parseInt($('.new-wrapper:first .content-wrapper').css('width'))
+				if imageHeight > contentHeight
+					moveY = ((imageHeight - contentHeight) / 2) * -1
+					image.css('top', moveY + 'px')
+				if imageWidth > contentWidth
+					moveX = ((imageWidth - contentWidth) / 2) * -1
+					image.css('left', moveX + 'px')
 	
-		xhr.onload = ->
-			console.log xhr.response
-			video = document.getElementById('video');
-			obj_url = window.URL.createObjectURL(xhr.response);
-			video.src = obj_url;
-			video.play()
-			video.addEventListener "load", ->
-				URL.revokeObjectURL(obj_url)
-			return
-	
-		xhr.send()
+	setInfoProperties: ->
+		if @.newWidth + 30 is window.innerWidth
+			$('.new-wrapper .information-wrapper').css('height', 'auto')
+			$('.new-wrapper .content-wrapper').css('height', 'auto')
+		else
+			@.infoHeight = $('.new-wrapper:first .information-wrapper').css('width')
+			$('.new-wrapper .information-wrapper').css('height', @.infoHeight)
+			$('.new-wrapper .content-wrapper').css('height', @.infoHeight)
+			myScroll = new IScroll('.new-wrapper .information-wrapper', {mouseWheel: true, scrollbars: true, scrollbars: 'custom'})
 			
-		#if 'MediaSource' of window and MediaSource.isTypeSupported(self.mimeCodec)
+	onResize: ->
+		infoHeight = $('.new-wrapper:first .information-wrapper').css('width')
+		if infoHeight is not @.infoHeight
+			@.infoHeight = infoHeight
+			@.setInfoProperties
 		
-		#	mediaSource = new MediaSource
-			#console.log(mediaSource.readyState); // closed
-		#	video = document.querySelector('video')
-		#	video.src = URL.createObjectURL(mediaSource)
-		#	mediaSource.addEventListener 'sourceopen', self.sourceOpen
-		#else
-		#	console.error 'Unsupported MIME type or codec: ', self.mimeCodec
-	
-	sourceOpen: (_) ->
-		#console.log(this.readyState); // open
-		mediaSource = this
-		console.log(mediaSource)
-		mimeCodec= 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
-		sourceBuffer = mediaSource.addSourceBuffer(mimeCodec)
-		console.log(sourceBuffer)
-		fetchAB= (url, cb) ->
-			console.log url
-			xhr = new XMLHttpRequest
-			xhr.open 'get', url
-			xhr.responseType = 'arraybuffer'
-		
-			xhr.onload = ->
-				cb xhr.response
-				return
-		
-			xhr.send()
-			return
-		fetchAB "videos/mov_bbb.mp4", (buf) ->
-			sourceBuffer.addEventListener 'updateend', (_) ->
-				mediaSource.endOfStream()
-				video= document.querySelector('video')
-				video.play()
-				#console.log(mediaSource.readyState); // ended
-				return
-			sourceBuffer.appendBuffer buf
-			return
-		return
+		newWidth = parseInt($('.new-wrapper:first').css('width'))
+		if newWidth is not @.newWidth
+			@.newWidth = newWidth
+			@.setImageProperties
+			
+			

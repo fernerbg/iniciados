@@ -18,18 +18,17 @@ Rails.application.routes.draw do
 
   resources :contents do
     collection do
-      post 'show_book'
-      post 'create_book'
-      get 'new_book'
-      post 'delivery_pages'
-      get 'binary_data'
+      get 'show_page'
     end
   end
 
   resources :levels
 
-  resources :lessons
-
+  resources :lessons do
+    collection do
+      get 'new_pdf'
+    end
+  end
   resources :lesson_levels
 
   resources :roles

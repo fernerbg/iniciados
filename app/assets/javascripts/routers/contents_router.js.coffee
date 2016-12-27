@@ -1,11 +1,6 @@
 class Iniciados.Routers.Contents extends Backbone.Router
 	routes:
-		'contents/show_book' : 'show_book'
-		'contents/new' : 'new'
-		'contents/new_book' : 'new_book'
-	show_book: ->
-		view = new Iniciados.Views.ContentsShowBook()
-	new: ->
-		view = new Iniciados.Views.ContentsNewContent()
-	new_book: ->
-		view = new Iniciados.Views.ContentsNewBook()
+		'contents/show_page' : 'show_page'
+		
+	show_page: ->
+		view = new Iniciados.Views.ContentsShowPage()

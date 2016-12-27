@@ -11,13 +11,15 @@
   
   .main-options-wrapper
     .main-options
-      .circle-option-wrapper
-        .inner-option
-          .word-wrapper
-            p.small-word
-              |NIVEL 
-            p.medium-word
-              = @lesson_level.name.upcase
+      - @available_levels.each do |level|
+        = link_to level do
+          .circle-option-wrapper( class= (@lesson_level != level ? 'inactive' : 'active'))
+            .inner-option
+              .word-wrapper
+                p.small-word
+                  |NIVEL 
+                p.medium-word
+                  = level.name.upcase
   
   #button-downward
     .triangle

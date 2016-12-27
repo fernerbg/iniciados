@@ -35,7 +35,7 @@ Level.create(name: "Madre I", number: 9)
 u.level = les
 u.save()
 
-ll = LessonLevel.create(name: "Atma")
+ll = LessonLevel.create(name: "Atma", number: 1)
 
 
 Lesson.create(name: "La Búsqueda", lesson_level: ll, number_level: 1, number: 1, description: "
@@ -217,7 +217,7 @@ Lesson.create(name: "Mantener la Fe", lesson_level: ll, number_level: 12, number
 <p>Felicítate.</p>")
 
 
-ll = LessonLevel.create(name: "Vidya")
+ll = LessonLevel.create(name: "Vidya", number: 2)
 
 Lesson.create(name: "El consentimiento", lesson_level: ll, number_level: 1, number: 13, description: "
 <p>Nadie puede decirte nada para convencerte de algo,</p>
@@ -297,7 +297,7 @@ Lesson.create(name: "La Revelación", lesson_level: ll, number_level: 6, number:
 <p>que sólo atentan contra la exquisita bendición</p>
 <p>de ser parte de la Luz del mismo Creador.</p>")
 
-ls = Lesson.create(name: "Controlar la Mente", lesson_level: ll, number_level: 7, number: 19, description: "
+Lesson.create(name: "Controlar la Mente", lesson_level: ll, number_level: 7, number: 19, description: "
 <p>En este no saber nos encontramos con que,</p>
 <p>en alguna parte de nosotros,</p>
 <p>habita la clave más firme para descubrirnos.</p>
@@ -362,7 +362,7 @@ Lesson.create(name: "Mantener la Realidad del Ser", lesson_level: ll, number_lev
 <p>hasta las vibraciones de Amor que se disponen.</p>")
 
 
-ll = LessonLevel.create(name: "Shiva")
+ll = LessonLevel.create(name: "Shiva", number: 3)
 
 Lesson.create(name: "Vivir en el Ser", lesson_level: ll, number_level: 1, number: 25, description: "
 <p>La experiencia de vida, cualquiera que sea,</p>
@@ -420,7 +420,7 @@ Lesson.create(name: "Sin Pasado ni Futuro", lesson_level: ll, number_level: 5, n
 <p>tan sólo una milésima de nuestro ejercicio</p>
 <p>consciente de vida para poder avanzar.</p>")
 
-Lesson.create(name: "Presente Siempre Presente", lesson_level: ll, number_level: 6, number: 30, description: "
+ls = Lesson.create(name: "Presente Siempre Presente", lesson_level: ll, number_level: 6, number: 30, description: "
 <p> La posibilidad real es enfatizar nuestra propuesta</p>
 <p>a partir del presente que nos cobija,</p>
 <p>como esta forma de habitar una y otra vez la existencia.</p>

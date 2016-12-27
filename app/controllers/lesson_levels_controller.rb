@@ -12,6 +12,7 @@ class LessonLevelsController < ApplicationController
 
   def show
     @available_lessons = @lesson_level.lessons.where("number <= #{current_user.lesson.number}").order(number: :desc).to_a
+    @available_levels = LessonLevel.available_levels(current_user.lesson.lesson_level.number)
     respond_with(@lesson_level)
   end
 

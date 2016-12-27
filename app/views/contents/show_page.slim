@@ -1,0 +1,16 @@
+#navigation-options
+	#change-page-wrapper
+		| pagina 
+		= number_field_tag :number, params[:number], id: 'current-page', class: 'pdf-input'
+			
+		#total-pages
+		span#prev-page.glyphicon.glyphicon-arrow-left.pdf-input
+		span#next-page.glyphicon.glyphicon-arrow-right.pdf-input
+		
+	#slider-wrapper
+		span.glyphicon.glyphicon-zoom-in
+		#slider
+		
+#book-content
+	
+= image_tag "transparency.png", id: "transparency"

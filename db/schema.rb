@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 20161201053837) do
 
   create_table "lesson_levels", force: true do |t|
     t.string   "name"
+    t.integer  "number"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,4 +1,4 @@
-class Iniciados.Views.LevelPagesShow extends Backbone.View
+class Iniciados.Views.ContentsShowPage extends Backbone.View
 
 	el: 'body'
 
@@ -7,13 +7,11 @@ class Iniciados.Views.LevelPagesShow extends Backbone.View
 		"click #prev-page" : "prevPage"
 		"click #next-page" : "nextPage"
 		
-	maxPageWidth: 1280
+	maxPageWidth: 0
 	
 	currentPage: 0
 	
 	extension: ".jpg"
-	
-	canvas: null
 	
 	initialize: ->
 		self = @
@@ -25,7 +23,6 @@ class Iniciados.Views.LevelPagesShow extends Backbone.View
 		)
 		
 		@maxPageWidth = window.innerWidth
-		
 		
 		$('#slider').slider
 			slide: -> $('#book-content').css('width', (parseInt($('#slider').slider('value')) / 100 * self.maxPageWidth - 20) + 'px')
@@ -84,7 +81,7 @@ class Iniciados.Views.LevelPagesShow extends Backbone.View
 			@currentPage = @currentPage + 1
 			@renderImage(@currentPage)
 	
-	prevPage: ->
+	prevPage: (e) ->
 		if not $(e.target).hasClass('inactive')
 			@currentPage = @currentPage - 1
 			@renderImage(@currentPage)

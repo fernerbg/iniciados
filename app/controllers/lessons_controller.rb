@@ -16,7 +16,10 @@ class LessonsController < ApplicationController
     @lesson = Lesson.new
     respond_with(@lesson)
   end
-
+  
+  def new_pdf
+  end
+  
   def edit
   end
 
