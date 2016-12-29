@@ -26,7 +26,7 @@ class ContentsController < ApplicationController
     respond_to do |format|
       format.json do
         file_path = "#{private_root}/#{params[:file_path]}"
-        entries = Dir.entries "#{private_root}/#{params[:file_path]}"
+        entries = Dir.entries file_path
         files = []
         entries.each do |file_name|
           files.push File.read "#{file_path}/#{file_name}" unless file_name == '.' || file_name == '..'
