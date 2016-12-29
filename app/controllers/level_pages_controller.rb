@@ -3,15 +3,15 @@ class LevelPagesController < ApplicationController
   before_action :levels_root
   
   def new
-    gon.upload_path = url_for(action: 'create')
+    gon.upload_path = url_for(action: 'create', only_path: true)
   end
   
   def create
     directory_name = "#{levels_root}/#{params[:file_path]}"
     FileUtils.mkdir_p directory_name
     params[:pieces].each_with_index do |piece, index|
-      File.open("#{directory_name}/#{index + 1}.jpg", "w") do |output|
-        output.print piece
+      File.open("#{directory_name}/#{index + 1}.jpg", "w+b") do |file|
+        file.write Base64.decode64(piece)
       end
     end
     respond_to do |format|
