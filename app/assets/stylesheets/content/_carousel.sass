@@ -19,13 +19,12 @@
 		left: 0px
 		.main-options
 			display: inline-block
-			vertical-align: middle
 			width: 100%
 			text-align: center
 			background: transparent
 			position: relative
 			top: 50%
-			margin-top: -60px
+			margin-top: -110px
 			font-size: 25px
 			color: white
 			.text-option
@@ -47,13 +46,16 @@
 					
 			.circle-option-wrapper
 				display: inline-block
-				height: 180px
-				width: 180px
+				height: 220px
+				width: 220px
 				padding: 10px
 				background-color: rgba(0, 0, 0, 0.3)
-				margin: 0px 20px
+				margin: 0px 5%
 				cursor: pointer
 				+border-radius(50%)
+				&.small
+					height: 150px
+					width: 150px
 				&.inactive
 					opacity: 0.3
 					+transition(all, .3s)
@@ -67,6 +69,10 @@
 							.word-wrapper
 								.high-word
 									font-size: 40px
+								.medium-word
+									font-size: 27px
+								.small-word
+									font-size: 12px
 				.inner-option
 					width: 100%
 					height: 100%
@@ -87,23 +93,25 @@
 						line-height: 23px
 						letter-spacing: 3px
 						color: white
-						.small-word
-							font-size: 10px
-							font-family: Verlag
-							font-weight: 400
-						.medium-word
-							font-size: 25px
-							font-family: Verlag
-							font-weight: 900
-						.high-word
-							font-size: 36px
-							font-family: Verlag
-							font-weight: 900
-							color: white
-							padding-top: 13px
-							padding-left: 4px
-							letter-spacing: 4px
+						.word
 							+transition(all, 0.2s)
+							font-family: Verlag
+							color: white
+							&.last-word
+								margin-bottom: 0px
+							&.small-word
+								font-size: 10px
+								font-weight: 400
+							&.medium-word
+								font-size: 25px
+								font-weight: 900
+							&.high-word
+								font-size: 36px
+								font-weight: 900
+								padding-top: 13px
+								padding-left: 4px
+								letter-spacing: 4px
+								
 			.main-link-below
 				margin-top: 30px
 				.border-bottom

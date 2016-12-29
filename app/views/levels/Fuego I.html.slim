@@ -1,3 +1,4 @@
+|<iframe width="100%" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/299963713%3Fsecret_token%3Ds-ZQRE4&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
 #carousel-images.carousel.slide data-ride="carousel"
   /! Indicators
   /*
@@ -11,13 +12,26 @@
   
   .main-options-wrapper
     .main-options
+      .circle-option-wrapper.small
+        = link_to "http://escuelavaloresdivinos.com", class: "inner-link" do
+          .inner-option
+            .word-wrapper
+              p.word.small-word.last-word
+                |AUDIO
       .circle-option-wrapper
-        .inner-option
-          .word-wrapper
-            p.small-word
-              |LIBRO 
-            p.medium-word
-              = @level.name.upcase
+        = link_to show_page_contents_path(level: @level.name, number: 1, element: 'levels'), class: "inner-link" do
+          .inner-option
+            .word-wrapper
+              p.word.small-word
+                |LIBRO 
+              p.word.medium-word.last-word
+                = @level.name.upcase
+      .circle-option-wrapper.small
+        = link_to "http://escuelavaloresdivinos.com", class: "inner-link" do
+          .inner-option
+            .word-wrapper
+              p.word.small-word.last-word
+                |EMANACIONES
       .main-link-below
         .border-bottom
           |CONTENIDO DEL LIBRO
