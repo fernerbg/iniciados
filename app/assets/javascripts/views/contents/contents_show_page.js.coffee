@@ -77,19 +77,20 @@ class Iniciados.Views.ContentsShowPage extends Backbone.View
 		if not $(e.target).hasClass('inactive')
 			@currentPage = @currentPage + 1
 			@renderImage(@currentPage)
+			$(window).scrollTop(0)
 	
 	prevPage: (e) ->
 		if not $(e.target).hasClass('inactive')
 			@currentPage = @currentPage - 1
 			@renderImage(@currentPage)
-	
+			$(window).scrollTop(0)
 	goToPage: (e) ->
 		if not $(e.target).hasClass('inactive')
 			if e.keyCode == 13
 				page = $('#current-page').val()
 				@currentPage = parseInt(page) if not isNaN page
 				@renderImage(@currentPage)	
-		
+				$(window).scrollTop(0)
 		
 	lockButtons: ->
 		$('#book-content').css('opacity', '0.7')

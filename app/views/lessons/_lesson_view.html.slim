@@ -15,7 +15,7 @@
       .right-options
         .option.play-video
           = embedded_svg 'design2/play-video-icon.svg', class: 'icon'
-        = link_to show_page_contents_path(element: controller_name, number: 1, lesson: lesson.number), method: :get do
+        = link_to show_page_contents_path(element: 'lessons', number: 1, lesson: lesson.number), method: :get do
           .option.view-pdf
             = embedded_svg 'design2/view-pdf-icon.svg', class: 'icon'
      		
