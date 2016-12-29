@@ -69,53 +69,45 @@ window.webIniciados = do ->
 								pageNumber = parseInt pageName
 						
 						if not isNaN pageNumber
-							filePath = null
-							controller = $('body').data("controller")
-							switch controller
-							  when "level_pages" then filePath = $('#level_id').val() + "/book/" + pageNumber
-							  else null
-							if FileReader
-								fr = new FileReader
-							
-								fr.onload = ->
-									image = new Image()
-									image.src = fr.result
+							((file, pageNumber) ->
+								imagePieces = []
+								if FileReader
+									fr = new FileReader
+								
+									fr.onload = ->
+										image = new Image()
+										image.src = fr.result
+										y = 0
+										while y < 10
+										  x = 0
+										  while x < 10
+										    canvas = document.createElement('canvas')
+										    widthOfOnePiece = image.width / 10
+										    heightOfOnePiece = image.height / 10
+										    canvas.width = widthOfOnePiece
+										    canvas.height = heightOfOnePiece
+										    context = canvas.getContext('2d')
+										    context.drawImage image, x * widthOfOnePiece, y * heightOfOnePiece, widthOfOnePiece, heightOfOnePiece, 0, 0, canvas.width, canvas.height
+										    dataUrl = canvas.toDataURL('image/jpeg')
+										    imagePieces.push(dataUrl.substr(dataUrl.indexOf('base64,') + 7))
+										    #imagePieces.push atob(dataUrl.substr(dataUrl.indexOf('base64,') + 7))
+										    ++x
+										  ++y
+										
+										$.ajax
+											type: 'POST'
+											data: pieces: imagePieces, "level_page[level_id]": levelId, "level_page[number]": pageNumber
+											url: gon.createUrl
+											dataType: "json"
+											success: (msg) ->
+												console.log msg
+												++self.uploadedPages
+												$('.uploaded-pages').html(self.uploadedPages)
+												return
 									
-									piece = 1
-									yPieces = 2
-									xPieces = 2
-									totalPieces = yPieces * xPieces
-									piecesArray = []
-									y = 0
-									while y < yPieces
-										x = 0
-										while x < xPieces
-											canvas = document.createElement('canvas')
-											widthOfOnePiece = image.width / xPieces
-											heightOfOnePiece = image.height / yPieces
-											canvas.width = widthOfOnePiece
-											canvas.height = heightOfOnePiece
-											context = canvas.getContext('2d')
-											context.drawImage image, x * widthOfOnePiece, y * heightOfOnePiece, widthOfOnePiece, heightOfOnePiece, 0, 0, canvas.width, canvas.height
-											dataUrl = canvas.toDataURL('image/jpeg')
-											d = dataUrl.substr(dataUrl.indexOf('base64,') + 7)
-											piecesArray.push(piece + ".jpg", atob(d))
-											++x
-											++piece
-										++y
-									
-									
-									$.post(gon.upload_path, {pieces: piecesArray, file_path: filePath}, ->
-										uploadedPages++
-										$('.uploaded-pages').html(uploadedPages)
-										console.log 'page ' + pageNumber + ' uploaded'
-										return
-									).fail(->
-										$('.failed-uploades').append('<p>Página </p>' + pageNumber)
-									)
-									
-								fr.readAsDataURL file
-					), 5000 * i			
+									fr.readAsDataURL file
+							)(file, pageNumber)
+	
 					
 				i++
 		
