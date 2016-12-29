@@ -16,11 +16,24 @@ class ContentsController < ApplicationController
     gon.initial_page = params[:number]
     case params[:element]
     when 'levels'
-      gon.path = "levels/#{params[:level]}/book/"
+      gon.file_path = "levels/#{params[:level]}/book"
+      gon.total_pages = Dir.entries("#{private_root}/#{gon.file_path}").size
     when 'lesson_levels'
       gon.path = "lessons/#{params[:lesson]}/reading/"
     else
       gon.path = "error"
+    end
+    respond_to do |format|
+      format.json do
+        file_path = "#{private_root}/#{params[:file_path]}"
+        entries = Dir.entries "#{private_root}/#{params[:file_path]}"
+        files = []
+        entries.each do |file_name|
+          files.push File.read "#{file_path}/#{file_name}" unless file_name == '.' || file_name == '..'
+        end
+        render json: files
+      end
+      format.html
     end
   end
 

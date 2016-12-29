@@ -31,24 +31,10 @@ window.webIniciados = do ->
 			console.log e
 	
 	checkCredentials = (callback) ->
-		if typeof localStorage.awsCredentials is 'undefined'
-			refreshCognitoToken(callback)
-		else
-			awsCredentials = JSON.parse localStorage.awsCredentials
-			if (new Date()).valueOf() + 60000 * 5 >= (new Date(awsCredentials.expireTime)).valueOf()
-				refreshCognitoToken(callback)
-			else
-				AWS.config.region = 'us-west-2'
-				AWS.config.credentials = new AWS.Credentials awsCredentials
-				publicContent.s3 = new AWS.S3
-					params: {Bucket: bucketName}
-				callback() if typeof callback == 'function'
+		console.log 'TODO'
 	
 	updateCredentials = ->
-		if typeof localStorage.awsCredentials is not 'undefined' and localStorage.awsCredentials is not null
-			awsCredentials = JSON.parse localStorage.awsCredentials
-			if (new Date()).valueOf() + 60000 * 5 >= (new Date(awsCredentials.expireTime)).valueOf()
-				window.checkCredentials()
+		console.log 'TODO'
 	
 	$.fn.awsUploader = (location) ->
 		$(this).on 'change', ->
@@ -83,6 +69,11 @@ window.webIniciados = do ->
 								pageNumber = parseInt pageName
 						
 						if not isNaN pageNumber
+							filePath = null
+							controller = $('body').data("controller")
+							switch controller
+							  when "level_pages" then filePath = $('#level_id').val() + "/book/" + pageNumber
+							  else null
 							if FileReader
 								fr = new FileReader
 							
@@ -94,7 +85,7 @@ window.webIniciados = do ->
 									yPieces = 2
 									xPieces = 2
 									totalPieces = yPieces * xPieces
-									uploadedPieces = 0
+									piecesArray = []
 									y = 0
 									while y < yPieces
 										x = 0
@@ -106,34 +97,25 @@ window.webIniciados = do ->
 											canvas.height = heightOfOnePiece
 											context = canvas.getContext('2d')
 											context.drawImage image, x * widthOfOnePiece, y * heightOfOnePiece, widthOfOnePiece, heightOfOnePiece, 0, 0, canvas.width, canvas.height
-											do (x, canvas, pageNumber, piece) ->
-												dataUrl = canvas.toDataURL('image/jpeg')
-												d = dataUrl.substr(dataUrl.indexOf('base64,') + 7)
-												pageKey = location + pageNumber + "/" + piece + ".jpg"
-												console.log 'sending page ' + pageNumber + ' piece ' + piece
-												webIniciados.s3.upload {
-													Key: pageKey
-													Body: atob(d)
-													ACL: 'authenticated-read'
-												}, (err, data) ->
-													if err
-														$('.failed-uploades').append('<p>Página </p>' + pageNumber)
-														return console.log('There was an error uploading your photo: ', JSON.stringify(err))
-													else
-														++uploadedPieces
-														if uploadedPieces == totalPieces
-															uploadedPages++
-															$('.uploaded-pages').html(uploadedPages)
-															console.log 'page ' + pageNumber + ' uploaded'
-													return	    	
-												
-										
+											dataUrl = canvas.toDataURL('image/jpeg')
+											d = dataUrl.substr(dataUrl.indexOf('base64,') + 7)
+											piecesArray.push(piece + ".jpg", atob(d))
 											++x
 											++piece
-											++bookPieces
 										++y
+									
+									
+									$.post(gon.upload_path, {pieces: piecesArray, file_path: filePath}, ->
+										uploadedPages++
+										$('.uploaded-pages').html(uploadedPages)
+										console.log 'page ' + pageNumber + ' uploaded'
+										return
+									).fail(->
+										$('.failed-uploades').append('<p>Página </p>' + pageNumber)
+									)
+									
 								fr.readAsDataURL file
-					), 15000 * i			
+					), 5000 * i			
 					
 				i++
 		

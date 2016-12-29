@@ -3,8 +3,10 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_action :authenticate_user! 
-	helper_method :embedded_svg, :namespace
-
+  before_action :private_root
+	
+	helper_method :embedded_svg, :namespace, :private_root
+  
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, :alert => exception.message
   end
@@ -23,5 +25,9 @@ class ApplicationController < ActionController::Base
     names = self.class.to_s.split('::')
     return "null" if names.length < 2
     names[0..(names.length-2)].map(&:downcase).join('_')
+  end
+  
+  def private_root
+    "#{Rails.root}/private"
   end
 end

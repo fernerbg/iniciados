@@ -18,9 +18,11 @@ class Iniciados.Views.ContentsShowPage extends Backbone.View
 		
 		@currentPage = parseInt gon.initial_page
 		
-		webIniciados.checkCredentials(->
-			self.renderImage self.currentPage
-		)
+		#webIniciados.checkCredentials(->
+		#	self.renderImage self.currentPage
+		#)
+		
+		self.renderImage self.currentPage
 		
 		@maxPageWidth = window.innerWidth
 		
@@ -48,33 +50,29 @@ class Iniciados.Views.ContentsShowPage extends Backbone.View
 		totalPieces = 4
 		piecesDownloaded = 0
 		i = 1
-		while i <= totalPieces
-			do (i) ->
-				webIniciados.s3.getObject { Key: gon.path + page + "/" + i + self.extension}, (err, data) ->
-					if err
-						console.log err
-					else
-						pieces[i] = data.Body
-						++piecesDownloaded
-						if piecesDownloaded == totalPieces
-							# READY TO RENDER
-							$('#book-content').html('')
-							$('#current-page').val(page)
-							j = 1
-							while j < pieces.length
-								piece = pieces[j]
-								img = new Image()
-								img.src = 'data:image/jpeg;base64,' + btoa(piece)
-								canvas = document.createElement('canvas')
-								canvas.width = img.width
-								canvas.height = img.height
-								ctx = canvas.getContext("2d")
-								ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
-								$('#book-content').append(canvas)
-								j++
-							self.unlockButtons()
-			i++
+		$.getJSON("/contents/show_page", {file_path: gon.file_path + "/" + page}, (data) ->
+			$('#book-content').html('')
+			$('#current-page').val(page)
+			console.log 'Here I am ' + data.length
+			j = 0
+			while j < data.length
+				piece = pieces[j]
+				img = new Image()
+				img.src = 'data:image/jpeg;base64,' + btoa(piece)
+				console.log img.src
+				canvas = document.createElement('canvas')
+				canvas.width = img.width
+				canvas.height = img.height
+				ctx = canvas.getContext("2d")
+				ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+				$('#book-content').append(canvas)
+				j++
 				
+			self.unlockButtons()
+		).fail(->
+			$('.failed-uploades').append('<p>Página </p>' + page)
+		)
+			
 				
 	nextPage: (e) ->
 		if not $(e.target).hasClass('inactive')
