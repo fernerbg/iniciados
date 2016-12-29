@@ -16,10 +16,11 @@ class ContentsController < ApplicationController
     gon.initial_page = params[:number]
     case params[:element]
     when 'levels'
-      gon.file_path = "levels/#{params[:level]}/book"
+      gon.file_path = "levels/#{params[:level]}/pages"
       gon.total_pages = Dir.entries("#{private_root}/#{gon.file_path}").size
-    when 'lesson_levels'
-      gon.path = "lessons/#{params[:lesson]}/reading/"
+    when 'lessons'
+      gon.file_path = "lessons/#{params[:lesson]}/pages"
+      gon.total_pages = Dir.entries("#{private_root}/#{gon.file_path}").size
     else
       gon.path = "error"
     end
@@ -38,6 +39,34 @@ class ContentsController < ApplicationController
     end
   end
 
+  def create_page
+    case params[:element]
+    when 'levels'
+      directory_name = "#{levels_root}/#{params[:file_path]}"
+    when 'lessons'
+      directory_name = "#{lessons_root}/#{params[:file_path]}"
+    else
+      directory_name = nil
+    end
+    FileUtils.mkdir_p directory_name
+    params[:pieces].each_with_index do |piece, index|
+      File.open("#{directory_name}/#{index + 1}.jpg", "w+b") do |file|
+        file.write Base64.decode64(piece)
+      end
+    end
+    respond_to do |format|
+      format.json do
+        render json: { success: true }
+      end
+    end
+  end
+  
+  def new_page
+    @element = params[:element]
+    gon.element = params[:element]
+    gon.upload_path = page_upload_path
+  end
+  
   def new
     @content = Content.new
     respond_with(@content)
@@ -71,7 +100,11 @@ class ContentsController < ApplicationController
       params.require(:content).permit(:title, :description, :file, :page_number)
     end
     
-    def book_params
-      params.require(:book).permit(:title, :page_number, :document)
+    def levels_root
+      "#{private_root}/levels"
+    end
+    
+    def lessons_root
+      "#{private_root}/lessons"
     end
 end

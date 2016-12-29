@@ -19,10 +19,8 @@ window.Iniciados =
 		new Iniciados.Routers.LessonLevels() if controller == 'lesson_levels'
 		new Iniciados.Routers.Users() if controller == 'users'
 		new Iniciados.Routers.Levels() if controller == 'levels'
-		new Iniciados.Routers.LevelPages() if controller == 'level_pages'
-		new Iniciados.Routers.Lessons() if controller == 'lessons'
 		
-		Backbone.history.stop() 
+		Backbone.history.stop()
 		Backbone.history.start( pushState: true )
 		
 ###

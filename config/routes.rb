@@ -19,16 +19,15 @@ Rails.application.routes.draw do
   resources :contents do
     collection do
       get 'show_page'
+      post 'create_page'
+      get 'new_page'
     end
   end
 
   resources :levels
 
-  resources :lessons do
-    collection do
-      get 'new_pdf'
-    end
-  end
+  resources :lessons
+  
   resources :lesson_levels
 
   resources :roles

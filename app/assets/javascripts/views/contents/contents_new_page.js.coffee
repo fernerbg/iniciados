@@ -1,4 +1,4 @@
-class Iniciados.Views.LevelPagesNew extends Backbone.View
+class Iniciados.Views.ContentsNewPage extends Backbone.View
 
 	el: 'body'
 	

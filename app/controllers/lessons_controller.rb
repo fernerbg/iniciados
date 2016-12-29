@@ -17,9 +17,6 @@ class LessonsController < ApplicationController
     respond_with(@lesson)
   end
   
-  def new_pdf
-  end
-  
   def edit
   end
 

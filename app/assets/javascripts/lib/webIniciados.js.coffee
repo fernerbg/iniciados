@@ -38,15 +38,7 @@ window.webIniciados = do ->
 	
 	$.fn.awsUploader = () ->
 		$(this).on 'change', ->
-			controller = $('body').data('controller')
-			switch controller
-				when 'lessons'
-					location = "lessons/" + $('#lesson_id').val() + "/reading/"
-				when 'level_pages'
-					filePath = $('#level_id').val() + "/book/"
-				else
-					console.log 'not location'
-					return false
+			filePath = $('#element').val() + "/pages/"
 			
 			$('.uploaded-pages').html('0')
 			$('.failed-uploades').html('')
@@ -87,7 +79,6 @@ window.webIniciados = do ->
 								    context = canvas.getContext('2d')
 								    context.drawImage image, x * widthOfOnePiece, y * heightOfOnePiece, widthOfOnePiece, heightOfOnePiece, 0, 0, canvas.width, canvas.height
 								    dataUrl = canvas.toDataURL('image/jpeg')
-								    console.log dataUrl.substr(dataUrl.indexOf('base64,') + 7)
 								    imagePieces.push(dataUrl.substr(dataUrl.indexOf('base64,') + 7))
 								    #imagePieces.push atob(dataUrl.substr(dataUrl.indexOf('base64,') + 7))
 								    ++x
@@ -95,19 +86,18 @@ window.webIniciados = do ->
 								
 								$.ajax
 									type: 'POST'
-									data: pieces: imagePieces, file_path: filePath + "/" + pageNumber
+									data: pieces: imagePieces, file_path: filePath + "/" + pageNumber, element: gon.element
 									url: gon.upload_path
 									dataType: "json"
 									success: (msg) ->
 										console.log msg
-										++self.uploadedPages
-										$('.uploaded-pages').html(self.uploadedPages)
+										++uploadedPages
+										$('.uploaded-pages').html(uploadedPages)
 										return
 							
 							fr.readAsDataURL file
 					)(file, pageNumber)
 	
-					
 				i++
 		
 	
