@@ -43,7 +43,7 @@ window.webIniciados = do ->
 				when 'lessons'
 					location = "lessons/" + $('#lesson_id').val() + "/reading/"
 				when 'level_pages'
-					filePath = "levels/" + $('#level_id').val() + "/book/"
+					filePath = $('#level_id').val() + "/book/"
 				else
 					console.log 'not location'
 					return false
@@ -87,6 +87,7 @@ window.webIniciados = do ->
 								    context = canvas.getContext('2d')
 								    context.drawImage image, x * widthOfOnePiece, y * heightOfOnePiece, widthOfOnePiece, heightOfOnePiece, 0, 0, canvas.width, canvas.height
 								    dataUrl = canvas.toDataURL('image/jpeg')
+								    console.log dataUrl.substr(dataUrl.indexOf('base64,') + 7)
 								    imagePieces.push(dataUrl.substr(dataUrl.indexOf('base64,') + 7))
 								    #imagePieces.push atob(dataUrl.substr(dataUrl.indexOf('base64,') + 7))
 								    ++x
@@ -102,7 +103,6 @@ window.webIniciados = do ->
 										++self.uploadedPages
 										$('.uploaded-pages').html(self.uploadedPages)
 										return
-									
 							
 							fr.readAsDataURL file
 					)(file, pageNumber)
