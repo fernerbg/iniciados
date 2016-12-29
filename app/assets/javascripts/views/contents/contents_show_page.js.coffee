@@ -56,10 +56,9 @@ class Iniciados.Views.ContentsShowPage extends Backbone.View
 			console.log 'Here I am ' + data.length
 			j = 0
 			while j < data.length
-				piece = pieces[j]
+				piece = data[j]
 				img = new Image()
-				img.src = 'data:image/jpeg;base64,' + btoa(piece)
-				console.log img.src
+				img.src = piece
 				canvas = document.createElement('canvas')
 				canvas.width = img.width
 				canvas.height = img.height
