@@ -34,8 +34,6 @@ gem 'state_machine', require: 'state_machine/core'
 
 gem 'carrierwave'
 
-gem 'carrierwave_direct'
-
 # Gem used to handle image uploading
 gem 'fog', '>= 1.3.1'
   
@@ -48,8 +46,6 @@ gem 'country_select'
 gem 'inherited_resources',        '1.6.0'
 
 gem 'has_scope', '0.6.0'
-
-gem 'aws-sdk', '~> 2'
 
 gem 'rake', '< 11.0'
 

@@ -1,0 +1,29 @@
+h1 Listing audios
+
+table
+  thead
+    tr
+      th Name
+      th Length
+      th Wave
+      th Track
+      th Description
+      th
+      th
+      th
+
+  tbody
+    - @audios.each do |audio|
+      tr
+        td = audio.name
+        td = audio.length
+        td = audio.wave
+        td = audio.track
+        td = audio.description
+        td = link_to 'Show', audio
+        td = link_to 'Edit', edit_audio_path(audio)
+        td = link_to 'Destroy', audio, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Audio', new_audio_path

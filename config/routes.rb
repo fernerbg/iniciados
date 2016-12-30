@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  resources :level_pages
+  resources :audios
 
   post 'level_pages/:id', to: "level_pages#show"
   

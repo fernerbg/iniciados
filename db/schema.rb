@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161201053837) do
+ActiveRecord::Schema.define(version: 20161229224925) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "audios", force: true do |t|
+    t.string   "name"
+    t.integer  "length"
+    t.string   "wave"
+    t.string   "track"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "levels", force: true do |t|
     t.string   "name"
@@ -117,6 +127,18 @@ ActiveRecord::Schema.define(version: 20161201053837) do
     t.index ["lesson_id"], :name => "index_lesson_contents_on_lesson_id"
     t.foreign_key ["content_id"], "contents", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_lesson_contents_content_id"
     t.foreign_key ["lesson_id"], "lessons", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_lesson_contents_lesson_id"
+  end
+
+  create_table "level_audios", force: true do |t|
+    t.integer  "level_id"
+    t.integer  "audio_id"
+    t.integer  "number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["audio_id"], :name => "index_level_audios_on_audio_id"
+    t.index ["level_id"], :name => "index_level_audios_on_level_id"
+    t.foreign_key ["audio_id"], "audios", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_level_audios_audio_id"
+    t.foreign_key ["level_id"], "levels", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_level_audios_level_id"
   end
 
   create_table "level_contents", force: true do |t|

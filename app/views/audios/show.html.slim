@@ -1,0 +1,21 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @audio.name
+p
+  strong Length:
+  = @audio.length
+p
+  strong Wave:
+  = @audio.wave
+p
+  strong Track:
+  = @audio.track
+p
+  strong Description:
+  = @audio.description
+
+= link_to 'Edit', edit_audio_path(@audio)
+'|
+= link_to 'Back', audios_path
