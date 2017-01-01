@@ -1,0 +1,18 @@
+.audio-wrapper
+    .audio-header
+        = embedded_svg 'design2/play-video-icon.svg', class: 'audio-controll play-audio'
+        = embedded_svg 'design2/view-pdf-icon.svg', class: 'audio-controll stop-audio'
+        .audio-properties
+            h2.audio-name= audio.name
+            br
+            span.current-time
+                | 10:10
+            |&nbsp;/&nbsp;
+            span.duration
+                | 11:11
+    .audio-wave
+        = image_tag send_wave_audio_path(audio), class: 'wave-image'
+        .opacity-maker
+        .image-mask
+    audio.audio-player
+        source src=(stream_audio_path(audio))

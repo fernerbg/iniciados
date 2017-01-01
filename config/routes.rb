@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   
-  resources :audios
-
+  resources :audios do
+    member do
+      get 'send_wave'
+      get 'stream'
+    end
+  end
+  
   post 'level_pages/:id', to: "level_pages#show"
   
   resources :emanations

@@ -11,12 +11,11 @@
   
   .main-options-wrapper
     .main-options
-      .circle-option-wrapper.small
-        = link_to "http://escuelavaloresdivinos.com", class: "inner-link" do
-          .inner-option
-            .word-wrapper
-              p.word.small-word.last-word
-                |AUDIO
+      #audio-link.circle-option-wrapper.small.link
+        .inner-option
+          .word-wrapper
+            p.word.small-word.last-word
+              |AUDIO
       .circle-option-wrapper
         = link_to show_page_contents_path(level: @level.name, number: 1, element: 'levels'), class: "inner-link" do
           .inner-option
@@ -37,7 +36,7 @@
   
   #button-downward
     .triangle
-#book-content-wrapper
+#book-content.top-content-wrapper.book-content
   = embedded_svg 'design2/close-icon-2.svg', class: "close-icon"
   .title
     | Libro 1 Nivel Fuego
@@ -179,6 +178,13 @@
         = link_to "La Tarea De Revelar al Dios", root_path
       .fragment
         = link_to "La Pregunta Siempre Latente", root_path
+
+#audio-content.top-content-wrapper.audio-content
+  = embedded_svg 'design2/close-icon-2.svg', class: "close-icon"
+  .title
+    | Audios Nivel Fuego
+  .content-container
+    = render @level.audios
 .lesson-container
   .title
     | Libro I Nivel Fuego
@@ -208,7 +214,7 @@
             .btn.btn-play
               = link_to embedded_svg('design2/play-video-icon.svg'), root_path
             .btn.btn-read
-              = link_to embedded_svg('design2/view-pdf-icon.svg'), level_page_path(level_id: @level.id, number: 5)
+              = link_to embedded_svg('design2/view-pdf-icon.svg'), show_page_contents_path(element: 'levels', level: @level.name, number: 5)
     .section-wraper.section-2.fuego-1
       = image_tag 'design2/100x50.jpg', class: "image-ratio"
       .section

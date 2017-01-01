@@ -6,8 +6,9 @@
         - @audio.errors.full_messages.each do |message|
           li = message
   - if @element == 'levels'
-    = select_tag :level_id, options_for_select(Level.all.pluck(:name, :id), :level_id), name: "level_page[level_id]", class: 'form-control'
-    
+    = select_tag :level_id, options_for_select(Level.all.pluck(:name, :id), :level_id), class: 'form-control'
+    = number_field_tag :number, placeholder: "number"
+  = hidden_field_tag :element, params[:element]
   .field
     = f.label :name
     = f.text_field :name
@@ -25,6 +26,7 @@
     = f.text_area :description
   .actions = f.submit
 
+audio#track-audio controls='controls'
 #wave-container
   canvas#waveform
   #overForm

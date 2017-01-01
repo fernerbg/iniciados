@@ -1,5 +1,5 @@
 [data-controller="levels"][data-action="show"]
-	#book-content-wrapper
+	.top-content-wrapper
 		position: absolute
 		top: 5%
 		left: 0px
@@ -29,41 +29,44 @@
 			+transition(all, 0.2s)
 			&:hover
 				opacity: 1
-		.content-container
-			overflow: hidden
-			padding: 0 2%
-			.content-section
-				float: left
-				display: inline-block
-				width: 25%
-				text-align: left
-				padding: 0 10px
-				margin: 10px 0px
-				.content-section-title
-					background-color: black
-					color: white
-					text-transform: uppercase
-					letter-spacing: 1px
-					padding: 0px 10px
-					display: block
-					margin-bottom: 5px
-					&.line
-						margin-bottom: 0px
-				.fragment
-					padding-left: 10px
-					a
-						color: black
-						+transition(all, 0.2s)
-						&:active
-							text-decoration: none
-					&:hover
+		&.book-content
+			.content-container
+				overflow: hidden
+				padding: 0 2%
+				.content-section
+					float: left
+					display: inline-block
+					width: 25%
+					text-align: left
+					padding: 0 10px
+					margin: 10px 0px
+					.content-section-title
 						background-color: black
+						color: white
+						text-transform: uppercase
+						letter-spacing: 1px
+						padding: 0px 10px
+						display: block
+						margin-bottom: 5px
+						&.line
+							margin-bottom: 0px
+					.fragment
+						padding-left: 10px
 						a
-							color: white
-							text-decoration: none
-							letter-spacing: 1px
+							color: black
+							+transition(all, 0.2s)
+							&:active
+								text-decoration: none
+						&:hover
+							background-color: black
+							a
+								color: white
+								text-decoration: none
+								letter-spacing: 1px
 	
-		
+		&.audio-content
+			.content-container
+				padding: 0 5%
 	.lesson-container
 		margin-top: 50px
 		.title

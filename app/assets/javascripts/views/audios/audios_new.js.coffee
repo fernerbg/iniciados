@@ -5,6 +5,13 @@ class Iniciados.Views.AudiosNew extends Backbone.View
 		'change #audio_track' : 'createWave'
 		
 	createWave: (event) ->
+		audioElement = document.getElementById('track-audio')
+		blob = window.URL || window.webkitURL
+		audioElement.addEventListener('loadedmetadata', ->
+			$('#audio_length').val(parseInt(audioElement.duration))
+		)
+		audioElement.src = blob.createObjectURL(event.target.files[0])
+		
 		canvasWidth = 1800
 		canvasHeight = 260
 		mirrorHeight = 70
@@ -30,7 +37,4 @@ class Iniciados.Views.AudiosNew extends Backbone.View
 				context.translate(0, 0)
 				context.drawImage(img, -canvas.width / 2, -canvas.height / 2 + 5, img.width, img.height / 3)
 				context.restore()
-				
-				
-				
 				

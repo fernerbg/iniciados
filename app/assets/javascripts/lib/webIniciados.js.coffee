@@ -1,8 +1,5 @@
 window.webIniciados = do ->
 	
-	s3 = null
-	bucketName = 'iniciados-dev'
-	
 	refreshCognitoToken = (callback) ->
 		try
 			console.log 'inside'
@@ -69,20 +66,19 @@ window.webIniciados = do ->
 								image.src = fr.result
 								y = 0
 								while y < 10
-								  x = 0
-								  while x < 10
-								    canvas = document.createElement('canvas')
-								    widthOfOnePiece = image.width / 10
-								    heightOfOnePiece = image.height / 10
-								    canvas.width = widthOfOnePiece
-								    canvas.height = heightOfOnePiece
-								    context = canvas.getContext('2d')
-								    context.drawImage image, x * widthOfOnePiece, y * heightOfOnePiece, widthOfOnePiece, heightOfOnePiece, 0, 0, canvas.width, canvas.height
-								    dataUrl = canvas.toDataURL('image/jpeg')
-								    imagePieces.push(dataUrl.substr(dataUrl.indexOf('base64,') + 7))
-								    #imagePieces.push atob(dataUrl.substr(dataUrl.indexOf('base64,') + 7))
-								    ++x
-								  ++y
+									x = 0
+									while x < 10
+										canvas = document.createElement('canvas')
+										widthOfOnePiece = image.width / 10
+										heightOfOnePiece = image.height / 10
+										canvas.width = widthOfOnePiece
+										canvas.height = heightOfOnePiece
+										context = canvas.getContext('2d')
+										context.drawImage image, x * widthOfOnePiece, y * heightOfOnePiece, widthOfOnePiece, heightOfOnePiece, 0, 0, canvas.width, canvas.height
+										dataUrl = canvas.toDataURL('image/jpeg')
+										imagePieces.push(dataUrl.substr(dataUrl.indexOf('base64,') + 7))
+										++x
+									++y
 								
 								$.ajax
 									type: 'POST'
@@ -100,11 +96,45 @@ window.webIniciados = do ->
 	
 				i++
 		
+	setAudioWaves = ->
+		audioImage = $('.wave-image:first')
+		audioImage.load ->
+			$('.top-content-wrapper.audio-content').css({visibility: 'hidden', display: 'block'})
+			
+			imgHeight = parseInt $('.audio-wave:first').css('height')
+			opacityHeight = imgHeight * 0.3
+			$('.opacity-maker').css({top: opacityHeight * -1 + 6, height: (opacityHeight - 6) + 'px'})
+			
+			$('.wave-image').each ->
+				canvas = document.createElement('canvas')
+				img = new Image()
+				img.src = $(this).attr('src')
+				canvas.width = img.width
+				canvas.height = img.height
+				ctx = canvas.getContext('2d')
+				ctx.drawImage(img, 0, 0)
+				ctx.fillStyle = "rgb(255, 0, 0)"
+				ctx.globalCompositeOperation = "source-in"
+				ctx.fillRect(0, 0, img.width, img.height)
+				ctx.restore()
+				imgMask = $(this).parent().find('.image-mask')
+				imgMask.css({'background-image': 'url(' + canvas.toDataURL() + ')', height: this.height, 'background-size': this.width + 'px ' + this.height + 'px'})
+				
+			$('.top-content-wrapper.audio-content').css({visibility: 'visible', display: 'none'})
 	
+	
+	toMMSS = (seconds) ->
+		minutes = Math.floor(seconds / 60)
+		seconds = seconds - minutes * 60
+		minutes = "0"+minutes if minutes < 10
+		seconds = "0"+seconds if seconds < 10
+
+		return minutes+':'+seconds
+		
 	publicContent =
 		checkCredentials: checkCredentials
 		updateCredentials: updateCredentials
-		s3: null
+		setAudioWaves: setAudioWaves
+		toMMSS: toMMSS
 		
 	return	publicContent
-

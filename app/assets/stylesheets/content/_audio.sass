@@ -1,0 +1,37 @@
+.audio-wrapper
+    text-align: left
+    .audio-header
+        .audio-controll
+            vertical-align: top
+            width: 50px
+            margin-right: 10px
+            cursor: pointer
+            &.stop-audio
+                display: none
+        .audio-properties
+            display: inline-block
+            margin-top: 5px
+            .audio-name
+                display: inline-block
+                font-size: 25px
+                margin: 0px
+            .current-time
+                margin-left: 3px
+            
+    .audio-wave
+        position: relative
+        top: -15px
+        .wave-image
+            width: 100%
+        .opacity-maker
+            width: 100%
+            background-color: white
+            position: relative
+            z-index: 10
+            +opacity(0.5)
+        .image-mask
+            width: 0px
+            position: absolute
+            top: 0px
+            +transition(all, 1s)
+            
