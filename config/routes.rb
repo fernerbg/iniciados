@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :notifications
+
   resources :audios do
     member do
       get 'send_wave'

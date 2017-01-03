@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161229224925) do
+ActiveRecord::Schema.define(version: 20170102171118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -160,6 +160,15 @@ ActiveRecord::Schema.define(version: 20161229224925) do
     t.datetime "updated_at"
     t.index ["level_id"], :name => "index_level_pages_on_level_id"
     t.foreign_key ["level_id"], "levels", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_level_pages_level_id"
+  end
+
+  create_table "notifications", force: true do |t|
+    t.string   "title"
+    t.datetime "date"
+    t.text     "description"
+    t.string   "media"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "pieces", force: true do |t|

@@ -97,35 +97,31 @@ window.webIniciados = do ->
 				i++
 		
 	setAudioWaves = ->
-		audioImage = $('.wave-image:first')
-		audioImage.load ->
+		$('.wave-image').load ->
 			$('.top-content-wrapper.audio-content').css({visibility: 'hidden', display: 'block'})
-			
-			imgHeight = parseInt $('.audio-wave:first').css('height')
-			opacityHeight = imgHeight * 0.3
-			$('.opacity-maker').css({top: opacityHeight * -1 + 6, height: (opacityHeight - 6) + 'px'})
-			
-			$('.wave-image').each ->
-				canvas = document.createElement('canvas')
-				img = new Image()
-				img.src = $(this).attr('src')
-				canvas.width = img.width
-				canvas.height = img.height
-				ctx = canvas.getContext('2d')
-				ctx.drawImage(img, 0, 0)
-				ctx.fillStyle = "rgb(255, 0, 0)"
-				ctx.globalCompositeOperation = "source-in"
-				ctx.fillRect(0, 0, img.width, img.height)
-				ctx.restore()
-				imgMask = $(this).parent().find('.image-mask')
-				imgMask.css({'background-image': 'url(' + canvas.toDataURL() + ')', height: this.height, 'background-size': this.width + 'px ' + this.height + 'px'})
+			audioWrapper = $(this).closest('.audio-wrapper')
+			opacityHeight = parseInt audioWrapper.find('.audio-wave').css('height') * 0.3
+			audioWrapper.find('.opacity-maker').css({top: opacityHeight * -1 + 6, height: (opacityHeight - 6) + 'px'})
+			canvas = document.createElement('canvas')
+			img = new Image()
+			img.src = $(this).attr('src')
+			canvas.width = img.width
+			canvas.height = img.height
+			ctx = canvas.getContext('2d')
+			ctx.drawImage(img, 0, 0)
+			ctx.fillStyle = "rgb(255, 0, 0)"
+			ctx.globalCompositeOperation = "source-in"
+			ctx.fillRect(0, 0, img.width, img.height)
+			ctx.restore()
+			imgMask = $(this).parent().find('.image-mask')
+			imgMask.css({'background-image': 'url(' + canvas.toDataURL() + ')', height: this.height, 'background-size': this.width + 'px ' + this.height + 'px'})
 				
 			$('.top-content-wrapper.audio-content').css({visibility: 'visible', display: 'none'})
 	
 	
 	toMMSS = (seconds) ->
 		minutes = Math.floor(seconds / 60)
-		seconds = seconds - minutes * 60
+		seconds = parseInt(seconds - minutes * 60)
 		minutes = "0"+minutes if minutes < 10
 		seconds = "0"+seconds if seconds < 10
 

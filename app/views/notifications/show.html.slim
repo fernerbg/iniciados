@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Title:
+  = @notification.title
+p
+  strong Date:
+  = @notification.date
+p
+  strong Description:
+  = @notification.description
+p
+  strong Media:
+  = @notification.media
+
+= link_to 'Edit', edit_notification_path(@notification)
+'|
+= link_to 'Back', notifications_path

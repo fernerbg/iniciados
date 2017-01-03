@@ -11,7 +11,7 @@ class Iniciados.Views.LevelsShow extends Backbone.View
 		'click .main-link-below .border-bottom' : 'openBookContent'
 		'click #audio-link' : 'openAudioContent'
 		'click .play-audio' : 'playTrack'
-		'click .stop-audio' : 'stopTrack'
+		'click .stop-audio' : 'onStopTrack'
 		
 	initialize: ->
 		webIniciados.setAudioWaves()
@@ -30,20 +30,25 @@ class Iniciados.Views.LevelsShow extends Backbone.View
 	
 	playTrack: (event) ->
 		self = this
-		if @currentAudio is not null
-			@currentAudio.trigger('stop')
-			clearInterval @timeInterval
+		newCurrentAudio = $(event.target).closest('.audio-wrapper').find('.audio-player')
+		if @currentAudio isnt null && @currentAudio isnt newCurrentAudio
+			self.stopTrack @currentAudio.closest('.audio-wrapper').find('.play-audio')
+			@currentAudio = newCurrentAudio
+		
 		@currentAudio = $(event.target).closest('.audio-wrapper').find('.audio-player')
+		
 		@currentAudio.on('play', ->
-			console.log 'start playing'
-			$(this).closest('.duration').html(@currentAudio.duration)
+			$(this).closest('.audio-wrapper').find('.duration').html(webIniciados.toMMSS(this.duration))
+			self.timeInterval = setInterval (->
+				currentAudio = self.currentAudio[0]
+				currentWidth = currentAudio.currentTime / currentAudio.duration * 100
+				self.currentAudio.closest('.audio-wrapper').find('.image-mask').css('width', currentWidth + "%")
+				self.currentAudio.closest('.audio-wrapper').find('.current-time').html(webIniciados.toMMSS(currentAudio.currentTime))
+			), 1000
 		)
+		
 		@currentAudio.trigger('play')
-		@timeInterval = setInterval (->
-			currentAudio = self.currentAudio[0]
-			currentWidth = currentAudio.currentTime / currentAudio.duration * 100
-			self.currentAudio.closest('.audio-wrapper').find('.image-mask').css('width', currentWidth + "%")
-		), 1000
+		
 		if $(event.target).hasClass('play-audio')
 			playAudio =  $(event.target)
 		else
@@ -53,13 +58,22 @@ class Iniciados.Views.LevelsShow extends Backbone.View
 		playAudio.next().show()
 		
 		
-	stopTrack: (event) ->
+	onStopTrack: (event) ->
+		@stopTrack($(event.target))
+		
+	stopTrack: (target) ->
+		@currentAudio.on('pause', ->
+			clearInterval self.timeInterval
+		)
 		@currentAudio.trigger('pause')
-		clearInterval @timeInterval
-		if $(event.target).hasClass('stop-audio')
-			stopAudio =  $(event.target)
+		
+		@currentAudio.off('play')
+		@currentAudio.off('pause')
+		
+		if target.hasClass('stop-audio')
+			stopAudio =  target
 		else
-			stopAudio = $(event.target).closest('.stop-audio')
+			stopAudio = target.closest('.stop-audio')
 			
 		stopAudio.hide()
 		stopAudio.prev().show()

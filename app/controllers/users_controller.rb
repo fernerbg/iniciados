@@ -71,6 +71,8 @@ class UsersController < ApplicationController
   end
 
   def home
+    notifications = Notification.all.limit(10).order(date: :desc)
+    @notifications_month = notifications.group_by { |t| t.date.beginning_of_month }
   end
 
   def get_cognito_token
