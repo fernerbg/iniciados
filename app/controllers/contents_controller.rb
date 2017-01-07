@@ -62,6 +62,22 @@ class ContentsController < ApplicationController
     gon.upload_path = page_upload_path
   end
   
+  def send_content
+    case params[:element]
+    when 'audio_wave' 
+      audio = Audio.find(params[:id])
+      send_file audio.wave.current_path
+    when 'audio_track'
+      audio = Audio.find(params[:id])
+      send_file audio.track.current_path
+    when 'notification_media'
+      notification = Notification.find(params[:id])
+      send_file notification.media.current_path
+    else
+      'none'
+    end
+  end
+  
   private
     def set_content
       @content = Content.find(params[:id])

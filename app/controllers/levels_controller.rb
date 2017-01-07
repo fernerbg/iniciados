@@ -9,6 +9,7 @@ class LevelsController < ApplicationController
   end
 
   def show
+    gon.audio_stream_path = url_for(action: 'send_content', controller: 'contents', only_path: true)
     render @level.name
   end
 

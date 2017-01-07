@@ -36,6 +36,8 @@ class Iniciados.Views.LevelsShow extends Backbone.View
 			@currentAudio = newCurrentAudio
 		
 		@currentAudio = $(event.target).closest('.audio-wrapper').find('.audio-player')
+		if typeof @currentAudio.find('source').html() is 'undefined'
+			@currentAudio.html($('<source>', {src: gon.audio_stream_path + "?element=audio_track&id=" + @currentAudio.data('id')}))
 		
 		@currentAudio.on('play', ->
 			$(this).closest('.audio-wrapper').find('.duration').html(webIniciados.toMMSS(this.duration))

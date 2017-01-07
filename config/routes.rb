@@ -28,6 +28,7 @@ Rails.application.routes.draw do
       get 'show_page'
       post 'create_page'
       get 'new_page'
+      get 'send_content'
     end
   end
 

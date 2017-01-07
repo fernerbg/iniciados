@@ -14,5 +14,4 @@
         = image_tag send_wave_audio_path(audio), class: 'wave-image'
         .opacity-maker
         .image-mask
-    audio.audio-player
-        source src=(stream_audio_path(audio))
+    audio.audio-player data-id=(audio.id)

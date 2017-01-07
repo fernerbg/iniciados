@@ -1,0 +1,1 @@
+class Iniciados.Models.Notification extends Backbone.Model

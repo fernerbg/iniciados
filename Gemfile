@@ -49,6 +49,8 @@ gem 'has_scope', '0.6.0'
 
 gem 'rake', '< 11.0'
 
+gem 'rails-i18n'
+
 group :test, :development do
   gem 'rspec-rails'
 end

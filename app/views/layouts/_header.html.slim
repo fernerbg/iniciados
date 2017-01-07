@@ -28,7 +28,7 @@
             ul.options-wrapper
               .lessons-options
                 - @available_levels.each do |level|
-                  li.option= link_to level, level_path(level)
+                  li.option= link_to level, level_path(level), class: 'lesson-option'
                   
     - if current_user 
       .sandwish-container
