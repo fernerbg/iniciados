@@ -1,3 +1,4 @@
+/============== NIVEL FUEGO I =================
 #carousel-images.carousel.slide data-ride="carousel"
   /! Indicators
   /*
@@ -7,7 +8,7 @@
   /! Wrapper for slides
   /
   .carousel-inner role="listbox" 
-    .item.active style=("background-image: url(#{image_path('design2/fuego-1-wallpaper.jpg')})")
+    .item.active style=("background-image: url(#{image_path('design2/madre-1-wallpaper.jpg')})")
   
   .main-options-wrapper
     .main-options
@@ -204,8 +205,8 @@
       |AUTOCONOCER
       span.darker
         |SE
-  .sections-container.fuego-1
-    .section-wraper.section-1.fuego-1
+  .sections-container (class="#{@level.only_name}")
+    .section-wraper.section-1 (class="#{@level.only_name}")
       = image_tag 'design2/50x50.jpg', class: "image-ratio"
       .section
         .section-title
@@ -215,7 +216,7 @@
               = link_to embedded_svg('design2/play-video-icon.svg'), root_path
             .btn.btn-read
               = link_to embedded_svg('design2/view-pdf-icon.svg'), show_page_contents_path(element: 'levels', level: @level.name, number: 5)
-    .section-wraper.section-2.fuego-1
+    .section-wraper.section-2 (class="#{@level.only_name}")
       = image_tag 'design2/100x50.jpg', class: "image-ratio"
       .section
         .section-title
@@ -225,7 +226,7 @@
               = link_to embedded_svg('design2/play-video-icon.svg'), root_path
             .btn.btn-read
               = link_to embedded_svg('design2/view-pdf-icon.svg'), root_path
-    .section-wraper.section-3.fuego-1
+    .section-wraper.section-3 (class="#{@level.only_name}")
       = image_tag 'design2/50x50.jpg', class: "image-ratio"
       .section
         .section-title
@@ -235,7 +236,7 @@
               = link_to embedded_svg('design2/play-video-icon.svg'), root_path
             .btn.btn-read
               = link_to embedded_svg('design2/view-pdf-icon.svg'), root_path
-    .section-wraper.section-4.fuego-1
+    .section-wraper.section-4 (class="#{@level.only_name}")
       = image_tag 'design2/50x50.jpg', class: "image-ratio"
       .section
         .section-title
@@ -245,7 +246,7 @@
               = link_to embedded_svg('design2/play-video-icon.svg'), root_path
             .btn.btn-read
               = link_to embedded_svg('design2/view-pdf-icon.svg'), root_path
-    .section-wraper.section-5.fuego-1
+    .section-wraper.section-5 (class="#{@level.only_name}")
       = image_tag 'design2/50x50.jpg', class: "image-ratio"
       .section
         .section-title
@@ -257,7 +258,7 @@
               = link_to embedded_svg('design2/play-video-icon.svg'), root_path
             .btn.btn-read
               = link_to embedded_svg('design2/view-pdf-icon.svg'), root_path
-    .section-wraper.section-6.fuego-1
+    .section-wraper.section-6 (class="#{@level.only_name}")
       = image_tag 'design2/100x50.jpg', class: "image-ratio"
       .section
         .section-title
@@ -267,7 +268,7 @@
               = link_to embedded_svg('design2/play-video-icon.svg'), root_path
             .btn.btn-read
               = link_to embedded_svg('design2/view-pdf-icon.svg'), root_path
-    .section-wraper.section-7.fuego-1.light
+    .section-wraper.section-7 (class="#{@level.only_name}").light
       = image_tag 'design2/50x50.jpg', class: "image-ratio"
       .section
         .section-title
@@ -278,7 +279,7 @@
             .btn.btn-read
               = link_to embedded_svg('design2/view-pdf-icon.svg'), root_path
     .section-group-1
-      .section-wraper.section-8.fuego-1
+      .section-wraper.section-8 (class="#{@level.only_name}")
         = image_tag 'design2/100x50.jpg', class: "image-ratio"
         .section
           .section-title
@@ -288,7 +289,7 @@
                 = link_to embedded_svg('design2/play-video-icon.svg'), root_path
               .btn.btn-read
                 = link_to embedded_svg('design2/view-pdf-icon.svg'), root_path
-      .section-wraper.section-10.fuego-1
+      .section-wraper.section-10 (class="#{@level.only_name}")
         = image_tag 'design2/50x50.jpg', class: "image-ratio"
         .section
           .section-title
@@ -298,7 +299,7 @@
                 = link_to embedded_svg('design2/play-video-icon.svg'), root_path
               .btn.btn-read
                 = link_to embedded_svg('design2/view-pdf-icon.svg'), root_path
-      .section-wraper.section-11.fuego-1
+      .section-wraper.section-11 (class="#{@level.only_name}")
         = image_tag 'design2/50x50.jpg', class: "image-ratio"
         .section
           .section-title
@@ -308,7 +309,7 @@
                 = link_to embedded_svg('design2/play-video-icon.svg'), root_path
               .btn.btn-read
                 = link_to embedded_svg('design2/view-pdf-icon.svg'), root_path
-    .section-wraper.section-9.fuego-1
+    .section-wraper.section-9 (class="#{@level.only_name}")
       = image_tag 'design2/50x50.jpg', class: "image-ratio"
       .section
         .section-title
@@ -320,7 +321,7 @@
               = link_to embedded_svg('design2/play-video-icon.svg'), root_path
             .btn.btn-read
               = link_to embedded_svg('design2/view-pdf-icon.svg'), root_path
-    .section-wraper.section-12.fuego-1
+    .section-wraper.section-12 (class="#{@level.only_name}")
       = image_tag 'design2/50x50.jpg', class: "image-ratio"
       .section
         .section-title
@@ -332,7 +333,7 @@
               = link_to embedded_svg('design2/play-video-icon.svg'), root_path
             .btn.btn-read
               = link_to embedded_svg('design2/view-pdf-icon.svg'), root_path
-    .section-wraper.section-13.fuego-1
+    .section-wraper.section-13 (class="#{@level.only_name}")
       = image_tag 'design2/100x50.jpg', class: "image-ratio"
       .section
         .section-title
@@ -342,7 +343,7 @@
               = link_to embedded_svg('design2/play-video-icon.svg'), root_path
             .btn.btn-read
               = link_to embedded_svg('design2/view-pdf-icon.svg'), root_path
-    .section-wraper.section-14.fuego-1
+    .section-wraper.section-14 (class="#{@level.only_name}")
       = image_tag 'design2/50x50.jpg', class: "image-ratio"
       .section
         .section-title

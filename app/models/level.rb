@@ -12,4 +12,8 @@ class Level < ActiveRecord::Base
     def to_s
         name
     end
+    
+    def only_name
+        "#{name.split(" ").first}"
+    end
 end

@@ -1,18 +1,28 @@
-= form_for @section do |f|
+= bootstrap_nested_form_for @section do |f|
   - if @section.errors.any?
     #error_explanation
       h2 = "#{pluralize(@section.errors.count, "error")} prohibited this section from being saved:"
       ul
         - @section.errors.full_messages.each do |message|
           li = message
-
-  .field
-    = f.label :title
-    = f.text_field :title
-  .field
-    = f.label :start_page
-    = f.number_field :start_page
   .field
     = f.label :level
-    = f.text_field :level
+    = select_tag :level, options_for_select(Level.all.pluck(:name, :id), "section[level_id]"), name: "section[level_id]", class: 'form-control'
+  .field
+    = f.text_field :title
+  .field
+    = f.number_field :start_page
+  br
+  h4 Chapters 
+  = f.fields_for :chapters do |builder|
+    .chapter-fields
+      .field
+        = builder.text_field :title
+      .field
+        = builder.number_field :start_page
+      .field
+        = builder.link_to_remove "Remove"
+        
+  = f.link_to_add "Add a chapter", :chapters
+  
   .actions = f.submit

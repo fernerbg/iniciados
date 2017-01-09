@@ -1,15 +1,24 @@
-p#notice = notice
-
-p
-  strong Title:
-  = @section.title
-p
-  strong Start page:
-  = @section.start_page
-p
-  strong Level:
-  = @section.level
-
-= link_to 'Edit', edit_section_path(@section)
-'|
-= link_to 'Back', sections_path
+.separate-from-header
+  p#notice = notice
+  
+  p
+    strong Title:
+    = @section.title
+  p
+    strong Start page:
+    = @section.start_page
+  p
+    strong Level:
+    = @section.level
+  
+  - @section.chapters.each do |chapter|
+    p
+      strong Title:
+      = chapter.title
+    p
+      strong Start page:
+      = chapter.start_page
+      
+  = link_to 'Edit', edit_section_path(@section)
+  '|
+  = link_to 'Back', sections_path

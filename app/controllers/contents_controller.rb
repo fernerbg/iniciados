@@ -25,7 +25,8 @@ class ContentsController < ApplicationController
         entries = Dir.entries file_path
         files = []
         entries.each do |file_name|
-          files[file_name.to_f - 1] = "data:image/jpg;base64," + Base64.encode64(File.read("#{file_path}/#{file_name}")).gsub("\n", '') unless file_name == '.' || file_name == '..'
+          #files[file_name.to_f - 1] = "data:image/jpg;base64," + Base64.encode64(File.read("#{file_path}/#{file_name}")).gsub("\n", '') unless file_name == '.' || file_name == '..'
+          files[file_name.to_f - 1] = File.read("#{file_path}/#{file_name}") unless file_name == '.' || file_name == '..'
           #files.push File.read "#{file_path}/#{file_name}" unless file_name == '.' || file_name == '..'
         end
         render json: files
@@ -44,10 +45,12 @@ class ContentsController < ApplicationController
       directory_name = nil
     end
     FileUtils.mkdir_p directory_name
-    params[:pieces].each_with_index do |piece, index|
-      File.open("#{directory_name}/#{index + 1}.jpg", "w+b") do |file|
-        file.write Base64.decode64(piece)
-      end
+    (1..10).each do |i|
+      File.open("#{directory_name}/#{i}.jpg", "w+b") do |file|
+        puts "The data is"
+        puts "data" + i.to_s
+        file.write(params["data" + i.to_s].read)
+      end 
     end
     respond_to do |format|
       format.json do
@@ -73,6 +76,8 @@ class ContentsController < ApplicationController
     when 'notification_media'
       notification = Notification.find(params[:id])
       send_file notification.media.current_path
+    when 'book_page'
+      send_file "#{private_root}/#{params[:file_path]}"
     else
       'none'
     end

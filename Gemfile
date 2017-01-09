@@ -15,6 +15,15 @@ gem 'slim-rails'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'backbone-on-rails'
+gem 'bootstrap_form'
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'sass-rails'
+gem 'coffee-rails'
+gem 'uglifier'
+gem "compass-rails"
+gem "nested_form"
+#gem 'jquery-fileupload-rails'
+gem 'gon'
 
 # Authentication
 gem 'devise'
@@ -65,13 +74,6 @@ group :test do
   gem 'coveralls', require: false
   gem "selenium-webdriver", "~> 2.34.0"
 end
-
-gem 'sass-rails'
-gem 'coffee-rails'
-gem 'uglifier'
-gem "compass-rails"
-#gem 'jquery-fileupload-rails'
-gem 'gon'
 
 group :production do
 

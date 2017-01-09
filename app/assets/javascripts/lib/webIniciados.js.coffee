@@ -64,32 +64,42 @@ window.webIniciados = do ->
 							fr.onload = ->
 								image = new Image()
 								image.src = fr.result
+								totalPieces = 1
+								fd = new FormData()
 								y = 0
-								while y < 10
+								yPieces = 2
+								xPieces = 5
+								while y < yPieces
 									x = 0
-									while x < 10
+									while x < xPieces
 										canvas = document.createElement('canvas')
-										widthOfOnePiece = image.width / 10
-										heightOfOnePiece = image.height / 10
+										widthOfOnePiece = image.width / xPieces
+										heightOfOnePiece = image.height / yPieces
 										canvas.width = widthOfOnePiece
 										canvas.height = heightOfOnePiece
 										context = canvas.getContext('2d')
 										context.drawImage image, x * widthOfOnePiece, y * heightOfOnePiece, widthOfOnePiece, heightOfOnePiece, 0, 0, canvas.width, canvas.height
-										dataUrl = canvas.toDataURL('image/jpeg')
-										imagePieces.push(dataUrl.substr(dataUrl.indexOf('base64,') + 7))
+										canvas.toBlob ((blob)->
+											fd.append('data' + totalPieces, blob)
+											if totalPieces is (xPieces * yPieces)
+												fd.append('file_path', filePath + "/" + pageNumber)
+												fd.append("element", gon.element)
+												$.ajax
+													type: 'POST'
+													data: fd
+													url: gon.upload_path
+													processData: false
+													contentType: false
+													dataType: "json"
+													success: (msg) ->
+														console.log msg
+														++uploadedPages
+														$('.uploaded-pages').html(uploadedPages)
+														return
+											++totalPieces
+										), 'image/jpeg'
 										++x
 									++y
-								
-								$.ajax
-									type: 'POST'
-									data: pieces: imagePieces, file_path: filePath + "/" + pageNumber, element: gon.element
-									url: gon.upload_path
-									dataType: "json"
-									success: (msg) ->
-										console.log msg
-										++uploadedPages
-										$('.uploaded-pages').html(uploadedPages)
-										return
 							
 							fr.readAsDataURL file
 					)(file, pageNumber)

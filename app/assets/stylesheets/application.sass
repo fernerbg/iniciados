@@ -1,4 +1,5 @@
 //= require jquery-ui
+//= require rails_bootstrap_forms
 
 $design_path: "design2/"
 $image_path: "/assets/"
@@ -6,8 +7,10 @@ $image_path: "/assets/"
 @import compass/reset
 @import compass/utilities
 @import compass/css3
-@import lib/bootstrap
 @import miv/colors
+
+@import "bootstrap-sprockets"
+@import "bootstrap"
 
 @import content/scaffold
 @import content/header
