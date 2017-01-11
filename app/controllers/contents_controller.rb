@@ -25,9 +25,7 @@ class ContentsController < ApplicationController
         entries = Dir.entries file_path
         files = []
         entries.each do |file_name|
-          #files[file_name.to_f - 1] = "data:image/jpg;base64," + Base64.encode64(File.read("#{file_path}/#{file_name}")).gsub("\n", '') unless file_name == '.' || file_name == '..'
           files[file_name.to_f - 1] = File.read("#{file_path}/#{file_name}") unless file_name == '.' || file_name == '..'
-          #files.push File.read "#{file_path}/#{file_name}" unless file_name == '.' || file_name == '..'
         end
         render json: files
       end

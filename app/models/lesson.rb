@@ -3,6 +3,8 @@ class Lesson < ActiveRecord::Base
   has_many :lesson_contents
   has_many :contents, through: :lesson_contents
 
+  validates :name, uniqueness: true
+  
   def cover_image
   	content = contents.where(title: 'Cover Image').first
   	if content.nil?

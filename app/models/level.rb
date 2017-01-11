@@ -5,15 +5,21 @@ class Level < ActiveRecord::Base
     has_many :level_audios
     
     has_many :audios, through: :level_audios
-    has_many :sections
+    has_many :sections, dependent: :destroy
     
     scope :available_levels, -> (current_level) { where("number <= :current_level", {current_level: current_level}).order(number: :asc) }
+    
+    validates :name, uniqueness: true
     
     def to_s
         name
     end
     
-    def only_name
-        "#{name.split(" ").first}"
+    def book_name
+        "#{name.split(" ").first}".downcase
+    end
+    
+    def book_number
+        "#{name.split(" ").last}"
     end
 end

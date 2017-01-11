@@ -5,8 +5,8 @@
 			= number_field_tag :number, params[:number], id: 'current-page', class: 'pdf-input'
 				
 			#total-pages
-			span#prev-page.glyphicon.glyphicon-arrow-left.pdf-input
-			span#next-page.glyphicon.glyphicon-arrow-right.pdf-input
+			= embedded_svg 'design2/back-btn.svg', id: '#prev-page', class: 'glyphicon glyphicon-arrow-left pdf-input'
+			= embedded_svg 'design2/forward-btn.svg', id: '#next-page', class: 'glyphicon glyphicon-arrow-left pdf-input'
 			
 		#slider-wrapper
 			span.glyphicon.glyphicon-zoom-in

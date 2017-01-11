@@ -24,7 +24,7 @@ p.save()
 u.profiles << p
 
 
-les = Level.create(name: "Fuego I", number: 1)
+lev = Level.create(name: "Fuego I", number: 1)
 Level.create(name: "Fuego II", number: 2)
 Level.create(name: "Luz I", number: 3)
 Level.create(name: "Luz II", number: 4)
@@ -32,7 +32,7 @@ Level.create(name: "Cósmico I", number: 5)
 Level.create(name: "Estelar I", number: 7)
 Level.create(name: "Madre I", number: 9)
 
-u.level = les
+u.level = lev
 u.save()
 
 ll = LessonLevel.create(name: "Atma", number: 1)
@@ -431,3 +431,118 @@ ls = Lesson.create(name: "Presente Siempre Presente", lesson_level: ll, number_l
 
 u.lesson = ls
 u.save()
+
+
+
+### SECTIONS ###
+
+sec = lev.sections.create(title:"Emanaciones y Mantras", start_page: 7, front_number: 1)
+sec.chapters.create(title: "Poderosa Criatura", start_page: 9)
+sec.chapters.create(title: "Manifiesto de Iniciación", start_page: 10)
+sec.chapters.create(title: "Llaves Nivel Fuego", start_page: 11)
+sec.chapters.create(title: "Compromiso de Reserva", start_page: 12)
+sec.chapters.create(title: "Mantras Iniciáticos", start_page: 13)
+sec.chapters.create(title: "Oración al Mahavatar Babaji", start_page: 14)
+sec.chapters.create(title: "Oración: Halo Divino", start_page: 15)
+sec.chapters.create(title: "Afirmaciones Agni-Babaji", start_page: 16)
+sec.chapters.create(title: "Manifiesto Raksha Kriya", start_page: 17)
+sec.chapters.create(title: "Soy La Luz Infinita", start_page: 18)
+
+sec = lev.sections.create(title:"Enseñanza de Fuego", start_page: 19)
+sec.chapters.create(title: "Condúcete hasta tu Serst", start_page: 21)
+sec.chapters.create(title: "Si buscas, encontrarásst", start_page: 23)
+
+sec = lev.sections.create(title:"La Escuela", start_page: 25, front_number: 3)
+sec.chapters.create(title: "La Escuela Valores Divinos", start_page: 27)
+sec.chapters.create(title: "La Iniciación", start_page: 30)
+sec.chapters.create(title: "La Enseñanza SKY", start_page: 32)
+sec.chapters.create(title: "Iniciar el Sendero", start_page: 35)
+
+sec = lev.sections.create(title:"Los Valores Divinos", start_page: 37, front_number: 2)
+sec.chapters.create(title: "Pirámide de Valores Divinos", start_page: 39)
+sec.chapters.create(title: "¿Qué son los Valores Divinos?", start_page: 39)
+sec.chapters.create(title: "Autoconocer(se)", start_page: 42)
+
+sec = lev.sections.create(title:"La Actitud Kriya", start_page: 45, front_number: 4)
+sec.chapters.create(title: "Actitud Kriya", start_page: 47)
+sec.chapters.create(title: "Un Inmenso Regalo", start_page: 48)
+sec.chapters.create(title: "El Secreto del Presente", start_page: 49)
+sec.chapters.create(title: "La Acción Justa", start_page: 52)
+
+
+sec = lev.sections.create(title:"La Guía de Luz", start_page: 57, front_number: 5)
+sec.chapters.create(title: "Babaji, El Manifiesto Secreto de Dios", start_page: 60)
+sec.chapters.create(title: "Mataji Shaktiananda", start_page: 68)
+
+sec = lev.sections.create(title:"El Sendero Interno", start_page: 73, front_number: 6)
+sec.chapters.create(title: "El Sendero Interno", start_page: 75)
+sec.chapters.create(title: "Quien Derrota al Pasado Vive", start_page: 76)
+sec.chapters.create(title: "El Trabajo del Iniciado", start_page: 78)
+sec.chapters.create(title: "Una Exploración del Ser", start_page: 79)
+
+sec = lev.sections.create(title:"Los Sonidos de la Luz", start_page: 81, front_number: 7)
+sec.chapters.create(title: "Meditar en el Nombre de Dios", start_page: 83)
+sec.chapters.create(title: "Om", start_page: 85)
+sec.chapters.create(title: "Om Namaha Shivaya", start_page: 86)
+sec.chapters.create(title: "Om Shiva Babaji Nama Om", start_page: 87)
+
+sec = lev.sections.create(title:"Shiva Kriya Yoga. Escritos y Revelaciones", start_page: 89, front_number: 8)
+sec.chapters.create(title: "La Nueva Luz de una Enseñanza Milenaria", start_page: 91)
+sec.chapters.create(title: "¿Qué es la Ciencia Kriya?", start_page: 94)
+sec.chapters.create(title: "¿Cómo actúa el Kriya Yoga?", start_page: 98)
+
+sec = lev.sections.create(title:"Sistema de Fuego", start_page: 101, front_number: 9)
+
+sec = lev.sections.create(title:"El Cuerpo Fotónico", start_page: 103)
+sec.chapters.create(title: "El Cuerpo Fotónico", start_page: 105)
+sec.chapters.create(title: "Los Chakras", start_page: 106)
+sec.chapters.create(title: "Los Canales de Luz", start_page: 109)
+sec.chapters.create(title: "Kundalini, La Serpiente Durmiente", start_page: 111)
+sec.chapters.create(title: "Prana: La Luz que Respiramos", start_page: 113)
+
+sec = lev.sections.create(title:"Mantra Yoga", start_page: 115)
+sec.chapters.create(title: "Japa", start_page: 117)
+sec.chapters.create(title: "Om", start_page: 119)
+sec.chapters.create(title: "Om Namaha Shivaya", start_page: 121)
+sec.chapters.create(title: "Om Shiva Babaji Nama Om", start_page: 122)
+
+sec = lev.sections.create(title:"Surya Yoga", start_page: 123)
+sec.chapters.create(title: "La Unión con el Sol", start_page: 125)
+sec.chapters.create(title: "Om Surya", start_page: 127)
+sec.chapters.create(title: "Surya Namaskar", start_page: 129)
+
+sec = lev.sections.create(title:"Instrumentos de Conexión", start_page: 135, front_number: 10)
+sec.chapters.create(title: "Instrumentos de Conexión", start_page: 137)
+sec.chapters.create(title: "Posturas de Conexión", start_page: 139)
+sec.chapters.create(title: "Otras posturas", start_page: 144)
+sec.chapters.create(title: "Mudras", start_page: 147)
+
+sec = lev.sections.create(title:"Shiva Kriya Yoga", start_page: 151, front_number: 11)
+sec.chapters.create(title: "Recréate en tu Respiro", start_page: 153)
+sec.chapters.create(title: "Los 7 Sistemas Kriya", start_page: 155)
+sec.chapters.create(title: "El Sistema de Fuego", start_page: 156)
+sec.chapters.create(title: "Fundamentos de la Práctica SKY", start_page: 157)
+sec.chapters.create(title: "Purna Pranayama - Respiración Completa", start_page: 162)
+sec.chapters.create(title: "Ujjayi Pranayama", start_page: 163)
+sec.chapters.create(title: "Agnisar - Equilibrio del Fuego Interno", start_page: 164)
+sec.chapters.create(title: "Anuloma - Viloma - Respiración Alterna", start_page: 167)
+sec.chapters.create(title: "Bhastrika - El Fuelle", start_page: 170)
+sec.chapters.create(title: "Kapalabathi - Purificación del Cráneo", start_page: 172)
+sec.chapters.create(title: "Vashi Kriya (MK)", start_page: 174)
+sec.chapters.create(title: "Raksha Kriya - Kavach", start_page: 178)
+sec.chapters.create(title: "Manifiesto Raksha Kriya", start_page: 180)
+
+sec = lev.sections.create(title:"Dhyana Yoga", start_page: 181, front_number: 13)
+sec.chapters.create(title: "Medita Más", start_page: 183)
+sec.chapters.create(title: "La Meditación: Al Encuentro del Ser", start_page: 184)
+sec.chapters.create(title: "Tratak", start_page: 187)
+sec.chapters.create(title: "Chakra Anusandhana - Activación de los Chakras", start_page: 188)
+sec.chapters.create(title: "Om Dhyana Kriya", start_page: 194)
+sec.chapters.create(title: "Agni-Babaji", start_page: 197)
+
+sec = lev.sections.create(title:"Sadhana", start_page: 201, front_number: 12)
+sec.chapters.create(title: "Sugerencias para la práctica", start_page: 203)
+sec.chapters.create(title: "Sadhana. Práctica sugerida", start_page: 205)
+
+sec = lev.sections.create(title:"Glosario", start_page: 209, front_number: 14)
+

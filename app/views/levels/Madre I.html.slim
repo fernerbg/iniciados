@@ -1,4 +1,4 @@
-/============== NIVEL MADRE I =================
+/============== NIVEL FUEGO I =================
 #carousel-images.carousel.slide data-ride="carousel"
 	/! Indicators
 	/*
@@ -7,16 +7,18 @@
 			li data-slide-to="1" data-target="#carousel-images" 
 	/! Wrapper for slides
 	/
-	.carousel-inner role="listbox" 
-		.item.active style=("background-image: url(#{image_path('design2/madre-1-wallpaper.jpg')})")
+	.carousel-inner role="listbox"
+		- image_path = "design2/#{@level.book_name}-wallpaper.jpg"
+		.item.active style=("background-image: url(#{image_path(image_path)})")
 	
 	.main-options-wrapper
 		.main-options
 			#audio-link.circle-option-wrapper.small.link
-				.inner-option
-					.word-wrapper
-						p.word.small-word.last-word
-							|AUDIO
+				.inner-link
+					.inner-option
+						.word-wrapper
+							p.word.small-word.last-word
+								|AUDIO
 			.circle-option-wrapper
 				= link_to show_page_contents_path(level: @level.name, number: 1, element: 'levels'), class: "inner-link" do
 					.inner-option
@@ -40,155 +42,27 @@
 #book-content.top-content-wrapper.book-content
 	= embedded_svg 'design2/close-icon-2.svg', class: "close-icon"
 	.title
-		| Libro 1 Nivel Fuego
+		= "Libro #{@level.book_number} Nivel #{@level.book_name.titlecase}"
 	.content-container
-		.content-section
-			.content-section-title
-				|Emanaciones y Mensajes
-			.fragment
-				= link_to "Eres una Fuerza de Luz", root_path
-			.fragment
-				= link_to "Llave Nivel Estelar", root_path
-			.fragment
-				= link_to "Mantra Lunar", root_path
-			.fragment
-				= link_to "Mantras Planetarios", root_path
-			.fragment
-				= link_to "Mantras Estelares", root_path
-			.fragment
-				= link_to "Mantras Surya Namaskar", root_path
-		.content-section
-			.content-section-title
-				|Los Tránsitos Solares
-			.fragment
-				= link_to "Eres una Fuerza de Luz", root_path
-			.fragment
-				= link_to "Llave Nivel Estelar", root_path
-			.fragment
-				= link_to "Mantra Lunar", root_path
-			.fragment
-				= link_to "Mantras Planetarios", root_path
-			.fragment
-				= link_to "Mantras Estelares", root_path
-			.fragment
-				= link_to "Mantras Surya Namaskar", root_path
-		.content-section
-			.content-section-title
-				|Los Movimientos Estelares
-			.fragment
-				= link_to "Eres una Fuerza de Luz", root_path
-			.fragment
-				= link_to "Llave Nivel Estelar", root_path
-			.fragment
-				= link_to "Mantra Lunar", root_path
-			.fragment
-				= link_to "Mantras Planetarios", root_path
-			.fragment
-				= link_to "Mantras Estelares", root_path
-			.fragment
-				= link_to "Mantras Surya Namaskar", root_path
-		.content-section
-			.content-section-title
-				|El Vehículo de Luz
-			.fragment
-				= link_to "Eres una Fuerza de Luz", root_path
-			.fragment
-				= link_to "Llave Nivel Estelar", root_path
-			.fragment
-				= link_to "Mantra Lunar", root_path
-			.fragment
-				= link_to "Mantras Planetarios", root_path
-			.fragment
-				= link_to "Mantras Estelares", root_path
-			.fragment
-				= link_to "Mantras Surya Namaskar", root_path
-		.content-section
-			.content-section-title
-				|La Enseñanza Estelar
-			.fragment
-				= link_to "Pirámide de Valores", root_path
-			.fragment
-				= link_to "Ceers(se)", root_path
-			.fragment
-				= link_to "La Tarea De Revelar al Dios", root_path
-			.fragment
-				= link_to "La Pregunta Siempre Latente", root_path
-		.content-section
-			.content-section-title
-				|Chandra. La Dama Oscura
-			.fragment
-				= link_to "Pirámide de Valores", root_path
-			.fragment
-				= link_to "Ceers(se)", root_path
-			.fragment
-				= link_to "La Tarea De Revelar al Dios", root_path
-			.fragment
-				= link_to "La Pregunta Siempre Latente", root_path
-		.content-section
-			.content-section-title
-				|Rastreando El Rastro
-			.fragment
-				= link_to "Pirámide de Valores", root_path
-			.fragment
-				= link_to "Ceers(se)", root_path
-			.fragment
-				= link_to "La Tarea De Revelar al Dios", root_path
-			.fragment
-				= link_to "La Pregunta Siempre Latente", root_path
-		.content-section
-			.content-section-title
-				|El Sadhana y los Ciclos Planetarios
-			.fragment
-				= link_to "Pirámide de Valores", root_path
-			.fragment
-				= link_to "Ceers(se)", root_path
-			.fragment
-				= link_to "La Tarea De Revelar al Dios", root_path
-			.fragment
-				= link_to "La Pregunta Siempre Latente", root_path
-		.content-section
-			.content-section-title
-				|Las Fuerzas Estelares
-			.fragment
-				= link_to "Surya. El Sabio y Brillante Dios", root_path
-			.fragment
-				= link_to "Nuestro Dios más Cercano", root_path
-			.fragment
-				= link_to "Surya", root_path
-			.fragment
-				= link_to "El Sol", root_path
-		.content-section
-			.content-section-title
-				|Los Planetas Sagrados
-			.fragment
-				= link_to "Surya. El Sabio y Brillante Dios", root_path
-			.fragment
-				= link_to "Nuestro Dios más Cercano", root_path
-			.fragment
-				= link_to "Surya", root_path
-			.fragment
-				= link_to "El Sol", root_path
-		.content-section
-			.content-section-title
-				|Sistema Del Nivel Estelar
-			.fragment
-				= link_to "Pirámide de Valores", root_path
-			.fragment
-				= link_to "Ceers(se)", root_path
-			.fragment
-				= link_to "La Tarea De Revelar al Dios", root_path
-			.fragment
-				= link_to "La Pregunta Siempre Latente", root_path
+		- @sections.each_with_index do |section, index|
+			- if index % 4 == 0
+				.break-line
+			.content-section
+				.content-section-title
+					= section
+				- section.chapters.each do |chapter|
+					.fragment
+						= link_to chapter, "#{@show_page_path}&number=#{chapter.start_page}"
 
 #audio-content.top-content-wrapper.audio-content
 	= embedded_svg 'design2/close-icon-2.svg', class: "close-icon"
 	.title
-		| Audios Nivel Fuego
+		= "Audios Nivel #{@level.book_name.titlecase}"
 	.content-container
 		= render @level.audios
 .lesson-container
 	.title
-		| Libro I Nivel Fuego
+		= "Libro #{@level.book_number} Nivel #{@level.book_name.titlecase}"
 	.level-key
 		p DESPERTAR, ENCONTRAR Y SABER SEGUIR
 		p ES CONVENIR SIEMPRE
@@ -202,158 +76,25 @@
 			= link_to "MANTRAS", root_path
 			= link_to "KRIYA SADHANA", root_path
 		.text-value
-			|AUTOCONOCER
+			|PERDONAR
 			span.darker
 				|SE
 		
-	.sections-container (class="#{@level.only_name}")
-		.section-wraper.section-1 (class="#{@level.only_name}")
-			= image_tag 'design2/50x50.jpg', class: "image-ratio"
-			.section
-				.section-title
-					|Emanaciones y Mantras
-					.btns-wrapper
-						.btn.btn-play
-							= link_to embedded_svg('design2/play-video-icon.svg'), root_path
-						.btn.btn-read
-							= link_to embedded_svg('design2/view-pdf-icon.svg'), show_page_contents_path(element: 'levels', level: @level.name, number: 5)
-		.section-wraper.section-2 (class="#{@level.only_name}")
-			= image_tag 'design2/100x50.jpg', class: "image-ratio"
-			.section
-				.section-title
-					|Los Valores Divinos
-					.btns-wrapper
-						.btn.btn-play
-							= link_to embedded_svg('design2/play-video-icon.svg'), root_path
-						.btn.btn-read
-							= link_to embedded_svg('design2/view-pdf-icon.svg'), root_path
-		.section-wraper.section-3 (class="#{@level.only_name}")
-			= image_tag 'design2/50x50.jpg', class: "image-ratio"
-			.section
-				.section-title
-					|La Escuela
-					.btns-wrapper
-						.btn.btn-play
-							= link_to embedded_svg('design2/play-video-icon.svg'), root_path
-						.btn.btn-read
-							= link_to embedded_svg('design2/view-pdf-icon.svg'), root_path
-		.section-wraper.section-4 (class="#{@level.only_name}")
-			= image_tag 'design2/50x50.jpg', class: "image-ratio"
-			.section
-				.section-title
-					|La Actitud Kriya
-					.btns-wrapper
-						.btn.btn-play
-							= link_to embedded_svg('design2/play-video-icon.svg'), root_path
-						.btn.btn-read
-							= link_to embedded_svg('design2/view-pdf-icon.svg'), root_path
-		.section-wraper.section-5 (class="#{@level.only_name}")
-			= image_tag 'design2/50x50.jpg', class: "image-ratio"
-			.section
-				.section-title
-					|Chandra.
-					p
-						|La Guía de Luz
-					.btns-wrapper
-						.btn.btn-play
-							= link_to embedded_svg('design2/play-video-icon.svg'), root_path
-						.btn.btn-read
-							= link_to embedded_svg('design2/view-pdf-icon.svg'), root_path
-		.section-wraper.section-6 (class="#{@level.only_name}")
-			= image_tag 'design2/100x50.jpg', class: "image-ratio"
-			.section
-				.section-title
-					|El Sendero Interno
-					.btns-wrapper
-						.btn.btn-play
-							= link_to embedded_svg('design2/play-video-icon.svg'), root_path
-						.btn.btn-read
-							= link_to embedded_svg('design2/view-pdf-icon.svg'), root_path
-		.section-wraper.section-7 (class="#{@level.only_name}").light
-			= image_tag 'design2/50x50.jpg', class: "image-ratio"
-			.section
-				.section-title
-					|Los Sonidos De La Luz
-					.btns-wrapper
-						.btn.btn-play
-							= link_to embedded_svg('design2/play-video-icon.svg'), root_path
-						.btn.btn-read
-							= link_to embedded_svg('design2/view-pdf-icon.svg'), root_path
+	.sections-container (class="#{@level.book_name}")
+		- (0..6).each do |index|
+			= render @front_sections[index]
+				
 		.section-group-1
-			.section-wraper.section-8 (class="#{@level.only_name}")
-				= image_tag 'design2/100x50.jpg', class: "image-ratio"
-				.section
-					.section-title
-						|Shiva Kriya Yoga. Escritos y Revelaciones
-						.btns-wrapper
-							.btn.btn-play
-								= link_to embedded_svg('design2/play-video-icon.svg'), root_path
-							.btn.btn-read
-								= link_to embedded_svg('design2/view-pdf-icon.svg'), root_path
-			.section-wraper.section-10 (class="#{@level.only_name}")
-				= image_tag 'design2/50x50.jpg', class: "image-ratio"
-				.section
-					.section-title
-						|Instrumentos de Conexión
-						.btns-wrapper
-							.btn.btn-play
-								= link_to embedded_svg('design2/play-video-icon.svg'), root_path
-							.btn.btn-read
-								= link_to embedded_svg('design2/view-pdf-icon.svg'), root_path
-			.section-wraper.section-11 (class="#{@level.only_name}")
-				= image_tag 'design2/50x50.jpg', class: "image-ratio"
-				.section
-					.section-title
-						|Shiva Kriya Yoga
-						.btns-wrapper
-							.btn.btn-play
-								= link_to embedded_svg('design2/play-video-icon.svg'), root_path
-							.btn.btn-read
-								= link_to embedded_svg('design2/view-pdf-icon.svg'), root_path
-		.section-wraper.section-9 (class="#{@level.only_name}")
-			= image_tag 'design2/50x50.jpg', class: "image-ratio"
-			.section
-				.section-title
-					|Chandra.
-					p
-						|Sistema De Fuego
-					.btns-wrapper
-						.btn.btn-play
-							= link_to embedded_svg('design2/play-video-icon.svg'), root_path
-						.btn.btn-read
-							= link_to embedded_svg('design2/view-pdf-icon.svg'), root_path
-		.section-wraper.section-12 (class="#{@level.only_name}")
-			= image_tag 'design2/50x50.jpg', class: "image-ratio"
-			.section
-				.section-title
-					|Chandra.
-					p
-						|Sadhana
-					.btns-wrapper
-						.btn.btn-play
-							= link_to embedded_svg('design2/play-video-icon.svg'), root_path
-						.btn.btn-read
-							= link_to embedded_svg('design2/view-pdf-icon.svg'), root_path
-		.section-wraper.section-13 (class="#{@level.only_name}")
-			= image_tag 'design2/100x50.jpg', class: "image-ratio"
-			.section
-				.section-title
-					|Dhyana Yoga
-					.btns-wrapper
-						.btn.btn-play
-							= link_to embedded_svg('design2/play-video-icon.svg'), root_path
-						.btn.btn-read
-							= link_to embedded_svg('design2/view-pdf-icon.svg'), root_path
-		.section-wraper.section-14 (class="#{@level.only_name}")
-			= image_tag 'design2/50x50.jpg', class: "image-ratio"
-			.section
-				.section-title
-					|Glosario
-					.btns-wrapper
-						.btn.btn-play
-							= link_to embedded_svg('design2/play-video-icon.svg'), root_path
-						.btn.btn-read
-							= link_to embedded_svg('design2/view-pdf-icon.svg'), root_path
+			= render @front_sections[7]
+			= render @front_sections[9]
+			= render @front_sections[10]
+		
+		= render @front_sections[8]
+		
+		= render @front_sections[11]
+		= render @front_sections[12]
+		= render @front_sections[13]
+		
 	.shanti-container
 		p= "ASATOMA SAD GAMAYA"
 		p= "TAMASOMA JYOTIR GAMAYA"

@@ -37,10 +37,13 @@ ActiveRecord::Schema.define(version: 20170102171118) do
     t.string   "title"
     t.string   "video_url"
     t.integer  "start_page"
+    t.integer  "front_number"
     t.integer  "level_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["front_number"], :name => "index_sections_on_front_number"
     t.index ["level_id"], :name => "index_sections_on_level_id"
+    t.index ["start_page"], :name => "index_sections_on_start_page"
     t.foreign_key ["level_id"], "levels", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_sections_level_id"
   end
 
@@ -51,6 +54,7 @@ ActiveRecord::Schema.define(version: 20170102171118) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["section_id"], :name => "index_chapters_on_section_id"
+    t.index ["start_page"], :name => "index_chapters_on_start_page"
     t.foreign_key ["section_id"], "sections", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_chapters_section_id"
   end
 
@@ -152,16 +156,6 @@ ActiveRecord::Schema.define(version: 20170102171118) do
     t.foreign_key ["level_id"], "levels", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_level_contents_level_id"
   end
 
-  create_table "level_pages", force: true do |t|
-    t.string   "image"
-    t.integer  "number"
-    t.integer  "level_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["level_id"], :name => "index_level_pages_on_level_id"
-    t.foreign_key ["level_id"], "levels", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_level_pages_level_id"
-  end
-
   create_table "notifications", force: true do |t|
     t.string   "title"
     t.datetime "date"
@@ -169,16 +163,7 @@ ActiveRecord::Schema.define(version: 20170102171118) do
     t.string   "media"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "pieces", force: true do |t|
-    t.string   "image"
-    t.integer  "number"
-    t.integer  "level_page_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["level_page_id"], :name => "index_pieces_on_level_page_id"
-    t.foreign_key ["level_page_id"], "level_pages", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_pieces_level_page_id"
+    t.index ["date"], :name => "index_notifications_on_date"
   end
 
   create_table "profiles", force: true do |t|
