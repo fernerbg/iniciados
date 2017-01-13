@@ -8,17 +8,6 @@ class ContentsController < ApplicationController
   end
   
   def show_page
-    gon.initial_page = params[:number]
-    case params[:element]
-    when 'levels'
-      gon.file_path = "levels/#{params[:level]}/pages"
-      gon.total_pages = Dir.entries("#{private_root}/#{gon.file_path}").size
-    when 'lessons'
-      gon.file_path = "lessons/#{params[:lesson]}/pages"
-      gon.total_pages = Dir.entries("#{private_root}/#{gon.file_path}").size
-    else
-      gon.path = "error"
-    end
     respond_to do |format|
       format.json do
         file_path = "#{private_root}/#{params[:file_path]}"
@@ -29,7 +18,19 @@ class ContentsController < ApplicationController
         end
         render json: files
       end
-      format.html
+      format.html do
+        gon.initial_page = params[:number]
+        case params[:element]
+        when 'levels'
+          gon.file_path = "levels/#{params[:level]}/pages"
+          gon.total_pages = Dir.entries("#{private_root}/#{gon.file_path}").size
+        when 'lessons'
+          gon.file_path = "lessons/#{params[:lesson]}/pages"
+          gon.total_pages = Dir.entries("#{private_root}/#{gon.file_path}").size
+        else
+          gon.path = "error"
+        end
+      end
     end
   end
 

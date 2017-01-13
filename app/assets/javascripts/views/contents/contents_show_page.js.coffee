@@ -27,13 +27,15 @@ class Iniciados.Views.ContentsShowPage extends Backbone.View
 		@maxPageWidth = window.innerWidth
 		
 		$('#slider').slider
-			slide: -> $('#book-content').css('width', (parseInt($('#slider').slider('value')) / 100 * self.maxPageWidth - 20) + 'px')
-			change: -> $('#book-content').css('width', (parseInt($('#slider').slider('value')) / 100 * self.maxPageWidth - 20) + 'px')
+			slide: -> $('#book-content').css('width', parseInt(parseInt($('#slider').slider('value')) / 100 * self.maxPageWidth - 20) + 'px')
+			change: -> $('#book-content').css('width', parseInt(parseInt($('#slider').slider('value')) / 100 * self.maxPageWidth - 20) + 'px')
 			value: 100
 			min: 10
 			max: 100
 	
 		$("#slider .ui-slider-handle").unbind('keydown')
+		
+		$('#total-pages').html(' /' + gon.total_pages)
 		
 		###
 		$('img').on 'contextmenu', ->
@@ -61,14 +63,11 @@ class Iniciados.Views.ContentsShowPage extends Backbone.View
 						newImg = new Image()
 						url = URL.createObjectURL(blob)
 						newImg.src = url
-						console.log 'here i am'
 						newImg.onload = ->
-							# no longer need to read the blob so it's revoked
 							URL.revokeObjectURL url
 							pieces[i - 1] = newImg
-							console.log piecesDownloaded
 							if piecesDownloaded is 10
-								console.log pieces
+								$('#book-content').html('')
 								for piece in pieces
 									console.log piece
 									canvas = document.createElement('canvas')
@@ -78,6 +77,7 @@ class Iniciados.Views.ContentsShowPage extends Backbone.View
 									ctx.drawImage(piece, 0, 0, canvas.width, canvas.height)
 									$('#book-content').append(canvas)
 								self.unlockButtons()
+								$('#current-page').val(self.currentPage)
 							++piecesDownloaded
 					else
 						if  aEvt.target.status != 200
@@ -125,13 +125,13 @@ class Iniciados.Views.ContentsShowPage extends Backbone.View
 		###	
 				
 	nextPage: (e) ->
-		if not $(e.target).hasClass('inactive')
+		if not $(e.target).closest('#move-page-wrapper').hasClass('inactive')
 			@currentPage = @currentPage + 1
 			@renderImage(@currentPage)
 			$(window).scrollTop(0)
 	
 	prevPage: (e) ->
-		if not $(e.target).hasClass('inactive')
+		if not $(e.target).closest('#move-page-wrapper').hasClass('inactive')
 			@currentPage = @currentPage - 1
 			@renderImage(@currentPage)
 			$(window).scrollTop(0)
@@ -144,9 +144,11 @@ class Iniciados.Views.ContentsShowPage extends Backbone.View
 				$(window).scrollTop(0)
 		
 	lockButtons: ->
-		$('#book-content').css('opacity', '0.7')
-		$('.pdf-input').addClass('inactive')
+		$('#book-content').css('opacity', '0.6')
+		$('#current-page').attr('disabled', 'disabled')
+		$('#move-page-wrapper').addClass('inactive')
 		
 	unlockButtons: ->
 		$('#book-content').css('opacity', '1')
-		$('.inactive').removeClass('inactive')
+		$('#current-page').removeAttr('disabled')
+		$('#move-page-wrapper').removeClass('inactive')

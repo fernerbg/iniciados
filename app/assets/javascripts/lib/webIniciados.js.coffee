@@ -67,8 +67,8 @@ window.webIniciados = do ->
 								totalPieces = 1
 								fd = new FormData()
 								y = 0
-								yPieces = 2
-								xPieces = 5
+								yPieces = 5
+								xPieces = 2
 								while y < yPieces
 									x = 0
 									while x < xPieces

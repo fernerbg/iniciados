@@ -1,16 +1,16 @@
+#navigation-options
+	#change-page-wrapper
+		#move-page-wrapper
+			= embedded_svg 'design2/back-btn.svg', id: 'prev-page'
+			= embedded_svg 'design2/forward-btn.svg', id: 'next-page'
+		= number_field_tag :number, params[:number], id: 'current-page'
+		| &nbsp;
+		#total-pages
+		
+	#slider-wrapper
+		span.glyphicon.glyphicon-zoom-in
+		#slider
 .separate-from-header
-	#navigation-options
-		#change-page-wrapper
-			| pagina 
-			= number_field_tag :number, params[:number], id: 'current-page', class: 'pdf-input'
-				
-			#total-pages
-			= embedded_svg 'design2/back-btn.svg', id: '#prev-page', class: 'glyphicon glyphicon-arrow-left pdf-input'
-			= embedded_svg 'design2/forward-btn.svg', id: '#next-page', class: 'glyphicon glyphicon-arrow-left pdf-input'
-			
-		#slider-wrapper
-			span.glyphicon.glyphicon-zoom-in
-			#slider
 			
 	#book-content
 		

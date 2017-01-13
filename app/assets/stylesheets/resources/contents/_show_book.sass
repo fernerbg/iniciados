@@ -1,19 +1,38 @@
 [data-controller="contents"][data-action="show_page"]
 	#navigation-options
-		padding: 10px 20%
 		position: fixed
-		top: 0
-		background: white
+		top: 18px
+		background: transparent
 		width: 100%
-		z-index: 10
+		z-index: 200
+		height: 0px
+		padding-left: 94px
 		#change-page-wrapper
 			display: inline-block
-			.pdf-input
+			border-right: solid 1px gray
+			margin-right: 14px
+			padding-right: 14px
+			#current-page
+				width: 40px
+				text-align: center
+			#move-page-wrapper
+				margin-right: 10px
+				display: inline
 				&.inactive
 					opacity: 0.2
-			#next-page
-				margin-left: 5px
-				margin-right: 10px
+					#next-page, #prev-page
+						cursor: auto
+				#next-page, #prev-page
+					width: 27px
+					vertical-align: bottom
+					margin-right: 5px
+					cursor: pointer
+					padding: 1px
+					+border-radius(50%)
+					+transition(all, 0.2s)
+					&:hover
+						background: black
+						fill: white
 			#page-form
 				display: inline
 				#current-page
@@ -24,15 +43,32 @@
 				margin-right: 5px
 		#slider-wrapper
 			display: inline
+			vertical-align: sub
+			&:hover
+				#slider
+					.ui-slider-handle
+						width: 20px
+						margin-left: -10px
+			.glyphicon
+				font-size: 18px
+				margin-right: 4px
+				color: black
 			#slider
-				width: 50%
+				width: 30%
 				display: inline-block
+				height: 15px
+				.ui-slider-handle
+					height: 20px
+					+transition(all, 0.2s)
+					&.ui-state-active
+						background: black
+						border: 1px solid black
 	#book-content
 		width: 100%
 		line-height: 0px
 		display: inline-block
 		canvas
-			width: 20%
+			width: 50%
 		#loading
 			display: none
 			#loading-progress
