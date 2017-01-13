@@ -4,7 +4,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate_user! 
   before_action :private_root
-	
+	before_action :configure_permitted_parameters, if: :devise_controller?
+  
+  
 	helper_method :embedded_svg, :namespace, :private_root, :page_upload_path
   
   rescue_from CanCan::AccessDenied do |exception|
@@ -33,4 +35,11 @@ class ApplicationController < ActionController::Base
   def page_upload_path
     url_for(action: 'create_page', controller: 'contents', only_path: true)
   end
+  
+  protected
+  
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:account_update, keys: [:surname, :lesson, :level, :headquarter])
+  end
+  
 end

@@ -6,16 +6,9 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-u = User.create(email: 'iniciado@gmail.com', password: 'sbabaji7', name: 'Cesar', surname: 'Valderrama', aws_identity: 'us-west-2:a697799f-48ec-452a-9773-9fea04ab454f')
-
-Configuration.create(name:"AWS_id", value:"AKIAIPOLUIWRXMEDLAKA")
-Configuration.create(name:"AWS_secret", value:"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")
+u = User.new(email: 'iniciado@gmail.com', password: 'sbabaji7', name: 'Cesar', surname: 'Valderrama')
 
 p = Profile.create(name: 'admin')
-p.save()
-u.profiles << p
-
-p = Profile.create(name: 'student')
 p.save()
 u.profiles << p
 
@@ -23,6 +16,19 @@ p = Profile.create(name: 'coordinator')
 p.save()
 u.profiles << p
 
+h = Headquarter.create(name:'Colombia')
+u.headquarter = h
+
+Headquarter.create(name: 'Argentina')
+Headquarter.create(name: 'Peru')
+Headquarter.create(name: 'Ecuador')
+Headquarter.create(name: 'España')
+Headquarter.create(name: 'Venezuela')
+Headquarter.create(name: 'Mexico')
+Headquarter.create(name: 'Italia')
+Headquarter.create(name: 'Uruguay')
+Headquarter.create(name: 'EEUU')
+Headquarter.create(name: 'Online')
 
 lev = Level.create(name: "Fuego I", number: 1)
 Level.create(name: "Fuego II", number: 2)
@@ -545,4 +551,3 @@ sec.chapters.create(title: "Sugerencias para la práctica", start_page: 203)
 sec.chapters.create(title: "Sadhana. Práctica sugerida", start_page: 205)
 
 sec = lev.sections.create(title:"Glosario", start_page: 209, front_number: 14)
-

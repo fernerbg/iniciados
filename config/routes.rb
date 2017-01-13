@@ -29,6 +29,8 @@ Rails.application.routes.draw do
       post 'create_page'
       get 'new_page'
       get 'send_content'
+      get 'users_csv'
+      post 'upload_users_csv'
     end
   end
 

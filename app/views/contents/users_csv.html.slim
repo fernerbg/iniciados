@@ -1,0 +1,4 @@
+.separate-from-header
+    = form_tag upload_users_csv_contents_path, method: :post, multipart: true do
+        = file_field_tag :file
+        = submit_tag :send

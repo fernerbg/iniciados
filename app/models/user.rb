@@ -7,9 +7,12 @@ class User < ActiveRecord::Base
 
   has_many :roles
   has_many :profiles, through: :roles
-  belongs_to :country
-
+  belongs_to :level
+  belongs_to :lesson
+  belongs_to :headquarter
+  
   def admin?
-  	profiles.find_by(name: 'admin')
-	end
+    profiles.where(name: 'admin').first
+  end
+	
 end

@@ -3,11 +3,9 @@ class AddAttrbsToUser < ActiveRecord::Migration
   	change_table :users do |t|
 	  	t.string :name
 	  	t.string :surname
-	  	t.string :gender
-	  	t.string :aws_identity
-	  	add_reference :users, :lesson, index: true
-	  	add_reference :users, :level, index: true
-	  	add_reference :users, :country, index: true
+	  	add_reference :users, :lesson, index: true, foreign_key: true
+	  	add_reference :users, :level, index: true, foreign_key: true
+	  	add_reference :users, :headquarter, index: true, foreign_key: true
 	  end
   end
 end

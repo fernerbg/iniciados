@@ -7,6 +7,8 @@ class Level < ActiveRecord::Base
     has_many :audios, through: :level_audios
     has_many :sections, dependent: :destroy
     
+    has_many :users
+    
     scope :available_levels, -> (current_level) { where("number <= :current_level", {current_level: current_level}).order(number: :asc) }
     
     validates :name, uniqueness: true

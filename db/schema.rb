@@ -83,15 +83,6 @@ ActiveRecord::Schema.define(version: 20170102171118) do
     t.foreign_key ["tag_id"], "tags", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_contents_tag_id"
   end
 
-  create_table "countries", force: true do |t|
-    t.string   "name",       null: false
-    t.string   "iso",        null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["iso"], :name => "index_countries_on_iso", :unique => true
-    t.index ["name"], :name => "index_countries_on_name", :unique => true
-  end
-
   create_table "emanations", force: true do |t|
     t.string   "image_url"
     t.text     "message"
@@ -101,6 +92,12 @@ ActiveRecord::Schema.define(version: 20170102171118) do
     t.datetime "updated_at"
     t.index ["level_id"], :name => "index_emanations_on_level_id"
     t.foreign_key ["level_id"], "levels", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_emanations_level_id"
+  end
+
+  create_table "headquarters", force: true do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "lesson_levels", force: true do |t|
@@ -187,17 +184,15 @@ ActiveRecord::Schema.define(version: 20170102171118) do
     t.datetime "updated_at",                          null: false
     t.string   "name"
     t.string   "surname"
-    t.string   "gender"
-    t.string   "aws_identity"
     t.integer  "lesson_id"
     t.integer  "level_id"
-    t.integer  "country_id"
-    t.index ["country_id"], :name => "index_users_on_country_id"
+    t.integer  "headquarter_id"
     t.index ["email"], :name => "index_users_on_email", :unique => true
+    t.index ["headquarter_id"], :name => "index_users_on_headquarter_id"
     t.index ["lesson_id"], :name => "index_users_on_lesson_id"
     t.index ["level_id"], :name => "index_users_on_level_id"
     t.index ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
-    t.foreign_key ["country_id"], "countries", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_users_country_id"
+    t.foreign_key ["headquarter_id"], "headquarters", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_users_headquarter_id"
     t.foreign_key ["lesson_id"], "lessons", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_users_lesson_id"
     t.foreign_key ["level_id"], "levels", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_users_level_id"
   end
