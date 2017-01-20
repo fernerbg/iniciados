@@ -10,6 +10,8 @@ window.Iniciados =
 			webIniciados.updateCredentials()
 		), 60000 * 5
 		
+		$('.sky-header').headroom()
+		
 		$('#button-downward').click( ->
 			$("html, body").animate({ scrollTop: window.innerHeight }, 700)
 		)

@@ -1,38 +1,7 @@
-class ContentsController < ApplicationController
+class Adm::ContentsController < Adm::BaseController
 
   respond_to :html
   
-  def show_page
-    respond_to do |format|
-      format.json do
-        file_path = "#{private_root}/#{params[:file_path]}"
-        entries = Dir.entries file_path
-        files = []
-        entries.each do |file_name|
-          files[file_name.to_f - 1] = File.read("#{file_path}/#{file_name}") unless file_name == '.' || file_name == '..'
-        end
-        render json: files
-      end
-      format.html do
-        gon.initial_page = params[:number]
-        case params[:element]
-        when 'levels'
-          level = Level.where(name: params[:level]).first
-          authorize! :read, level
-          gon.file_path = "levels/#{params[:level]}/pages"
-          gon.total_pages = Dir.entries("#{private_root}/#{gon.file_path}").size
-        when 'lessons'
-          lesson = Lesson.where(number: params[:number]).first
-          authorize! :read, lesson
-          gon.file_path = "lessons/#{params[:lesson]}/pages"
-          gon.total_pages = Dir.entries("#{private_root}/#{gon.file_path}").size
-        else
-          gon.path = "error"
-        end
-      end
-    end
-  end
-
   def create_page
     case params[:element]
     when 'levels'
@@ -61,26 +30,6 @@ class ContentsController < ApplicationController
     @element = params[:element]
     gon.element = params[:element]
     gon.upload_path = page_upload_path
-  end
-  
-  def send_content
-    case params[:element]
-    when 'audio_wave' 
-      audio = Audio.find(params[:id])
-      authorize! :read, audio
-      send_file audio.wave.current_path
-    when 'audio_track'
-      audio = Audio.find(params[:id])
-      authorize! :read, audio
-      send_file audio.track.current_path
-    when 'notification_media'
-      notification = Notification.find(params[:id])
-      send_file notification.media.current_path
-    when 'book_page'
-      send_file "#{private_root}/#{params[:file_path]}"
-    else
-      'none'
-    end
   end
   
   def users_csv

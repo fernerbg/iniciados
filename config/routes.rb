@@ -26,11 +26,7 @@ Rails.application.routes.draw do
   resources :contents do
     collection do
       get 'show_page'
-      post 'create_page'
-      get 'new_page'
       get 'send_content'
-      get 'users_csv'
-      post 'upload_users_csv'
     end
   end
 
@@ -53,7 +49,30 @@ Rails.application.routes.draw do
   end
 
   get 'home', to: "users#home"
+  
+  namespace :adm do
+    resource :contents, only: [ :index ] do
+      collection do
+        post 'create_page'
+        get 'new_page'
+        get 'users_csv'
+        post 'upload_users_csv'
+      end
+    end
+    
+    resource :audios
+    
+  end
 
+  namespace :coor do
+    resources :users do
+      member do
+        get 'pass_next_level'
+        get 'pass_next_lesson'
+      end
+    end
+  end
+  
   #get "/private/content/open/file/:id/:title.:ext", to: "contents#delivery", as: "delivery"
 
   root 'users#home'

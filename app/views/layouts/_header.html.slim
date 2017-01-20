@@ -1,64 +1,63 @@
-- if action_name != "show_book"
-  .sky-header
-    .logo-container
-      .logo-wrapper
-        = image_tag "design2/icon.png"
-      
-      = link_to root_path, class: 'header-link' do
-        .title-wrapper
-          |INICIADOS SKY
-      - if current_user
-        - if controller_name == "lesson_levels"
-          .options-container.left-divider
-            .title-wrapper
-              |ENSEÑANZA SKY&nbsp
-              span.caret
-            ul.options-wrapper
-              .options-title
-                = "NIVEL #{@lesson_level}"
-              .lessons-options
-                - @available_lessons.reverse.each_with_index do |lesson, index|
-                  li.option data-id="#{lesson.id}" class=("actual" if index == 0)
-                    span.lesson-option= "#{lesson.name}"
-        - if controller_name == "levels"
-          .options-container.left-divider
-            .title-wrapper
-              |INSTRUCCIÓN SKY&nbsp
-              span.caret
-            ul.options-wrapper
-              .lessons-options
-                - @available_levels.each do |level|
-                  li.option= link_to level, level_path(level), class: 'lesson-option'
-                  
-    - if current_user 
-      .sandwish-container
-        .icon-container
-          = embedded_svg 'design2/sandwish.svg'
-        ul.sandwish-options
-          li= link_to "Instrucción SKY", level_path(current_user.level)
-          li= link_to "Enseñanza SKY", lesson_level_path(current_user.lesson.level)
-          li= link_to "Audios SKY", root_path
-          li= link_to "Videos SKY", root_path
-          li= link_to "Novedades SKY", root_path
-          li= link_to "Calendario de Actividades SKY", root_path
-    /*    
-      .links-container
-        = link_to "Audio", root_path
-        = link_to "Video", root_path
-        = link_to "Novedades", root_path
+.sky-header
+  .logo-container
+    .logo-wrapper
+      = image_tag "design2/icon.png"
+    
+    = link_to root_path, class: 'header-link' do
+      .title-wrapper
+        |INICIADOS SKY
     - if current_user
-      .right-container
-        .user-options-container
-          .user-name-container
-            | Juan Perez Carvajal &nbsp
+      - if controller_name == "lesson_levels"
+        .options-container.left-divider
+          .title-wrapper
+            |ENSEÑANZA SKY&nbsp
             span.caret
-          ul.user-options
-            li= link_to "Cerrar Sesión",  destroy_user_session_path, method: :delete
-    /*
-      .link-evd.center-xy class= (color_class if defined? color_class != nil)
-        = link_to "EVD", "http://escuelavaloresdivinos.com", class: "centered", target: "_blank"
-      .link-instruccion.center-xy
-        /= link_to "Instrucción SKY", level_path(current_user.level), class: "centered"
-        = link_to "Instrucción SKY", root_path, class: "centered"
-      .link-ensenanza.center-xy
-        = link_to "Lecciones SKY", lesson_level_path(current_user.lesson.level), class: "centered"
+          ul.options-wrapper
+            .options-title
+              = "NIVEL #{@lesson_level}"
+            .lessons-options
+              - @available_lessons.reverse.each_with_index do |lesson, index|
+                li.option data-id="#{lesson.id}" class=("actual" if index == 0)
+                  span.lesson-option= "#{lesson.name}"
+      - if controller_name == "levels"
+        .options-container.left-divider
+          .title-wrapper
+            |INSTRUCCIÓN SKY&nbsp
+            span.caret
+          ul.options-wrapper
+            .lessons-options
+              - @available_levels.each do |level|
+                li.option= link_to level, level_path(level), class: 'lesson-option'
+                
+  - if current_user 
+    .sandwish-container
+      .icon-container
+        = embedded_svg 'design2/sandwish.svg'
+      ul.sandwish-options
+        li= link_to "Instrucción SKY", level_path(current_user.level)
+        li= link_to "Enseñanza SKY", lesson_level_path(current_user.lesson.level)
+        li= link_to "Audios SKY", root_path
+        li= link_to "Videos SKY", root_path
+        li= link_to "Novedades SKY", root_path
+        li= link_to "Calendario de Actividades SKY", root_path
+  /*    
+    .links-container
+      = link_to "Audio", root_path
+      = link_to "Video", root_path
+      = link_to "Novedades", root_path
+  - if current_user
+    .right-container
+      .user-options-container
+        .user-name-container
+          = current_user.full_name
+          span.caret
+        ul.user-options
+          li= link_to "Cerrar Sesión",  destroy_user_session_path, method: :delete
+  /*
+    .link-evd.center-xy class= (color_class if defined? color_class != nil)
+      = link_to "EVD", "http://escuelavaloresdivinos.com", class: "centered", target: "_blank"
+    .link-instruccion.center-xy
+      /= link_to "Instrucción SKY", level_path(current_user.level), class: "centered"
+      = link_to "Instrucción SKY", root_path, class: "centered"
+    .link-ensenanza.center-xy
+      = link_to "Lecciones SKY", lesson_level_path(current_user.lesson.level), class: "centered"

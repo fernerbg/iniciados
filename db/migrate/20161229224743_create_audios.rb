@@ -6,7 +6,9 @@ class CreateAudios < ActiveRecord::Migration
       t.string :wave
       t.string :track
       t.text :description
-
+      
+      t.integer :auth_level_id, index: true, foreign_key: true
+      
       t.timestamps
     end
   end

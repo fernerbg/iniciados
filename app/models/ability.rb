@@ -6,9 +6,25 @@ class Ability
     
     if current_user.admin?
         can :manage, :all
+    elsif current_user.coor?
+        can :manage, User
     else
-        can :manage, LessonLevel do |lesson_level|
+        can :read, LessonLevel do |lesson_level|
             current_user.lesson.lesson_level.id >= lesson_level.id
+        end
+        can :read, Level do |level|
+            current_user.level.number >= level.number
+        end
+        can :read, Audio do |audio|
+            if not audio.level.nil?
+                current_user.level.number >= audio.level.number
+            elsif not audio.lesson.nil?
+                current_user.lesson.number >= audio.lesson.number
+            elsif not audio.auth_level.nil?
+                current_user.level.number >= audio.auth_level
+            else
+                true
+            end
         end
     end
 

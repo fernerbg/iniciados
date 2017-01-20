@@ -1,5 +1,5 @@
 class Iniciados.Routers.Audios extends Backbone.Router
 	routes:
-		'audios/new' : 'new'
+		'audios/adm/new' : 'new'
 	new: ->
 		view = new Iniciados.Views.AudiosNew()

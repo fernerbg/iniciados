@@ -6,11 +6,7 @@ class Lesson < ActiveRecord::Base
   
   validates :name, uniqueness: true
   
-  def cover_image
-  	content = contents.where(title: 'Cover Image').first
-  	if content.nil?
-  		content =	Content.where(title: 'default').first
-  	end
-  	content
+  def to_s
+    name
   end
 end

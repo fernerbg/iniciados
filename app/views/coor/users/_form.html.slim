@@ -1,0 +1,19 @@
+.container
+  .row
+    .col-md-8.col-md-offset-2.col-xs-12
+      = bootstrap_nested_form_for [:coor, @user] do |f|
+        - if @user.errors.any?
+          #error_explanation
+            h2 = "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
+            ul
+              - @user.errors.full_messages.each do |message|
+                li = message
+                
+        = f.text_field :name, label: "Nombre"
+        = f.text_field :surname, label: "Apellido"
+        = f.text_field :email, label: "Email"
+        
+        = f.select :level_id, options_for_select(Level.all.pluck(:name, :id), @user.level.id), { label: "Nivel"}
+        = f.select :lesson_id, options_for_select(Lesson.all.pluck(:name, :id), @user.lesson.id), { label: "Lección"}
+        
+        = f.primary "Acutalizar Iniciado"

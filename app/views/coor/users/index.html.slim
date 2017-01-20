@@ -1,0 +1,51 @@
+.separate-from-header
+		h1= "Iniciados #{current_user.headquarter}"
+		= bootstrap_form_tag url: coor_users_path, method: :get, layout: :inline do |f|
+				= f.text_field :by_email, value: params[:by_email], label: "Email"
+				= f.text_field :by_name, value: params[:by_name], label: "Nombre"
+				= f.text_field :by_surname, value: params[:by_surname], label: "Apellido"
+				br
+				= f.select :by_level_id, options_for_select(Level.all.pluck(:name, :id), params[:by_level_id]), { label: "Nivel", include_blank: true }
+				= f.select :by_lesson_id, options_for_select(Lesson.all.pluck(:name, :id), params[:by_lesson_id]), { label: "Lección", include_blank: true }
+				= f.submit :Buscar
+				
+			
+		table.table
+				thead
+						tr
+							th Nombre
+							th Apellido
+							th Email
+							th Nivel
+							th Leccion
+							th
+				tbody
+						- @users.each do |user|
+								tr
+										td = user.name
+										td = user.surname
+										td = user.email
+										td = user.level
+										- if user.lesson
+											td = "#{user.lesson} ( #{user.lesson.lesson_level} #{user.lesson.number_level})"
+										- else
+											td
+						
+										td
+											.btn-group
+												button.btn.btn-default.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button" 
+													| Acciones
+													span.caret
+												ul.dropdown-menu
+													li= link_to "Editar Información", edit_coor_user_path(user)
+													- if user.level.number < 11
+														li
+															= link_to "Pasar al siguiente nivel", pass_next_level_coor_user_path(user, params)
+													- if user.lesson && user.lesson.number < 36
+														li
+															= link_to  "Pasar a la siguiente lección", pass_next_lesson_coor_user_path(user, params)
+													li.divider role="separator" 
+													li
+														= link_to "Eliminar iniciado", coor_user_path(user), method: :delete, data: {confirm: 'Está seguro de eliminar este iniciado?'}
+														
+														

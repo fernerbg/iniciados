@@ -1,5 +1,6 @@
 class LevelsController < ApplicationController
-  before_action :set_level, only: [:show, :edit, :update, :destroy]
+  
+  load_and_authorize_resource
   before_action :get_levels
   
   respond_to :html
@@ -41,10 +42,6 @@ class LevelsController < ApplicationController
   end
 
   private
-    def set_level
-      @level = Level.find(params[:id])
-    end
-
     def get_levels
       @available_levels = Level.available_levels(current_user.level.number)
     end

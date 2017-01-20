@@ -24,4 +24,9 @@ class Level < ActiveRecord::Base
     def book_number
         "#{name.split(" ").last}"
     end
+    
+    def next_level
+        next_level = Level.where(number: number + 1).first
+        level =  next_level if next_level
+    end
 end
