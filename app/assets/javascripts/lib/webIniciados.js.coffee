@@ -35,7 +35,14 @@ window.webIniciados = do ->
 	
 	$.fn.awsUploader = () ->
 		$(this).on 'change', ->
-			filePath = $('#element').val() + "/pages/"
+			if gon.element is 'levels'
+				target = $('input[name="target"]:checked').val()
+				if target is 'Libro'
+					filePath = $('#element').val() + "/pages/"
+				else
+					filePath = $('#element').val() + "/Emanaciones/pages/"
+					
+			console.log filePath
 			
 			$('.uploaded-pages').html('0')
 			$('.failed-uploades').html('')
@@ -110,7 +117,7 @@ window.webIniciados = do ->
 		$('.wave-image').load ->
 			$('.top-content-wrapper.audio-content').css({visibility: 'hidden', display: 'block'})
 			audioWrapper = $(this).closest('.audio-wrapper')
-			opacityHeight = parseInt audioWrapper.find('.audio-wave').css('height') * 0.3
+			opacityHeight = parseInt(audioWrapper.find('.audio-wave').css('height')) * 0.3
 			audioWrapper.find('.opacity-maker').css({top: opacityHeight * -1 + 6, height: (opacityHeight - 6) + 'px'})
 			canvas = document.createElement('canvas')
 			img = new Image()
@@ -119,7 +126,7 @@ window.webIniciados = do ->
 			canvas.height = img.height
 			ctx = canvas.getContext('2d')
 			ctx.drawImage(img, 0, 0)
-			ctx.fillStyle = "rgb(255, 0, 0)"
+			ctx.fillStyle = "#000"
 			ctx.globalCompositeOperation = "source-in"
 			ctx.fillRect(0, 0, img.width, img.height)
 			ctx.restore()

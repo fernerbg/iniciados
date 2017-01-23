@@ -7,8 +7,9 @@
               .padding-wrapper
                 .title.verlag-bold
                   = notification.title
-                .date.verlag-bold
-                  = l notification.date, format: "%d %B %Y"
+                .date-wrapper
+                  .date.verlag-bold
+                    = l notification.date, format: "%d %B %Y"
                 .information.clarendon-light
                   = notification.description
             .content-wrapper.col-sm-8.col-xs-12.image  data-toggle="modal" data-target=".bs-example-modal-lg"
@@ -24,7 +25,8 @@
             .padding-wrapper
               .title.verlag-bold
                   = notification.title
-              .date.verlag-bold
-                  = l notification.date, format: "%d %B %Y"
+              .date-wrapper
+                .date.verlag-bold
+                    = l notification.date, format: "%d %B %Y"
               .information.clarendon-light
                 = notification.description

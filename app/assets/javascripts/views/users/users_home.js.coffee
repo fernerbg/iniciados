@@ -37,7 +37,9 @@ class Iniciados.Views.UsersHome extends Backbone.View
 										self.month = month.date
 										monthText = month.date.split(" ")[0].toLowerCase()
 										monthWrapper = $('<div>', {class: "month " + monthText + " " + monthText + "-bcg"})
-										monthWrapper.append($('<div>', {class: "month-title verlag-bold"}).html(month.date))
+										dateWrapper = $('<div>', {class: "date-wrapper"})
+										dateWrapper.append($('<div>', {class: "month-title verlag-bold"}).html(month.date))
+										monthWrapper.append(dateWrapper)
 										$('.current-container:first').removeClass('current-container')
 										monthWrapper.append($('<div>', {class: "container current-container"}))
 										$(".news-container:first").append(monthWrapper)

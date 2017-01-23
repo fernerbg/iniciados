@@ -29,7 +29,7 @@ class Adm::ContentsController < Adm::BaseController
   def new_page
     @element = params[:element]
     gon.element = params[:element]
-    gon.upload_path = page_upload_path
+    gon.upload_path = url_for(action: 'create_page', only_path: true)
   end
   
   def users_csv

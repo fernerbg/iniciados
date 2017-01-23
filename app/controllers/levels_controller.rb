@@ -13,7 +13,7 @@ class LevelsController < ApplicationController
     gon.audio_stream_path = url_for(action: 'send_content', controller: 'contents', only_path: true)
     @show_page_path = "#{url_for(action: 'show_page', controller: 'contents', only_path: true)}?element=levels&level=#{@level}"
     @sections = Level.first.sections.by_start_page
-    @front_sections = Level.first.sections.by_front_number.to_a
+    @front_sections = Level.first.level_sections.by_front_number.to_a
     render @level.name
   end
 

@@ -26,6 +26,8 @@ class Ability
                 true
             end
         end
+        
+        can :read, Notification
     end
 
     # Define abilities for the passed in user here. For example:

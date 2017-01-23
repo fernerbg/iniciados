@@ -1,11 +1,10 @@
 class Level < ActiveRecord::Base
-    has_many :level_contents
     
-    has_many :contents, through: :level_contents
     has_many :level_audios
-    
     has_many :audios, through: :level_audios
-    has_many :sections, dependent: :destroy
+    
+    has_many :level_sections
+    has_many :sections, through: :level_sections
     
     has_many :users
     
@@ -28,5 +27,9 @@ class Level < ActiveRecord::Base
     def next_level
         next_level = Level.where(number: number + 1).first
         level =  next_level if next_level
+    end
+    
+    def self_value
+        value + "se"
     end
 end

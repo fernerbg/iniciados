@@ -1,0 +1,23 @@
+h1 Listing level_sections
+
+table
+  thead
+    tr
+      th Section
+      th Level
+      th
+      th
+      th
+
+  tbody
+    - @level_sections.each do |level_section|
+      tr
+        td = level_section.section
+        td = level_section.level
+        td = link_to 'Show', level_section
+        td = link_to 'Edit', edit_level_section_path(level_section)
+        td = link_to 'Destroy', level_section, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Level section', new_level_section_path

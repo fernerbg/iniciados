@@ -9,7 +9,7 @@ class Adm::AudiosController < Adm::BaseController
     else
       'error'
     end
-    respond_with(@audio)
+    redirect_to action: :new, element: 'levels'
   end
   
   def new

@@ -53,6 +53,13 @@
           span.caret
         ul.user-options
           li= link_to "Cerrar Sesión",  destroy_user_session_path, method: :delete
+          - if current_user.admin? || current_user.coor?
+            li= link_to "Administrar Iniciados", coor_users_path
+            li= link_to "Agregar Iniciado", new_coor_user_path
+          - if current_user.admin?
+            li= link_to "Agregar Audio", new_adm_audios_path(element: 'levels')
+            li= link_to "Administrar Noticias", adm_notifications_path
+            
   /*
     .link-evd.center-xy class= (color_class if defined? color_class != nil)
       = link_to "EVD", "http://escuelavaloresdivinos.com", class: "centered", target: "_blank"

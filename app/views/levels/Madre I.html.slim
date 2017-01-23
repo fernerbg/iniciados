@@ -75,8 +75,9 @@
 			= link_to "VIDEO DE LA ENSEÑANZA", root_path
 			= link_to "MANTRAS", root_path
 			= link_to "KRIYA SADHANA", root_path
+			.background-value= @level.self_value.upcase
 		.text-value
-			|PERDONAR
+			= @level.value.upcase
 			span.darker
 				|SE
 		

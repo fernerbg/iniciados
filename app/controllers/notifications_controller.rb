@@ -16,10 +16,5 @@ class NotificationsController < InheritedResources::Base
       end
     end
   end
-  
-  private
-    def notification_params
-      params.require(:notification).permit(:title, :date, :description, :media)
-    end
 end
 

@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   before_action :private_root
 	before_action :configure_permitted_parameters, if: :devise_controller?
   
-	helper_method :embedded_svg, :namespace, :private_root, :page_upload_path
+	helper_method :embedded_svg, :namespace, :private_root
   
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, :alert => exception.message
@@ -30,10 +30,6 @@ class ApplicationController < ActionController::Base
   
   def private_root
     "#{Rails.root}/private"
-  end
-  
-  def page_upload_path
-    url_for(action: 'create_page', controller: 'contents', only_path: true)
   end
   
   protected

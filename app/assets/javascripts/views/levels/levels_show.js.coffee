@@ -40,13 +40,16 @@ class Iniciados.Views.LevelsShow extends Backbone.View
 			@currentAudio.html($('<source>', {src: gon.audio_stream_path + "?element=audio_track&id=" + @currentAudio.data('id')}))
 		
 		@currentAudio.on('play', ->
-			$(this).closest('.audio-wrapper').find('.duration').html(webIniciados.toMMSS(this.duration))
 			self.timeInterval = setInterval (->
 				currentAudio = self.currentAudio[0]
-				currentWidth = currentAudio.currentTime / currentAudio.duration * 100
+				currentWidth = (currentAudio.currentTime + 1) / currentAudio.duration * 100
 				self.currentAudio.closest('.audio-wrapper').find('.image-mask').css('width', currentWidth + "%")
 				self.currentAudio.closest('.audio-wrapper').find('.current-time').html(webIniciados.toMMSS(currentAudio.currentTime))
 			), 1000
+		)
+		
+		@currentAudio.on('loadedmetadata', ->
+			$(this).closest('.audio-wrapper').find('.duration').html(webIniciados.toMMSS(this.duration))
 		)
 		
 		@currentAudio.trigger('play')

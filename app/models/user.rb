@@ -22,8 +22,8 @@ class User < ActiveRecord::Base
     profiles.where(name: 'admin').first
   end
 	
-	def coord?
-	  profiles.where(name: 'coord').first
+	def coor?
+	  profiles.where(name: 'coor').first
 	end
 	
 	def full_name

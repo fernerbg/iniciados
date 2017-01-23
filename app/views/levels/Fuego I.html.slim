@@ -14,12 +14,13 @@
 	.main-options-wrapper
 		.main-options
 			#audio-link.circle-option-wrapper.small.link
-				.inner-option
-					.word-wrapper
-						p.word.small-word.last-word
-							|AUDIO
+				.inner-link
+					.inner-option
+						.word-wrapper
+							p.word.small-word.last-word
+								|AUDIO
 			.circle-option-wrapper
-				= link_to show_page_contents_path(level: @level.name, number: 1, element: 'levels'), class: "inner-link" do
+				= link_to show_page_contents_path(level: @level.name, number: 1, element: 'levels_book'), class: "inner-link" do
 					.inner-option
 						.word-wrapper
 							p.word.small-word
@@ -27,7 +28,7 @@
 							p.word.medium-word.last-word
 								= @level.name.upcase
 			.circle-option-wrapper.small
-				= link_to "http://escuelavaloresdivinos.com", class: "inner-link" do
+				= link_to show_page_contents_path(level: @level.name, number: 1, element: 'levels_emanations'), class: "inner-link" do
 					.inner-option
 						.word-wrapper
 							p.word.small-word.last-word
@@ -74,8 +75,9 @@
 			= link_to "VIDEO DE LA ENSEÑANZA", root_path
 			= link_to "MANTRAS", root_path
 			= link_to "KRIYA SADHANA", root_path
+			.background-value= @level.self_value.upcase
 		.text-value
-			|PERDONAR
+			= @level.value.upcase
 			span.darker
 				|SE
 		

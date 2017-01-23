@@ -1,34 +1,41 @@
-= form_for @audio, html: {multipart: true} do |f|
-  - if @audio.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@audio.errors.count, "error")} prohibited this audio from being saved:"
-      ul
-        - @audio.errors.full_messages.each do |message|
-          li = message
-  - if @element == 'levels'
-    = select_tag :level_id, options_for_select(Level.all.pluck(:name, :id), :level_id), class: 'form-control'
-    = number_field_tag :number, placeholder: "number"
-  = hidden_field_tag :element, params[:element]
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :length
-    = f.number_field :length
-  .field
-    = f.label :wave
-    = f.file_field :wave
-  .field
-    = f.label :track
-    = f.file_field :track
-  .field
-    = f.label :description
-    = f.text_area :description
-  .actions = f.submit
-
-audio#track-audio controls='controls'
-#wave-container
-  canvas#waveform
-  #overForm
-
-canvas#behindform width='1800' height='200'
+.content
+  .row
+    .col-xs-8.col-xs-offset-2
+      = form_for [:adm, @audio], html: {multipart: true} do |f|
+        - if @audio.errors.any?
+          #error_explanation
+            h2 = "#{pluralize(@audio.errors.count, "error")} prohibited this audio from being saved:"
+            ul
+              - @audio.errors.full_messages.each do |message|
+                li = message
+        - if @element == 'levels'
+          .form-group
+            = f.label :level
+            = select_tag :level_id, options_for_select(Level.all.pluck(:name, :id), :level_id), class: 'form-control'
+          .form-group
+            = f.label :number
+            = number_field_tag :number, nil, class: 'form-control'
+        = hidden_field_tag :element, params[:element]
+        .form-group
+          = f.label :name
+          = f.text_field :name, class: 'form-control'
+        .form-group
+          = f.label :length
+          = f.number_field :length, class: 'form-control'
+        .form-group
+          = f.label :wave
+          = f.file_field :wave
+        .form-group
+          = f.label :track
+          = f.file_field :track
+        .form-group
+          = f.label :description
+          = f.text_area :description, class: 'form-control'
+        .actions = f.submit
+      
+      audio#track-audio controls='controls'
+      #wave-container
+        canvas#waveform
+        #overForm
+      
+      canvas#behindform width='1800' height='200'

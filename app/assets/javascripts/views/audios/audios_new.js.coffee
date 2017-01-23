@@ -19,7 +19,7 @@ class Iniciados.Views.AudiosNew extends Backbone.View
 			canvas_width: canvasWidth
 			canvas_height: canvasHeight - mirrorHeight
 			bar_width: 10
-			wave_color: '#000'
+			wave_color: '#747373'
 			download: false
 			onComplete: (png, pixels) ->
 				canvas = document.getElementById('waveform')

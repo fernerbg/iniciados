@@ -46,7 +46,7 @@
   .news-title.majesti-bold
     | Novedades
   - @notifications_month.each do |month, notifications|
-      .month.january.enero-bcg
+      .month class=((l month, format: '%B').downcase)
         .month-title.verlag-bold
           = l month, format: '%B %Y'
         .container

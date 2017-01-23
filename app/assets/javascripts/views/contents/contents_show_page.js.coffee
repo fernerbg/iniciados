@@ -55,7 +55,7 @@ class Iniciados.Views.ContentsShowPage extends Backbone.View
 		while i <= 10
 			do (i) ->
 				oReq = new XMLHttpRequest
-				oReq.open 'GET', 'send_content?element=book_page&file_path=' + gon.file_path  + "/" + page + "/" + i + self.extension, true
+				oReq.open 'GET', 'send_content?element=' +gon.element+ '&element_id=' +gon.element_id+ '&file_path=' + gon.file_path  + "/" + page + "/" + i + self.extension, true
 				oReq.responseType = 'arraybuffer'
 				oReq.onreadystatechange = (aEvt) ->
 					if aEvt.target.readyState == 4 and aEvt.target.status == 200

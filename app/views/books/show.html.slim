@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Title:
+  = @book.title
+p
+  strong Level:
+  = @book.level
+p
+  strong Description:
+  = @book.description
+
+= link_to 'Edit', edit_book_path(@book)
+'|
+= link_to 'Back', books_path

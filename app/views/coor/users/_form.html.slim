@@ -13,7 +13,7 @@
         = f.text_field :surname, label: "Apellido"
         = f.text_field :email, label: "Email"
         
-        = f.select :level_id, options_for_select(Level.all.pluck(:name, :id), @user.level.id), { label: "Nivel"}
-        = f.select :lesson_id, options_for_select(Lesson.all.pluck(:name, :id), @user.lesson.id), { label: "Lección"}
+        = f.select :level_id, options_for_select(Level.all.pluck(:name, :id), (@user.level.nil? ? nil : @user.level.id)), { label: "Nivel"}
+        = f.select :lesson_id, options_for_select(Lesson.all.pluck(:name, :id), (@user.lesson.nil? ? nil: @user.lesson.id)), { label: "Lección"}
         
-        = f.primary "Acutalizar Iniciado"
+        = f.primary

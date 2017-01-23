@@ -4,9 +4,16 @@ h1 New page
 	.row
 		.col-xs-8
 			.form-group
-				= label_tag :element
 				- if @element == 'levels' 
+					= label_tag :element, "Nivel"
 				    = select_tag :element, options_for_select(Level.all.pluck(:name, :name), "level_page[level_id]"), name: "level_page[level_id]", class: 'form-control'
+				    = label_tag :target_libro, "Libro"
+				    |&nbsp;
+				    = radio_button_tag :target, "Libro", true
+				    |&nbsp;&nbsp;&nbsp;
+				    = label_tag :target_emanaciones, "Emanaciones"
+				    |&nbsp;
+				    = radio_button_tag :target, "Emanaciones", false
 				- elsif @element == 'lessons'
 				    = select_tag :element, options_for_select(Lesson.all.pluck(:number, :number), "lesson_page[lesson_id]"), name: "lesson_page[lesson_id]", class: 'form-control'
 				    

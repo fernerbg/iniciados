@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
   
-  resources :notifications
+  resources :level_sections
 
-  resources :audios do
+  resources :books
+
+  resources :notifications, only: :index
+
+  resources :audios, only: :index do
     member do
       get 'send_wave'
       get 'stream'
@@ -11,8 +15,6 @@ Rails.application.routes.draw do
   
   post 'level_pages/:id', to: "level_pages#show"
   
-  resources :emanations
-
   resources :chapters
 
   resources :sections
@@ -61,6 +63,8 @@ Rails.application.routes.draw do
     end
     
     resource :audios
+    
+    resources :notifications
     
   end
 

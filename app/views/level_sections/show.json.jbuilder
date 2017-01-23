@@ -1,0 +1,1 @@
+json.partial! "level_sections/level_section", level_section: @level_section

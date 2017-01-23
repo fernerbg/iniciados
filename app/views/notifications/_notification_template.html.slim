@@ -7,8 +7,9 @@ script type="text/template" id="left-content-notification"
             .padding-wrapper
               .title.verlag-bold
                 | <%= title %>
-              .date.verlag-bold
-                | <%= formatDate %>
+              .date-wrapper
+                .date.verlag-bold
+                  | <%= formatDate %>
               .information.clarendon-light
                 | <%= description %>
             | </div>
@@ -26,8 +27,9 @@ script type="text/template" id="right-content-notification"
           .padding-wrapper
             .title.verlag-bold
                 | <%= title %>
-            .date.verlag-bold
-                | <%= formatDate %>
+            .date-wrapper
+              .date.verlag-bold
+                  | <%= formatDate %>
             .information.clarendon-light
               | <%= description %>
           | </div>

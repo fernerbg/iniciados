@@ -16,51 +16,32 @@ class ContentsController < ApplicationController
       format.html do
         gon.initial_page = params[:number]
         case params[:element]
-        when 'levels'
+        when 'levels_book'
           level = Level.where(name: params[:level]).first
           authorize! :read, level
           gon.file_path = "levels/#{params[:level]}/pages"
           gon.total_pages = Dir.entries("#{private_root}/#{gon.file_path}").size
+          gon.element = 'level_book_page'
+          gon.element_id = level.id
+        when 'levels_emanations'
+          level = Level.where(name: params[:level]).first
+          authorize! :read, level
+          gon.file_path = "levels/#{params[:level]}/Emanaciones/pages"
+          gon.total_pages = Dir.entries("#{private_root}/#{gon.file_path}").size
+          gon.element = 'level_book_page'
+          gon.element_id = level.id
         when 'lessons'
           lesson = Lesson.where(number: params[:number]).first
           authorize! :read, lesson
           gon.file_path = "lessons/#{params[:lesson]}/pages"
           gon.total_pages = Dir.entries("#{private_root}/#{gon.file_path}").size
+          gon.element = 'lesson_book_page'
+          gon.element_id = lesson.id
         else
           gon.path = "error"
         end
       end
     end
-  end
-
-  def create_page
-    case params[:element]
-    when 'levels'
-      directory_name = "#{levels_root}/#{params[:file_path]}"
-    when 'lessons'
-      directory_name = "#{lessons_root}/#{params[:file_path]}"
-    else
-      directory_name = nil
-    end
-    FileUtils.mkdir_p directory_name
-    (1..10).each do |i|
-      File.open("#{directory_name}/#{i}.jpg", "w+b") do |file|
-        puts "The data is"
-        puts "data" + i.to_s
-        file.write(params["data" + i.to_s].read)
-      end 
-    end
-    respond_to do |format|
-      format.json do
-        render json: { success: true }
-      end
-    end
-  end
-  
-  def new_page
-    @element = params[:element]
-    gon.element = params[:element]
-    gon.upload_path = page_upload_path
   end
   
   def send_content
@@ -76,7 +57,13 @@ class ContentsController < ApplicationController
     when 'notification_media'
       notification = Notification.find(params[:id])
       send_file notification.media.current_path
-    when 'book_page'
+    when 'level_book_page'
+      level = Level.find(params[:element_id])
+      authorize! :read, level
+      send_file "#{private_root}/#{params[:file_path]}"
+    when 'lesson_book_page'
+      lesson = Lesson.find(params[:element_id])
+      authorize! :read, lesson
       send_file "#{private_root}/#{params[:file_path]}"
     else
       'none'

@@ -1,0 +1,23 @@
+.separate-from-header
+  h1 Listing notifications
+  = link_to "Nueva Noticia", new_adm_notification_path, class:"btn, btn-default"
+  
+  table.table
+    thead
+      tr
+        th Title
+        th Date
+        th Description
+        th Media
+        th
+        th
+  
+    tbody
+      - @notifications.each do |notification|
+        tr
+          td = notification.title
+          td = notification.date
+          td = notification.description
+          td = notification.media_identifier
+          td = link_to 'Edit', edit_adm_notification_path(notification)
+          td = link_to 'Destroy', [:adm, notification], data: { confirm: 'Are you sure?' }, method: :delete

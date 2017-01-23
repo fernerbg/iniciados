@@ -16,6 +16,11 @@ window.Iniciados =
 			$("html, body").animate({ scrollTop: window.innerHeight }, 700)
 		)
 		
+		$('#carousel-images').css("height", window.innerHeight + "px")
+		
+		$( window ).resize ->
+			$('#carousel-images').css("height", window.innerHeight + "px")
+			
 		controller = $('body').data('controller')
 		new Iniciados.Routers.Contents() if controller == 'contents'
 		new Iniciados.Routers.LessonLevels() if controller == 'lesson_levels'
