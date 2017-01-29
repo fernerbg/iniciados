@@ -1,0 +1,26 @@
+h1 Listing books
+
+table
+  thead
+    tr
+      th Title
+      th Authority
+      th Description
+      th
+      th
+      th
+      th
+  tbody
+    - @books.each do |book|
+      tr
+        td = book.title
+        td = book.authority.class.to_s.underscore
+        td = book.description
+        td = link_to 'Show', book
+        td = link_to 'Edit', edit_adm_book_path(book)
+        td = link_to 'Destroy', [:adm, book], data: { confirm: 'Are you sure?' }, method: :delete
+        td = link_to 'Add Pages', new_page_adm_book_path(book)
+
+br
+
+= link_to 'New Book', new_adm_book_path

@@ -38,9 +38,9 @@ window.webIniciados = do ->
 			if gon.element is 'levels'
 				target = $('input[name="target"]:checked').val()
 				if target is 'Libro'
-					filePath = $('#element').val() + "/pages/"
+					filePath = $('#element').val() + "/pages"
 				else
-					filePath = $('#element').val() + "/Emanaciones/pages/"
+					filePath = $('#element').val() + "/Emanaciones/pages"
 					
 			console.log filePath
 			
@@ -89,8 +89,7 @@ window.webIniciados = do ->
 										canvas.toBlob ((blob)->
 											fd.append('data' + totalPieces, blob)
 											if totalPieces is (xPieces * yPieces)
-												fd.append('file_path', filePath + "/" + pageNumber)
-												fd.append("element", gon.element)
+												fd.append('page_number', pageNumber)
 												$.ajax
 													type: 'POST'
 													data: fd

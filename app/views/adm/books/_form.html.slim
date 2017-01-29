@@ -1,0 +1,16 @@
+= form_for [:adm, @book] do |f|
+	= hidden_field_tag :element, params[:element]
+	.form-group
+		- if params[:element] == 'levels' 
+			= label_tag :element, "Nivel"
+			= select_tag :element, options_for_select(Level.all.pluck(:name, :id), "id"), name: "id", class: 'form-control'
+		- elsif params[:element] == 'lessons'
+			= label_tag :element, "Lección"
+			= select_tag :element, options_for_select(Lesson.all.pluck(:number, :id), "id"), name: "id", class: 'form-control'
+	.form-group
+		= f.label :title
+		= f.text_field :title, class: "form-control"
+	.form-group
+		= f.label :description
+		= f.text_area :description, class: "form-control"
+	.actions = f.submit

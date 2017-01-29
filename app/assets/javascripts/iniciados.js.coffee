@@ -22,7 +22,7 @@ window.Iniciados =
 			$('#carousel-images').css("height", window.innerHeight + "px")
 			
 		controller = $('body').data('controller')
-		new Iniciados.Routers.Contents() if controller == 'contents'
+		new Iniciados.Routers.Books() if controller == 'books'
 		new Iniciados.Routers.LessonLevels() if controller == 'lesson_levels'
 		new Iniciados.Routers.Users() if controller == 'users'
 		new Iniciados.Routers.Levels() if controller == 'levels'

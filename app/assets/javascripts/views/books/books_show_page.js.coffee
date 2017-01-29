@@ -1,4 +1,4 @@
-class Iniciados.Views.ContentsShowPage extends Backbone.View
+class Iniciados.Views.BooksShowPage extends Backbone.View
 
 	el: 'body'
 
@@ -49,13 +49,12 @@ class Iniciados.Views.ContentsShowPage extends Backbone.View
 		self = @
 		self.lockButtons()
 		pieces = []
-		totalPieces = 4
 		piecesDownloaded = 1
 		i = 1
 		while i <= 10
 			do (i) ->
 				oReq = new XMLHttpRequest
-				oReq.open 'GET', 'send_content?element=' +gon.element+ '&element_id=' +gon.element_id+ '&file_path=' + gon.file_path  + "/" + page + "/" + i + self.extension, true
+				oReq.open 'GET', gon.send_page_url + '?page=' +page+ '&portion=' + i + self.extension, true
 				oReq.responseType = 'arraybuffer'
 				oReq.onreadystatechange = (aEvt) ->
 					if aEvt.target.readyState == 4 and aEvt.target.status == 200
@@ -80,7 +79,9 @@ class Iniciados.Views.ContentsShowPage extends Backbone.View
 								$('#current-page').val(self.currentPage)
 							++piecesDownloaded
 					else
-						if  aEvt.target.status != 200
+						if aEvt.target.status == 406
+							location.reload()
+						else if  aEvt.target.status != 200
 							console.log 'Error loading page'
 							console.log aEvt
 						

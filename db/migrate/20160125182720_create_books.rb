@@ -1,9 +1,9 @@
 class CreateBooks < ActiveRecord::Migration
   def change
     create_table :books do |t|
-      t.string :title
+      t.string :title, index: true
       t.text :description
-      t.belongs_to :level, index: true
+      t.references :authority, polymorphic: true, index: true
       
       t.timestamps
     end

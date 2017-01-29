@@ -26,22 +26,15 @@ ActiveRecord::Schema.define(version: 20170123033908) do
     t.datetime "updated_at"
   end
 
-  create_table "levels", force: true do |t|
-    t.string   "name"
-    t.string   "value"
-    t.integer  "number"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "books", force: true do |t|
     t.string   "title"
     t.text     "description"
-    t.integer  "level_id"
+    t.integer  "authority_id"
+    t.string   "authority_type"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["level_id"], :name => "index_books_on_level_id"
-    t.foreign_key ["level_id"], "levels", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_books_level_id"
+    t.index ["authority_id", "authority_type"], :name => "index_books_on_authority_id_and_authority_type"
+    t.index ["title"], :name => "index_books_on_title"
   end
 
   create_table "sections", force: true do |t|
@@ -96,6 +89,14 @@ ActiveRecord::Schema.define(version: 20170123033908) do
     t.datetime "updated_at"
     t.index ["lesson_level_id"], :name => "index_lessons_on_lesson_level_id"
     t.foreign_key ["lesson_level_id"], "lesson_levels", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_lessons_lesson_level_id"
+  end
+
+  create_table "levels", force: true do |t|
+    t.string   "name"
+    t.string   "value"
+    t.integer  "number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "level_audios", force: true do |t|

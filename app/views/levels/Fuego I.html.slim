@@ -20,15 +20,15 @@
 							p.word.small-word.last-word
 								|AUDIO
 			.circle-option-wrapper
-				= link_to show_page_contents_path(level: @level.name, number: 1, element: 'levels_book'), class: "inner-link" do
+				= link_to show_page_book_path(@level_book, number: 1), class: "inner-link" do
 					.inner-option
 						.word-wrapper
 							p.word.small-word
 								|LIBRO 
 							p.word.medium-word.last-word
-								= @level.name.upcase
+								= @level.name_upcase
 			.circle-option-wrapper.small
-				= link_to show_page_contents_path(level: @level.name, number: 1, element: 'levels_emanations'), class: "inner-link" do
+				= link_to show_page_book_path(@level.emanation_book, number: 1), class: "inner-link" do
 					.inner-option
 						.word-wrapper
 							p.word.small-word.last-word
@@ -44,7 +44,7 @@
 	.title
 		= "Libro #{@level.book_number} Nivel #{@level.book_name.titlecase}"
 	.content-container
-		- @sections.each_with_index do |section, index|
+		- @level_book.sections.by_start_page.each_with_index do |section, index|
 			- if index % 4 == 0
 				.break-line
 			.content-section

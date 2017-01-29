@@ -2,48 +2,6 @@ class ContentsController < ApplicationController
 
   respond_to :html
   
-  def show_page
-    respond_to do |format|
-      format.json do
-        file_path = "#{private_root}/#{params[:file_path]}"
-        entries = Dir.entries file_path
-        files = []
-        entries.each do |file_name|
-          files[file_name.to_f - 1] = File.read("#{file_path}/#{file_name}") unless file_name == '.' || file_name == '..'
-        end
-        render json: files
-      end
-      format.html do
-        gon.initial_page = params[:number]
-        case params[:element]
-        when 'levels_book'
-          level = Level.where(name: params[:level]).first
-          authorize! :read, level
-          gon.file_path = "levels/#{params[:level]}/pages"
-          gon.total_pages = Dir.entries("#{private_root}/#{gon.file_path}").size
-          gon.element = 'level_book_page'
-          gon.element_id = level.id
-        when 'levels_emanations'
-          level = Level.where(name: params[:level]).first
-          authorize! :read, level
-          gon.file_path = "levels/#{params[:level]}/Emanaciones/pages"
-          gon.total_pages = Dir.entries("#{private_root}/#{gon.file_path}").size
-          gon.element = 'level_book_page'
-          gon.element_id = level.id
-        when 'lessons'
-          lesson = Lesson.where(number: params[:number]).first
-          authorize! :read, lesson
-          gon.file_path = "lessons/#{params[:lesson]}/pages"
-          gon.total_pages = Dir.entries("#{private_root}/#{gon.file_path}").size
-          gon.element = 'lesson_book_page'
-          gon.element_id = lesson.id
-        else
-          gon.path = "error"
-        end
-      end
-    end
-  end
-  
   def send_content
     case params[:element]
     when 'audio_wave' 

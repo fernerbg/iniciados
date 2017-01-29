@@ -2,7 +2,12 @@ Rails.application.routes.draw do
   
   resources :level_sections
 
-  resources :books
+  resources :books do
+    member do
+      get 'show_page'
+      get 'send_page'
+    end
+  end
 
   resources :notifications, only: :index
 
@@ -27,7 +32,6 @@ Rails.application.routes.draw do
 
   resources :contents do
     collection do
-      get 'show_page'
       get 'send_content'
     end
   end
@@ -55,8 +59,6 @@ Rails.application.routes.draw do
   namespace :adm do
     resource :contents, only: [ :index ] do
       collection do
-        post 'create_page'
-        get 'new_page'
         get 'users_csv'
         post 'upload_users_csv'
       end
@@ -66,6 +68,12 @@ Rails.application.routes.draw do
     
     resources :notifications
     
+    resources :books do
+      member do
+        post 'create_page'
+        get 'new_page'
+      end
+    end
   end
 
   namespace :coor do

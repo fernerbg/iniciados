@@ -16,8 +16,21 @@ Rails.application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
-
+  config.action_mailer.raise_delivery_errors = true
+    
+  config.action_mailer.delivery_method = :smtp
+  
+  config.action_mailer.smtp_settings = {
+    :address   => "smtp.mailgun.org",
+    :port      => 25, # ports 587 and 2525 are also supported with STARTTLS
+    :user_name => "postmaster@sandbox949518c049e84d6fb86c320031ee2a03.mailgun.org",
+    :password  => "3ce8ebd2cfe810e453175134a28de67", # SMTP password is any valid API key
+    :authentication => 'plain', # Mandrill supports 'plain' or 'login'
+    :domain => 'sandbox949518c049e84d6fb86c320031ee2a03.mailgun.org', # your domain to identify your server when connecting  
+  }
+  
+  config.action_mailer.default_url_options = { :host => 'https://iniciados-evd.herokuapp.com' }
+  
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 

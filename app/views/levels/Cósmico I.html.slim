@@ -1,0 +1,103 @@
+/============== NIVEL FUEGO I =================
+#carousel-images.carousel.slide data-ride="carousel"
+	/! Indicators
+	/*
+		ol.carousel-indicators
+			li.active data-slide-to="0" data-target="#carousel-images" 
+			li data-slide-to="1" data-target="#carousel-images" 
+	/! Wrapper for slides
+	/
+	.carousel-inner role="listbox"
+		- image_path = "design2/#{@level.book_name}-wallpaper.jpg"
+		.item.active style=("background-image: url(#{image_path(image_path)})")
+	
+	.main-options-wrapper
+		.main-options
+			#audio-link.circle-option-wrapper.small.link
+				.inner-link
+					.inner-option
+						.word-wrapper
+							p.word.small-word.last-word
+								|AUDIO
+			.circle-option-wrapper
+				= link_to show_page_contents_path(level: @level.name, number: 1, element: 'levels_book'), class: "inner-link" do
+					.inner-option
+						.word-wrapper
+							p.word.small-word
+								|LIBRO 
+							p.word.medium-word.last-word
+								= @level.name_upcase
+			.circle-option-wrapper.small
+				= link_to show_page_contents_path(level: @level.name, number: 1, element: 'levels_emanations'), class: "inner-link" do
+					.inner-option
+						.word-wrapper
+							p.word.small-word.last-word
+								|EMANACIONES
+			.main-link-below
+				.border-bottom
+					|CONTENIDO DEL LIBRO
+	
+	#button-downward
+		.triangle
+#book-content.top-content-wrapper.book-content
+	= embedded_svg 'design2/close-icon-2.svg', class: "close-icon"
+	.title
+		= "Libro #{@level.book_number} Nivel #{@level.book_name.titlecase}"
+	.content-container
+		- @sections.each_with_index do |section, index|
+			- if index % 4 == 0
+				.break-line
+			.content-section
+				.content-section-title
+					= section
+				- section.chapters.each do |chapter|
+					.fragment
+						= link_to chapter, "#{@show_page_path}&number=#{chapter.start_page}"
+
+#audio-content.top-content-wrapper.audio-content
+	= embedded_svg 'design2/close-icon-2.svg', class: "close-icon"
+	.title
+		= "Audios Nivel #{@level.book_name.titlecase}"
+	.content-container
+		= render @level.audios
+.lesson-container
+	.title
+		= "Libro #{@level.book_number} Nivel #{@level.book_name.titlecase}"
+	.level-key
+		p DESPERTAR, ENCONTRAR Y SABER SEGUIR
+		p ES CONVENIR SIEMPRE
+		p ANTE EL TODO QUE SE ES.
+	.main-links-wrapper
+		.main-links
+			= link_to "CRIATURA PODEROSA", root_path
+			= link_to "SISTEMA DE FUEGO", root_path
+			= link_to "PIRÁMIDE DE VALORES", root_path
+			= link_to "VIDEO DE LA ENSEÑANZA", root_path
+			= link_to "MANTRAS", root_path
+			= link_to "KRIYA SADHANA", root_path
+			.background-value= @level.self_value.upcase
+		.text-value
+			= @level.value.upcase
+			span.darker
+				|SE
+		
+	.sections-container (class="#{@level.book_name}")
+		- (0..6).each do |index|
+			= render @front_sections[index]
+				
+		.section-group-1
+			= render @front_sections[7]
+			= render @front_sections[9]
+			= render @front_sections[10]
+		
+		= render @front_sections[8]
+		
+		= render @front_sections[11]
+		= render @front_sections[12]
+		= render @front_sections[13]
+		
+	.shanti-container
+		p= "ASATOMA SAD GAMAYA"
+		p= "TAMASOMA JYOTIR GAMAYA"
+		p= "MRITYORMA AMRITAM GAMAYA"
+		p= "OM SHANTI SHNATI SHANTI"

@@ -1,3 +1,3 @@
 class Book < ActiveRecord::Base
-  belongs_to :level
+  belongs_to :authority, polymorphic: true
 end

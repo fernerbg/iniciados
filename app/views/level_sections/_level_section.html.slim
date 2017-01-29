@@ -12,4 +12,4 @@
         			.btn.btn-play class=("btn-#{@level.book_name}")
         				= link_to embedded_svg('design2/play-video-icon.svg'), root_path
     			.btn.btn-read class=("btn-#{@level.book_name}")
-    				= link_to embedded_svg('design2/view-pdf-icon.svg'), show_page_contents_path(element: 'levels_book', level: @level.name, number: level_section.section.start_page)
+    				= link_to embedded_svg('design2/view-pdf-icon.svg'), show_page_book_path(@level_book, number: level_section.section.start_page)
