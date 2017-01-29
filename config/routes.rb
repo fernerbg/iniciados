@@ -15,9 +15,7 @@ Rails.application.routes.draw do
       get 'stream'
     end
   end
-
-  resources :tags
-
+  
   resources :level_contents
 
   resources :lesson_contents

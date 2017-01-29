@@ -1,13 +1,10 @@
-= bootstrap_nested_form_for @section do |f|
+= bootstrap_nested_form_for [:adm, @book, @section] do |f|
   - if @section.errors.any?
     #error_explanation
       h2 = "#{pluralize(@section.errors.count, "error")} prohibited this section from being saved:"
       ul
         - @section.errors.full_messages.each do |message|
           li = message
-  .field
-    = f.label :level
-    = select_tag :level, options_for_select(Level.all.pluck(:name, :id), "section[level_id]"), name: "section[level_id]", class: 'form-control'
   .field
     = f.text_field :title
   .field

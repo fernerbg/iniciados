@@ -1,6 +1,7 @@
-class SectionsController < InheritedResources::Base
-  
+class Adm::SectionsController < Adm::BaseController
+  belongs_to :book
   def new
+    @book = parent
     @section = Section.new
     3.times { @section.chapters.build }
   end

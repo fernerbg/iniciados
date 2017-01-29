@@ -1,4 +1,4 @@
-class ChaptersController < InheritedResources::Base
+class Adm::ChaptersController < Adm::BaseController
 
   private
 
@@ -6,4 +6,3 @@ class ChaptersController < InheritedResources::Base
       params.require(:chapter).permit(:title, :start_page, :section_id)
     end
 end
-
