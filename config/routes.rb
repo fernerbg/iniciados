@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  
-  resources :level_sections
 
   resources :books do
     member do
@@ -17,12 +15,6 @@ Rails.application.routes.draw do
       get 'stream'
     end
   end
-  
-  post 'level_pages/:id', to: "level_pages#show"
-  
-  resources :chapters
-
-  resources :sections
 
   resources :tags
 
@@ -72,6 +64,9 @@ Rails.application.routes.draw do
       member do
         post 'create_page'
         get 'new_page'
+      end
+      resources :sections, shallow: true do
+        resources :chapters, shallow: true
       end
     end
   end

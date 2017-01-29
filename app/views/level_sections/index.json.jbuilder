@@ -1,1 +1,0 @@
-json.array! @level_sections, partial: 'level_sections/level_section', as: :level_section
