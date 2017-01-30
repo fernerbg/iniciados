@@ -13,7 +13,11 @@ html
 body.pagina-home[data-namespace="#{namespace}" data-controller="#{controller_name}" data-action="#{action_name}"]
 = render partial: "layouts/header"
 #page-content 
-  = yield
+  - if namespace == "adm" || namespace == "coor"
+    .separate-from-header
+      = yield
+  - else
+    = yield
 = render partial: "layouts/footer"
 
 /*

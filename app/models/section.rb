@@ -1,5 +1,6 @@
 class Section < ActiveRecord::Base
   
+  belongs_to :book
   has_one :level_section
   has_many :chapters, -> { order(start_page: :asc) }, dependent: :destroy
   

@@ -6,12 +6,13 @@ class Iniciados.Views.BooksShowPage extends Backbone.View
 		"keypress #current-page" : "goToPage"
 		"click #prev-page" : "prevPage"
 		"click #next-page" : "nextPage"
-		
 	maxPageWidth: 0
 	
 	currentPage: 0
 	
 	extension: ".jpg"
+	
+	startTouch: 0
 	
 	initialize: ->
 		self = @
@@ -36,6 +37,46 @@ class Iniciados.Views.BooksShowPage extends Backbone.View
 		$("#slider .ui-slider-handle").unbind('keydown')
 		
 		$('#total-pages').html(' /' + gon.total_pages)
+		
+		document.body.addEventListener 'touchstart', ((e) ->
+			self.startTouch = e.changedTouches[0].pageX
+			target = $(e.target)
+			if target.attr('id') is 'sections_container' || target.closest('#sections_container').size() != 0
+				$('#sections_wrapper').css('transition', 'all, 0s')
+				
+		), false
+		
+		document.body.addEventListener 'touchmove', ((e) ->
+			moveTouch = e.changedTouches[0].pageX
+			target = $(e.target)
+			if target.attr('id') is 'sections_container' || target.closest('#sections_container').size() != 0
+				width = parseInt($('#sections_wrapper').css('width')) * -1
+				movement = 4000
+				if moveTouch < self.startTouch and $('#sections_wrapper').css('left') isnt "-" + $('#sections_wrapper').css('width')
+					movement = moveTouch - self.startTouch
+				else if moveTouch > self.startTouch and $('#sections_wrapper').css('left') isnt '0px'
+					movement = width + moveTouch - self.startTouch
+					
+				if movement <= 0 and movement >= width
+					$('#sections_wrapper').css('left', movement + "px")
+		), false
+		
+		document.body.addEventListener 'touchend', ((e) ->
+			endTouch = 	e.changedTouches[0].pageX
+			target = $(e.target)
+			$('#sections_wrapper').css('transition', 'all, 0.2s')
+			if self.startTouch is endTouch and target.attr('id') isnt 'sections_container' and target.closest('#sections_container').size() is 0
+				$('#sections_wrapper').css('left', "-" + $('#sections_wrapper').css('width'))
+			else if target.attr('id') is 'sections_container' || target.closest('#sections_container').size() != 0
+				if endTouch > self.startTouch + 20
+					$('#sections_wrapper').css('left', "0px")
+				else if endTouch > self.startTouch
+					$('#sections_wrapper').css('left', "-" + $('#sections_wrapper').css('width'))
+				else if endTouch < self.startTouch - 20
+					$('#sections_wrapper').css('left', "-" + $('#sections_wrapper').css('width'))
+				else
+					$('#sections_wrapper').css('left', "0px")
+		), false
 		
 		###
 		$('img').on 'contextmenu', ->
@@ -153,3 +194,6 @@ class Iniciados.Views.BooksShowPage extends Backbone.View
 		$('#book-content').css('opacity', '1')
 		$('#current-page').removeAttr('disabled')
 		$('#move-page-wrapper').removeClass('inactive')
+			
+			
+			

@@ -78,7 +78,23 @@ form.form-inline
     font-size: 12px
     list-style: square
 
+ul
+  list-style-type: none
 
+a
+  color: black
+  font-family: Verlag
+  font-weight: 400
+  text-transform: uppercase
+  letter-spacing: 1px
+  padding: 2px 30px
+  display: inline-block
+  width: 100%
+  +transition(all, 0.2s)
+  &:hover
+    color: white
+    background-color: black
+    text-decoration: none
 input::-webkit-outer-spin-button, input::-webkit-inner-spin-button 
   -webkit-appearance: none
   margin: 0

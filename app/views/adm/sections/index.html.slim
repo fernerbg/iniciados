@@ -1,6 +1,12 @@
 h1 Listing sections
 
-table
+br
+
+= link_to 'New Section', new_adm_book_section_path(@book)
+
+br
+
+table.table
   thead
     tr
       th Title
@@ -15,11 +21,6 @@ table
       tr
         td = section.title
         td = section.start_page
-        td = section.level
-        td = link_to 'Show', section
-        td = link_to 'Edit', edit_section_path(section)
-        td = link_to 'Destroy', section, data: {:confirm => 'Are you sure?'}, :method => :delete
-
-br
-
-= link_to 'New Section', new_section_path
+        td = link_to 'Show', [:adm, section]
+        td = link_to 'Edit', edit_adm_section_path(section)
+        td = link_to 'Destroy', [:adm, section], data: {:confirm => 'Are you sure?'}, :method => :delete

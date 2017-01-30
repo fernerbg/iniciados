@@ -24,4 +24,4 @@
           td = link_to 'Edit', edit_adm_book_path(book)
           td = link_to 'Destroy', [:adm, book], data: { confirm: 'Are you sure?' }, method: :delete
           td = link_to 'Add Pages', new_page_adm_book_path(book)
-          td = link_to 'Add Sections', new_adm_book_section_path(book)
+          td = link_to 'Admin Sections', adm_book_sections_path(book)

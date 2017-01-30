@@ -1,9 +1,12 @@
 class Adm::SectionsController < Adm::BaseController
-  belongs_to :book
+  belongs_to :book, optional: true
   def new
-    @book = parent
     @section = Section.new
     3.times { @section.chapters.build }
+  end
+  
+  def update
+    update! {adm_book_sections_path(@section.book)}
   end
   
   private

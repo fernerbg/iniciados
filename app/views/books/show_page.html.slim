@@ -1,3 +1,9 @@
+#sections_container
+	#sections_wrapper
+		ul
+			- @sections.each do |section|
+				li= link_to section.title, show_page_book_path(@book, number: section.start_page)
+	
 #navigation-options
 	#change-page-wrapper
 		#move-page-wrapper
