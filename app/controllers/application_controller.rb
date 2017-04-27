@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
   end
   
   def private_root
-    "#{Rails.root}/private"
+    #"#{Rails.root}/private"
   end
   
   protected
