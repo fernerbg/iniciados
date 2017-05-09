@@ -43,6 +43,8 @@ gem 'state_machine', require: 'state_machine/core'
 
 gem 'carrierwave'
 
+gem 'carrierwave_direct'
+
 # Gem used to handle image uploading
 gem 'fog', '>= 1.3.1'
   

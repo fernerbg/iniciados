@@ -3,21 +3,15 @@ CarrierWave.configure do |config|
   # the servers
   # config.permissions = 0600
   # config.directory_permissions = 0700
-#  if Configuration['AWS_id']
-#    config.fog_credentials = {
-#      :provider               => 'AWS',       # required
-#      :aws_access_key_id      => Configuration['AWS_id'],       # required
-#      :aws_secret_access_key  => Configuration['AWS_secret'],       # required
-#      :region                 => 'us-west-2'  # optional, defaults to 'us-east-1'
-#    }
-    
-#    config.fog_directory = Configuration['S3_bucket_dev']
-#  end
-  #config.fog_public = false
-  
-  #config.use_action_status = true
-  
-  # This avoids uploaded files from saving to public/ and so
-  # they will not be available for pubsadflic (non-authenticated) downloading
-  config.root = Rails.root
+
+  config.fog_provider = 'fog/aws'                        # required
+  config.fog_credentials = {
+    provider:              'AWS',                        # required
+    aws_access_key_id:     'AKIAJOTVGC5PA7PMYTGQ',                        # required
+    aws_secret_access_key: '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',                        # required
+    region:                'us-east-2',                  # optional, defaults to 'us-east-1'
+  }
+  config.fog_directory  = 'skyiniciados-dev'                          # required
+  config.fog_public     = false                                        # optional, defaults to true
+  #config.root = Rails.root
 end

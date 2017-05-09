@@ -11,8 +11,8 @@ class ContentUploader < CarrierWave::Uploader::Base
   # include Sprockets::Helpers::IsolatedHelper
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
-  # storage :fog
+  # storage :file
+  storage :fog
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -23,6 +23,11 @@ class ContentUploader < CarrierWave::Uploader::Base
   def cache_dir
     "#{Rails.root}/tmp/uploads"
   end
+  
+  def fog_authenticated_url_expiration
+    10.seconds # in seconds from now,  (default is 10.minutes)
+  end
+  
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
   #   # For Rails 3.1+ asset pipeline compatibility:
