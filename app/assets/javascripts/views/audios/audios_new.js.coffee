@@ -37,4 +37,3 @@ class Iniciados.Views.AudiosNew extends Backbone.View
 				context.translate(0, 0)
 				context.drawImage(img, -canvas.width / 2, -canvas.height / 2 + 5, img.width, img.height / 3)
 				context.restore()
-				

@@ -6,7 +6,7 @@ class NotificationsController < InheritedResources::Base
         @notifications = Notification.all
       end
       format.json do
-        notifications = Notification.where('date < ?', params[:date]).limit(Notification.limit_records).order(date: :desc)
+        notifications = Notification.where('start_date < ?', params[:date]).limit(Notification.limit_records).order(start_date: :desc)
         if notifications.empty?
           render json: nil
         else
@@ -17,4 +17,3 @@ class NotificationsController < InheritedResources::Base
     end
   end
 end
-

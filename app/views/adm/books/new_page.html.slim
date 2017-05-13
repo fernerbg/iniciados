@@ -19,6 +19,10 @@ h1 New page
 					
 			.form-group
 				= label_tag :image
+				= direct_upload_form_for @uploader do |f|
+				  <%= f.file_field :avatar %>
+				  <%= f.submit %>
+				<% end %>
 				= file_field_tag "image", multiple: true, name: "image", class: 'form-control'
 			p
 				span.uploaded-pages

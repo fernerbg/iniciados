@@ -47,7 +47,7 @@
     | Novedades
   - @notifications_month.each do |month, notifications|
       .month class=((l month, format: '%B').downcase)
-        .month-title.verlag-bold
+        .month-title.verlag-bold data-yearmonth=(month.strftime("%Y%m"))
           = l month, format: '%B %Y'
-        .container
+        .container.current-container
           = render notifications

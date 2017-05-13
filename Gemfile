@@ -22,7 +22,7 @@ gem 'coffee-rails'
 gem 'uglifier'
 gem "compass-rails"
 gem "nested_form"
-#gem 'jquery-fileupload-rails'
+gem 'jquery-fileupload-rails'
 gem 'gon'
 
 # Authentication
@@ -38,15 +38,23 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
+
 # State machine for attributes on models
 gem 'state_machine', require: 'state_machine/core'
+
+# Decorators
+
+gem 'draper'
+
+# Gem used to handle image uploading
 
 gem 'carrierwave'
 
 gem 'carrierwave_direct'
 
-# Gem used to handle image uploading
 gem 'fog', '>= 1.3.1'
+
+gem "fog-aws"
   
 gem 'sidekiq'
 

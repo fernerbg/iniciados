@@ -440,9 +440,10 @@ u.save()
 
 ### LEVEL SECTIONS ###
 book = Book.create(title: lev.name)
-FileUtils.mkdir_p "#{Rails.root}/private/books/#{@book.id}"
+FileUtils.mkdir_p "#{Rails.root}/private/books/#{book.id}"
 
 lev.books << book
+lev.save!
 sec = lev.sections.create(title:"Emanaciones y Mantras", start_page: 7, book: book)
 sec.level_section.front_number = 1
 sec.level_section.save

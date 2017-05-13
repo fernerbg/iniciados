@@ -10,8 +10,10 @@
                 li = message
       
         = f.text_field :title
-        = f.datetime_select :date
+        = f.datetime_select :start_date
+        = f.datetime_select :end_date
         = f.text_area :description
         = f.file_field :media
+        = f.text_field :link
           
         .actions = f.submit

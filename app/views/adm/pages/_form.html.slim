@@ -1,0 +1,11 @@
+.content
+  .row
+    .col-xs-8.col-xs-offset-2
+      /= form_for [:adm, @book, @page], html: {multipart: true} do |f|
+      /  = f.file_field :image, multiple: true, name: "page[image]"
+        
+      = direct_upload_form_for Page.new.image do |fd|
+        p
+          = fd.file_field :image
+        p
+          = fd.submit

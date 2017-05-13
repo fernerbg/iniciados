@@ -6,18 +6,22 @@
     thead
       tr
         th Title
-        th Date
+        th Start Date
+        th End Date
         th Description
         th Media
-        th
+        th link
+        th 
         th
   
     tbody
       - @notifications.each do |notification|
         tr
           td = notification.title
-          td = notification.date
+          td = notification.start_date.strftime("%d %m %y") if notification.start_date
+          td = notification.end_date.strftime("%d %m %y") if notification.end_date
           td = notification.description
           td = notification.media_identifier
+          td = notification.link
           td = link_to 'Edit', edit_adm_notification_path(notification)
           td = link_to 'Destroy', [:adm, notification], data: { confirm: 'Are you sure?' }, method: :delete

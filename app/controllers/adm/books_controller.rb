@@ -13,7 +13,6 @@ class Adm::BooksController < Adm::BaseController
     end
     @book.authority = authority
     @book.save
-    FileUtils.mkdir_p "#{books_root}/#{@book.id}"
 	  redirect_to adm_books_path
   end
   
@@ -47,7 +46,7 @@ class Adm::BooksController < Adm::BaseController
     (1..10).each do |i|
       File.open("#{directory_name}/#{i}.jpg", "w+b") do |file|
         file.write(params["data" + i.to_s].read)
-      end 
+      end
     end
     respond_to do |format|
       format.json do

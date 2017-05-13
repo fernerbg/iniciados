@@ -66,6 +66,14 @@ Rails.application.routes.draw do
       resources :sections, shallow: true do
         resources :chapters, shallow: true
       end
+      resources :pages
+    end
+    
+    resources :users, only: [:index] do
+      collection do
+        post 'import'
+        get 'import_new'
+      end
     end
   end
 

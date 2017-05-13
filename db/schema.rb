@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170123033908) do
+ActiveRecord::Schema.define(version: 20170510191218) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -127,12 +127,25 @@ ActiveRecord::Schema.define(version: 20170123033908) do
 
   create_table "notifications", force: true do |t|
     t.string   "title"
-    t.datetime "date"
+    t.datetime "start_date"
+    t.datetime "end_date"
     t.text     "description"
     t.string   "media"
+    t.text     "link"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["date"], :name => "index_notifications_on_date"
+    t.index ["start_date"], :name => "index_notifications_on_start_date"
+  end
+
+  create_table "pages", force: true do |t|
+    t.integer  "number"
+    t.string   "image"
+    t.integer  "book_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["book_id"], :name => "index_pages_on_book_id"
+    t.index ["number"], :name => "index_pages_on_number"
+    t.foreign_key ["book_id"], "books", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_pages_book_id"
   end
 
   create_table "profiles", force: true do |t|

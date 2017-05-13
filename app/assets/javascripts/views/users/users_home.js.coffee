@@ -6,6 +6,8 @@ class Iniciados.Views.UsersHome extends Backbone.View
 	
 	loading: false
 	
+	pages: ["http://shaktianandama.com"]
+		
 	events:
 		"resize window" : "onResize"
 		
@@ -17,6 +19,7 @@ class Iniciados.Views.UsersHome extends Backbone.View
 		@.setInfoProperties()
 		@.setImageProperties()
 		@.month = $('.month-title:last').html()
+		@.getMonthPosts()
 		$('.news-container .container:last').addClass('current-container')
 		$('.footer-image').load ->
 			footerHeight = $(this).height()
@@ -25,14 +28,11 @@ class Iniciados.Views.UsersHome extends Backbone.View
 					self.loading = true
 					date = $('.information-wrapper:last').data('date')
 					$.getJSON gon.notifications_path, {date: date}, (data) ->
-						console.log data
+						console.log(data)
 						if data isnt null
-							self.loading = false
-								
 							for i of data.months
 								if data.months.hasOwnProperty i
 									month = data.months[i]
-									console.log month.date
 									if self.month isnt month.date
 										self.month = month.date
 										monthText = month.date.split(" ")[0].toLowerCase()
@@ -44,16 +44,10 @@ class Iniciados.Views.UsersHome extends Backbone.View
 										monthWrapper.append($('<div>', {class: "container current-container"}))
 										$(".news-container:first").append(monthWrapper)
 									for notification in month.notifications
-										console.log notification
-										notification.send = gon.send_content_path + "?element=notification_media&id=" + notification.id
 										if  (i + 1) % 2 == 0
 											(new self.leftContentNotification({model: notification})).render()
 										else
 											(new self.rightContentNotification({model: notification})).render()
-											
-							#THE ORDER OF THESE TWO IS IMPORTANT
-							self.setInfoProperties()
-							self.setImageProperties()
 				
 	setInfoProperties: ->
 		self = this
@@ -75,21 +69,30 @@ class Iniciados.Views.UsersHome extends Backbone.View
 			$('.new-wrapper.not-formatted .content-wrapper img').css({'width': '100%', 'position': 'static'})
 			$('.new-wrapper.not-formatted').css('visibility', 'visible')
 		else
-			$('.new-wrapper.not-formatted .content-wrapper img').load ->
+			$('.new-wrapper.not-formatted .content-wrapper img').one("load", ->
 				image = $(this)
 				image.css({'width': 'auto', 'position': 'relative'})
 				imageHeight = parseInt(image.css('height'))
 				imageWidth = parseInt(image.css('width'))
 				contentHeight = parseInt($('.new-wrapper.not-formatted:first .content-wrapper').css('height'))
 				contentWidth = parseInt($('.new-wrapper.not-formatted:first .content-wrapper').css('width'))
+				if imageWidth > contentWidth
+					if imageWidth > imageHeight
+						image.css({'width': '100%', 'position': 'static'})
+						if parseInt(image.css('height')) < contentHeight
+							image.css({'width': 'auto', 'position': 'relative'})
+							moveX = ((imageWidth - contentWidth) / 2) * -1
+							image.css('left', moveX + 'px')
+					else
+						moveX = ((imageWidth - contentWidth) / 2) * -1
+						image.css('left', moveX + 'px')
 				if imageHeight > contentHeight
 					moveY = ((imageHeight - contentHeight) / 2) * -1
 					image.css('top', moveY + 'px')
-				if imageWidth > contentWidth
-					moveX = ((imageWidth - contentWidth) / 2) * -1
-					image.css('left', moveX + 'px')
 				image.closest('.new-wrapper').css('visibility', 'visible').removeClass('not-formatted')
-				
+			).each ->
+				$(this).load() if this.complete
+			
 	onResize: ->
 		infoHeight = $('.new-wrapper:first .information-wrapper').css('width')
 		if infoHeight is not @.infoHeight
@@ -100,7 +103,38 @@ class Iniciados.Views.UsersHome extends Backbone.View
 		if newWidth is not @.newWidth
 			@.newWidth = newWidth
 			@.setImageProperties
-			
+	
+	getMonthPosts: (callback) ->
+		self = this
+		yearMonth = $('.month-title:last').data('yearmonth')
+		console.log(yearMonth)
+		postsLink = @.pages[0] + '/wp-json/wp/v2/posts?filter[m]=' + yearMonth + '&context=embed'
+		console.log(postsLink)
+		jQuery.get(postsLink, (data) ->
+			total_posts = data.length
+			for i of data
+				post = data[i]
+				if typeof post != 'function'
+					date = new Date(post.date)
+					month = date.toLocaleDateString("es", {month: "long"})
+					month = month.charAt(0).toUpperCase() + month.slice(1)
+					formatDate = date.toLocaleDateString("es", {day: "numeric"}) + " " + month + " " + date.getFullYear()
+					notification = { id: post.id, date: post.date, title: post.title.rendered, formatDate: formatDate, description: post.excerpt.rendered }
+					do (notification, post, i) ->
+						jQuery.get(post._links["wp:featuredmedia"][0].href, (imageData) ->
+							notification.link = imageData["guid"]["rendered"]
+							total_posts--
+							if  (parseInt(total_posts) + 1) % 2 == 0
+								(new self.leftContentNotification({model: notification})).render()
+							else
+								(new self.rightContentNotification({model: notification})).render()
+							if total_posts == 0
+								#THE ORDER OF THESE TWO IS IMPORTANT
+								self.setInfoProperties()
+								self.setImageProperties()
+						)
+		)
+		
 	leftContentNotification: Backbone.View.extend
 		render: ->
 			template = _.template($('#left-content-notification').html())

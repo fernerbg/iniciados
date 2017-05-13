@@ -27,6 +27,7 @@ window.Iniciados =
 		new Iniciados.Routers.Users() if controller == 'users'
 		new Iniciados.Routers.Levels() if controller == 'levels'
 		new Iniciados.Routers.Audios() if controller == 'audios'
+		new Iniciados.Routers.Pages() if controller == 'pages'
 		
 		Backbone.history.stop()
 		Backbone.history.start( pushState: true )

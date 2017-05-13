@@ -71,11 +71,11 @@ class UsersController < ApplicationController
   end
 
   def home
-    notifications = Notification.limit(Notification.limit_records).order(date: :desc)
+    notifications = Notification.limit(Notification.limit_records).order(start_date: :desc)
     gon.offset = Notification.limit_records
     gon.notifications_path = url_for(action: 'index', controller: 'notifications', only_path: true)
     gon.send_content_path = url_for(action: 'send_content', controller: 'contents', only_path: true)
-    @notifications_month = notifications.group_by { |t| t.date.beginning_of_month }
+    @notifications_month = notifications.group_by { |t| t.start_date.beginning_of_month }
   end
 
   def get_cognito_token
